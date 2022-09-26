@@ -1,1 +1,1 @@
-# zerg-team-student-information-service
+# Zerg team - student information service
