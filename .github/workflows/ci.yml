@@ -1,17 +1,17 @@
-name: CI
+name: ci-3
 
 on:
-  pull_request:
-    branches: [ development ]
+  push
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Run
-        run : |
-          echo Sample Workflow
+      - uses: actions/checkout@v2
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.19
+      - name: Build
+        run: make build
