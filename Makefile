@@ -1,4 +1,6 @@
+CMD:=./cmd
+
 build:
-	go build -o ./main ./cmd
+	go build ${CMD}/...
 test:
-	go test ./cmd
+	go test ${CMD}/...
