@@ -1,28 +1,35 @@
+# Project directory
 PROJECT_DIR = $(shell pwd)
 
-SOURCE_PATH = $(PROJECT_DIR)/cmd/main.go
-
-BIN_NAME = stud
+# Path to directory with binaries
 PROJECT_BIN = $(PROJECT_DIR)/bin
+
+# Full path to binary file
 BIN_PATH = $(PROJECT_BIN)/$(BIN_NAME)
 
-$(shell [ -f bin ] || mkdir -p $(PROJECT_BIN))
-PATH := $(PROJECT_BIN):$(PATH)
-GOLANGCI_LINT = $(PROJECT_BIN)/golangci-lint
+# Path to bin directory in GOPATH
+GO_BIN_PATH = $(shell go env GOPATH)/bin
+
+# Full path to linter
+GOLANGCI_LINT = $(GO_BIN_PATH)/golangci-lint
 
 .SILENT:
 
 build:
-	CGO_ENABLED=0 GOOS="linux" go build -o $(BIN_PATH) $(SOURCE_PATH)
+	$(shell [ -f bin ] || mkdir -p $(PROJECT_BIN))
+	go build -o $(PROJECT_BIN) ./...
 
 test:
 	go test -v ./...
 
+.PHONY: .install-linter
+.install-linter:
+	[ -f $(GOLANGCI_LINT) ] || curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(GO_BIN_PATH) v1.50.0
+
 .PHONY: lint
-lint:
-	golangci-lint run ./...
+lint: .install-linter
+	$(GOLANGCI_LINT) run ./...
 
 .PHONY: lint-fast
-lint-fast:
-	golangci-lint run ./... --fast
-
+lint-fast: .install-linter
+	$(GOLANGCI_LINT) run ./... --fast
