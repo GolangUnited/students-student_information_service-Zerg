@@ -1,18 +1,41 @@
 package main
 
-import "fmt"
+import (
+	"context"
+	"os/signal"
+	"syscall"
+	"zerg-team-student-information-service/internal/communication/rest"
+	"zerg-team-student-information-service/internal/server"
+	"zerg-team-student-information-service/internal/service"
+	"zerg-team-student-information-service/internal/storage/db"
+	"zerg-team-student-information-service/internal/storage/repository"
 
-// Comment
+	"github.com/sirupsen/logrus"
+)
 
 func main() {
 	var (
-		a = 40
-		b = 1
+		port = "8080"
 	)
-	fmt.Println("Result:", AddNumber(a, b))
 
-}
+	cfg := db.PGConfig{}
 
-func AddNumber(a int, b int) int {
-	return a + b
+	dbConn, err := db.NewConnect("postgres", &cfg)
+	if err != nil {
+		logrus.Errorln("DB connection failed", err)
+	}
+
+	repo := repository.New(dbConn)
+
+	service := service.New(repo)
+
+	handler := rest.NewHandler(service)
+
+	s := server.New(handler.InitRoutes(), port)
+
+	ctx, _ := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+
+	if err := s.Run(ctx); err != nil {
+		logrus.Errorln("Server start failed", err)
+	}
 }
