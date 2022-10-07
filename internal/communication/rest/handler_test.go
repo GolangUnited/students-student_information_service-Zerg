@@ -7,13 +7,14 @@ import (
 	handler "zerg-team-student-information-service/internal/communication/rest"
 	"zerg-team-student-information-service/internal/service"
 
-	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestNewHandler(t *testing.T) {
 	h := handler.NewHandler(&service.Service{})
 
-	require.IsType(t, &handler.Handler{}, h)
+	assert.IsType(t, &handler.Handler{}, h, "unexpected Handler type")
+
 }
 
 func TestNewHandler_Init(t *testing.T) {
@@ -28,6 +29,5 @@ func TestNewHandler_Init(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-
-	require.Equal(t, http.StatusOK, res.StatusCode)
+	assert.Equal(t, http.StatusOK, res.StatusCode, "status code is not 200")
 }

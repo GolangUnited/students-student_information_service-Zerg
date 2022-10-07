@@ -2,9 +2,11 @@ package main
 
 import (
 	"context"
+	"os"
 	"os/signal"
 	"syscall"
 	"zerg-team-student-information-service/internal/communication/rest"
+	"zerg-team-student-information-service/internal/logger"
 	"zerg-team-student-information-service/internal/server"
 	"zerg-team-student-information-service/internal/service"
 	"zerg-team-student-information-service/internal/storage/db"
@@ -15,8 +17,15 @@ import (
 
 func main() {
 	var (
-		port = "8080"
+		port   = os.Getenv("APP_PORT")
+		logger = logger.NewLogrusLogger()
 	)
+
+	if port == "" {
+		logger.Warn("APP_PORT environment variable is not set")
+		logger.Warn("Setting port to :8080")
+		port = "8080"
+	}
 
 	cfg := db.PGConfig{}
 
@@ -27,9 +36,9 @@ func main() {
 
 	repo := repository.New(dbConn)
 
-	service := service.New(repo)
+	svc := service.New(repo, logger)
 
-	handler := rest.NewHandler(service)
+	handler := rest.NewHandler(svc)
 
 	s := server.New(handler.InitRoutes(), port)
 

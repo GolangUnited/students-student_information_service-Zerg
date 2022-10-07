@@ -4,11 +4,9 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/sirupsen/logrus"
 )
 
-func healthCheck(c *gin.Context) {
-	logrus.Println("Request received from", c.ClientIP())
+func (h *Handler) healthCheck(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"health": "OK",
 	})

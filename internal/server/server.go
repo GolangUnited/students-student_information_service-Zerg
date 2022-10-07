@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"time"
 
 	"github.com/sirupsen/logrus"
 )
@@ -16,11 +15,8 @@ type Server struct {
 func New(handler http.Handler, port string) *Server {
 	return &Server{
 		httpServer: &http.Server{
-			Addr:           ":" + port,
-			Handler:        handler,
-			MaxHeaderBytes: 1 << 20, // 1048576 byte -> 1024 kbyte -> 1 Mbyte
-			ReadTimeout:    10 * time.Second,
-			WriteTimeout:   10 * time.Second,
+			Addr:    ":" + port,
+			Handler: handler,
 		},
 	}
 }
@@ -32,17 +28,17 @@ func (s *Server) Run(ctx context.Context) error {
 			case "http: Server closed":
 				logrus.Println(err.Error())
 			default:
-				logrus.Fatalf("Error raised while server Listen And Serve:\n%s", err.Error())
+				logrus.Fatalf("Error raised while server Listen And Serve:%s", err.Error())
 			}
 		}
 	}()
-	logrus.Printf("Server started on port %v\n", s.httpServer.Addr)
+	logrus.Printf("Server started on port %v", s.httpServer.Addr)
 	<-ctx.Done()
 
 	logrus.Println("Shutting down server gracefully...")
 
 	if err := s.Shutdown(context.Background()); err != nil {
-		return fmt.Errorf("error raised while server shutdown:\n%w", err)
+		return fmt.Errorf("error raised while server shutdown:%w", err)
 	}
 
 	logrus.Println("Shutting down server gracefully... Done")

@@ -1,6 +1,8 @@
 package rest
 
 import (
+	"fmt"
+	"time"
 	"zerg-team-student-information-service/internal/service"
 
 	"github.com/gin-gonic/gin"
@@ -20,7 +22,17 @@ func NewHandler(service *service.Service) *Handler {
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
 
-	router.GET("/health", healthCheck)
+	router.Use(gin.LoggerWithFormatter(func(params gin.LogFormatterParams) string {
+		return fmt.Sprintf("[%s] - %s %s %s - %d\n",
+			params.TimeStamp.Format(time.RFC822),
+			params.ClientIP,
+			params.Method,
+			params.Path,
+			params.StatusCode,
+		)
+	}))
+
+	router.GET("/health", h.healthCheck)
 
 	return router
 }
