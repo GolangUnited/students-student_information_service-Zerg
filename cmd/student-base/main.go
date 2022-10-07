@@ -16,10 +16,9 @@ import (
 )
 
 func main() {
-	var (
-		port   = os.Getenv("APP_PORT")
-		logger = logger.NewLogrusLogger()
-	)
+
+	port := os.Getenv("APP_PORT")
+	logger := logger.NewLogrusLogger()
 
 	if port == "" {
 		logger.Warn("APP_PORT environment variable is not set")
