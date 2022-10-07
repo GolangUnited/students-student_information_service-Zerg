@@ -34,17 +34,17 @@ func main() {
 		logrus.Errorln("DB connection failed", err)
 	}
 
-	repo := repository.New(dbConn)
+	repo := repository.New(dbConn, logger)
 
 	svc := service.New(repo, logger)
 
-	handler := rest.NewHandler(svc)
+	handler := rest.NewHandler(svc, logger)
 
-	s := server.New(handler.InitRoutes(), port)
+	srv := server.New(handler.InitRoutes(), port)
 
 	ctx, _ := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 
-	if err := s.Run(ctx); err != nil {
+	if err := srv.Run(ctx); err != nil {
 		logrus.Errorln("Server start failed", err)
 	}
 }
