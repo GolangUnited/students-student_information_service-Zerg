@@ -11,8 +11,6 @@ import (
 	"zerg-team-student-information-service/internal/service"
 	"zerg-team-student-information-service/internal/storage/db"
 	"zerg-team-student-information-service/internal/storage/repository"
-
-	"github.com/sirupsen/logrus"
 )
 
 func main() {
@@ -30,7 +28,7 @@ func main() {
 
 	dbConn, err := db.NewConnect("postgres", &cfg)
 	if err != nil {
-		logrus.Errorln("DB connection failed", err)
+		logger.Error("DB connection failed", err)
 	}
 
 	repo := repository.New(dbConn, logger)
@@ -39,11 +37,11 @@ func main() {
 
 	handler := rest.NewHandler(svc, logger)
 
-	srv := server.New(handler.InitRoutes(), port)
+	srv := server.New(handler.InitRoutes(), port, logger)
 
 	ctx, _ := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 
 	if err := srv.Run(ctx); err != nil {
-		logrus.Errorln("Server start failed", err)
+		logger.Error("Server start failed", err)
 	}
 }

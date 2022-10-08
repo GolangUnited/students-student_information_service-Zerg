@@ -9,15 +9,15 @@ import (
 
 type PGConfig struct {
 	Host     string
-	Port     string
+	Port     int
 	Username string
 	DBName   string
 	Password string
-	SSLMode  string
+	SSLMode  bool
 }
 
 func (cfg *PGConfig) CreateConnectString() string {
-	return fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s",
+	return fmt.Sprintf("host=%s port=%v user=%s dbname=%s password=%s sslmode=%v",
 		cfg.Host, cfg.Port, cfg.Username, cfg.DBName, cfg.Password, cfg.SSLMode)
 }
 
