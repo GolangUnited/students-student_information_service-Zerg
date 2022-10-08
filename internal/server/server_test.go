@@ -31,7 +31,6 @@ func TestNewServer_Run(t *testing.T) {
 			t.Error(err)
 		}
 	}()
-	defer srv.Shutdown(ctx)
 	<-ctx.Done()
 }
 
