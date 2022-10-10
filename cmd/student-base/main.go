@@ -15,33 +15,33 @@ import (
 
 func main() {
 
-	port := os.Getenv("APP_PORT")
-	logger := logger.NewLogrusLogger()
+	appPort := os.Getenv("APP_PORT")
+	logrusLogger := logger.NewLogrusLogger()
 
-	if port == "" {
-		logger.Warn("APP_PORT environment variable is not set")
-		logger.Warn("Setting port to :8080")
-		port = "8080"
+	if appPort == "" {
+		logrusLogger.Warn("APP_PORT environment variable is not set")
+		logrusLogger.Warn("Setting port to :8080")
+		appPort = "8080"
 	}
 
 	cfg := db.PGConfig{}
 
 	dbConn, err := db.NewConnect("postgres", &cfg)
 	if err != nil {
-		logger.Error("DB connection failed", err)
+		logrusLogger.Error("DB connection failed", err)
 	}
 
-	repo := repository.New(dbConn, logger)
+	repo := repository.New(dbConn, logrusLogger)
 
-	svc := service.New(repo, logger)
+	svc := service.New(repo, logrusLogger)
 
-	handler := rest.NewHandler(svc, logger)
+	handler := rest.NewHandler(svc, logrusLogger)
 
-	srv := server.New(handler.InitRoutes(), port, logger)
+	srv := server.New(handler.InitRoutes(), appPort, logrusLogger)
 
 	ctx, _ := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 
 	if err := srv.Run(ctx); err != nil {
-		logger.Error("Server start failed", err)
+		logrusLogger.Error("Server start failed", err)
 	}
 }
