@@ -1,2 +1,4 @@
 # binaries directory
 bin/
+.DS_Store
+.idea/
