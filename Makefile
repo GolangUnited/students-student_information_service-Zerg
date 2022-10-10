@@ -19,6 +19,9 @@ build:
 	$(shell [ -f bin ] || mkdir -p $(PROJECT_BIN))
 	go build -o $(PROJECT_BIN) ./...
 
+run: build
+	$(PROJECT_BIN)/student-base
+
 test:
 	go test -v ./...
 
@@ -28,8 +31,8 @@ test:
 
 .PHONY: lint
 lint: .install-linter
-	$(GOLANGCI_LINT) run ./...
-
+	$(GOLANGCI_LINT) run ./... 
+	
 .PHONY: lint-fast
 lint-fast: .install-linter
 	$(GOLANGCI_LINT) run ./... --fast
