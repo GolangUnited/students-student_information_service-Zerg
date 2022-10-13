@@ -17,7 +17,7 @@ type PGConfig struct {
 }
 
 func (cfg *PGConfig) CreateConnectString() string {
-	return fmt.Sprintf("host=%s port=%v user=%s dbname=%s password=%s sslmode=%v",
+	return fmt.Sprintf("host=%s port=%v user=%s dbname=%s password=%s sslmode=%s",
 		cfg.Host, cfg.Port, cfg.Username, cfg.DBName, cfg.Password, cfg.SSLMode)
 }
 

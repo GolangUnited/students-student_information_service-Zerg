@@ -15,10 +15,10 @@ func TestCreateConnectString(t *testing.T) {
 		Username: "postgres",
 		DBName:   "db",
 		Password: "password",
-		SSLMode:  true,
+		SSLMode:  "require",
 	}
 	res := cfg.CreateConnectString()
-	exp := "host=localhost port=5432 user=postgres dbname=db password=password sslmode=true"
+	exp := "host=localhost port=5432 user=postgres dbname=db password=password sslmode=require"
 
 	assert.Equal(t, exp, res, "invalid connection string")
 
