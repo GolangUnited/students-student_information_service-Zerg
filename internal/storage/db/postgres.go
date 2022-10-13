@@ -13,7 +13,7 @@ type PGConfig struct {
 	Username string
 	DBName   string
 	Password string
-	SSLMode  bool
+	SSLMode  string
 }
 
 func (cfg *PGConfig) CreateConnectString() string {
