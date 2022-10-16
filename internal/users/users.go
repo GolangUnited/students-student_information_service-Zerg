@@ -22,7 +22,11 @@ func (u *User) GetById(dbConn db.DBConnect) error {
 func (u *User) Insert(dbConn db.DBConnect) error {
 	sqlStatement := "INSERT INTO users (first_name, last_name, birthday, email, password_hash) "
 	sqlStatement += "VALUES ($1, $2, $3, $4, $5) RETURNING id"
-	row := dbConn.GetConn().QueryRow(sqlStatement, u.FirstName, u.LastName, u.Birthday, u.Email, u.PasswordHash)
-	err := row.Scan(&u.Id)
+	result, err := dbConn.GetConn().Exec(sqlStatement, u.FirstName, u.LastName, u.Birthday, u.Email, u.PasswordHash)
+	if err != nil {
+		return err
+	}
+	id, err := result.LastInsertId()
+	u.Id = int(id)
 	return err
 }
