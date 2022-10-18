@@ -1,3 +1,5 @@
+include .env
+
 # Project directory
 PROJECT_DIR = $(shell pwd)
 
@@ -24,6 +26,17 @@ run: build
 
 test:
 	go test -v ./...
+
+createdb:
+
+dropdb:
+
+migrateup:
+    migrate -path internal/storage/db/migration -database "postgresql://${DB_USER_NAME}:${DB_PASSWORD}@tcp(${DB_HOST}:${DB_PORT})/${DB_NAME}" -verbose up
+
+
+migratedown:
+    migrate -path internal/storage/db/migration -database "postgresql://${DB_USER_NAME}:${DB_PASSWORD}@tcp(${DB_HOST}:${DB_PORT})/${DB_NAME}" -verbose down
 
 .PHONY: .install-linter
 .install-linter:
