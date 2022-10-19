@@ -1,5 +1,3 @@
-#include .env
-
 # Project directory
 PROJECT_DIR = $(shell pwd)
 
