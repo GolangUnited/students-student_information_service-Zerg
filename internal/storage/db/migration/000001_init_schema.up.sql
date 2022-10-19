@@ -2,18 +2,18 @@ CREATE TABLE "users" (
   "id" SERIAL PRIMARY KEY,
   "first_name" varchar NOT NULL,
   "last_name" varchar NOT NULL,
-  "birthday" datetime NOT NULL,
+  "birthday" timestamp NOT NULL,
   "email" varchar UNIQUE NOT NULL,
   "password_hash" varchar NOT NULL
 );
 
 CREATE TABLE "students" (
-  "id" int NOT NULL,
-  "group_id" varchar NOT NULL
+  "id" int PRIMARY KEY,
+  "group_id" int NOT NULL
 );
 
 CREATE TABLE "mentors" (
-  "id" int
+  "id" int PRIMARY KEY
 );
 
 CREATE TABLE "admins" (
@@ -33,7 +33,7 @@ CREATE TABLE "skills" (
 
 CREATE TABLE "student_skills" (
   "student_id" int NOT NULL,
-  "skill" int NOT NULL,
+  "skill" varchar NOT NULL,
   "level" int NOT NULL
 );
 
@@ -45,10 +45,10 @@ CREATE TABLE "contacts" (
 );
 
 CREATE TABLE "groups" (
-  "id" varchar UNIQUE PRIMARY KEY,
+  "id" int UNIQUE PRIMARY KEY,
   "mentor" int NOT NULL,
-  "date_start" datetime NOT NULL,
-  "date_end" datetime NOT NULL
+  "date_start" timestamp NOT NULL,
+  "date_end" timestamp NOT NULL
 );
 
 CREATE TABLE "group_overview" (
@@ -74,15 +74,15 @@ CREATE TABLE "diploma" (
 );
 
 CREATE TABLE "cert" (
-  "student_id" id NOT NULL,
+  "student_id" int NOT NULL,
   "cert_id" varchar UNIQUE NOT NULL,
-  "issued" datetime NOT NULL
+  "issued" timestamp NOT NULL
 );
 
 CREATE TABLE "interview" (
   "student_id" int,
   "mentor_id" int,
-  "date" datetime NOT NULL,
+  "date" timestamp NOT NULL,
   "mark" int NOT NULL,
   "notes" text
 );
