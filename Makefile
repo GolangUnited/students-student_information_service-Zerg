@@ -13,6 +13,15 @@ GO_BIN_PATH = $(shell go env GOPATH)/bin
 # Full path to linter
 GOLANGCI_LINT = $(GO_BIN_PATH)/golangci-lint
 
+# DB connection string
+CONNECTION_STRING = postgresql://${DB_USER_NAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}
+
+# Path to migration files
+MIGRATION_PATH = internal/storage/db/migration
+
+# Migration tool command string
+MIGRATION_STRING = migrate -path $(MIGRATION_PATH) -database "$(CONNECTION_STRING)/${DB_NAME}?sslmode=disable" -verbose
+
 .SILENT:
 
 build:
@@ -25,15 +34,17 @@ run: build
 test:
 	go test -v ./...
 
-#createdb:
+createdb:
+	psql $(CONNECTION_STRING) -c 'CREATE DATABASE ${DB_NAME};'
 
-#dropdb:
+dropdb:
+	psql $(CONNECTION_STRING) -c 'DROP DATABASE ${DB_NAME};'
 
 migrateup:
-	migrate -path internal/storage/db/migration -database "postgresql://${DB_USER_NAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?sslmode=disable" -verbose up
+	$(MIGRATION_STRING) up
 
 migratedown:
-	migrate -path internal/storage/db/migration -database "postgresql://${DB_USER_NAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?sslmode=disable" -verbose down
+	$(MIGRATION_STRING) down
 
 .PHONY: .install-linter
 .install-linter:
