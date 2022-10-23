@@ -16,14 +16,21 @@ GOLANGCI_LINT = $(GO_BIN_PATH)/golangci-lint
 # Full path to migrate tool
 MIGRATE_TOOL = $(GO_BIN_PATH)/migrate
 
+# DB parameters
+DB_HOST = localhost
+DB_PORT = 5432
+DB_NAME = student_information_srv
+DB_USER_NAME = root
+DB_USER_PASSWORD = secret
+
 # DB connection string
-CONNECTION_STRING = postgresql://${DB_USER_NAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}
+CONNECTION_STRING = postgresql://$(DB_USER_NAME):$(DB_PASSWORD)@$(DB_HOST):$(DB_PORT)
 
 # Path to migration files
 MIGRATION_PATH = internal/storage/db/migration
 
 # Migration tool command string
-MIGRATION_STRING = $(MIGRATE_TOOL)/migrate -path $(MIGRATION_PATH) -database "$(CONNECTION_STRING)/${DB_NAME}?sslmode=disable" -verbose
+MIGRATION_STRING = $(MIGRATE_TOOL)/migrate -path $(MIGRATION_PATH) -database "$(CONNECTION_STRING)/$(DB_NAME)?sslmode=disable" -verbose
 
 .SILENT:
 
@@ -65,5 +72,4 @@ lint-fast: .install-linter
 
 .PHONY: .install-migrate-tool
 .install-migrate-tool:
-	echo ${GOBIN}
-	GOBIN=$(GO_BIN_PATH)/migrate go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@v4.15.2
+	GOBIN=$(MIGRATE_TOOL) go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@v4.15.2
