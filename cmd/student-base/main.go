@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
@@ -9,7 +10,6 @@ import (
 	"zerg-team-student-information-service/internal/logger"
 	"zerg-team-student-information-service/internal/server"
 	"zerg-team-student-information-service/internal/service"
-	"zerg-team-student-information-service/internal/storage/db"
 	"zerg-team-student-information-service/internal/storage/repository"
 )
 
@@ -24,14 +24,14 @@ func main() {
 		appPort = "8080"
 	}
 
-	cfg := db.PGConfig{}
-
-	dbConn, err := db.NewConnect("postgres", &cfg)
+	repo, err := repository.New("postgres", logrusLogger)
 	if err != nil {
-		logrusLogger.Error("DB connection failed", err)
+		logrusLogger.Error(err)
 	}
 
-	repo := repository.New(dbConn, logrusLogger)
+	userr, _ := repo.User().GetById(1)
+	fmt.Println("user:", userr)
+	return
 
 	svc := service.New(repo, logrusLogger)
 

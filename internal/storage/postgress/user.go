@@ -1,14 +1,15 @@
-package db
+package postgress
 
 import (
 	"zerg-team-student-information-service/internal/models"
+	"zerg-team-student-information-service/internal/storage"
 )
 
 type UserDb struct {
-	dbConn DBConnect
+	dbConn storage.DBConnect
 }
 
-func NewUserDb(dbConn DBConnect) *UserDb {
+func NewUserDb(dbConn storage.DBConnect) *UserDb {
 	var uDb UserDb
 	uDb.dbConn = dbConn
 	return &uDb

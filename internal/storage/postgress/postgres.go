@@ -1,10 +1,10 @@
-package db
+package postgress
 
 import (
 	"database/sql"
 	"fmt"
-
 	_ "github.com/lib/pq"
+	"zerg-team-student-information-service/internal/storage"
 )
 
 type PGConfig struct {
@@ -25,7 +25,7 @@ type PostgresConnect struct {
 	conn *sql.DB
 }
 
-func NewPostgresConnect(cfg DbConfig) (*PostgresConnect, error) {
+func NewPostgresConnect(cfg storage.DbConfig) (*PostgresConnect, error) {
 	conn, err := sql.Open("postgres", cfg.CreateConnectString())
 
 	if err != nil {
