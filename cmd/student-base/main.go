@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
@@ -28,10 +27,6 @@ func main() {
 	if err != nil {
 		logrusLogger.Error(err)
 	}
-
-	userr, _ := repo.User().GetById(1)
-	fmt.Println("user:", userr)
-	return
 
 	svc := service.New(repo, logrusLogger)
 
