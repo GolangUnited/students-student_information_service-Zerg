@@ -10,9 +10,7 @@ type UserDb struct {
 }
 
 func NewUserDb(dbConn storage.DBConnect) *UserDb {
-	var uDb UserDb
-	uDb.dbConn = dbConn
-	return &uDb
+	return &UserDb{dbConn: dbConn}
 }
 
 func (u *UserDb) GetById(id int) (models.User, error) {
