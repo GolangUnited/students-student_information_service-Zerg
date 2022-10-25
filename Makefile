@@ -24,7 +24,7 @@ DB_USER_NAME = root
 DB_USER_PASSWORD = secret
 
 # DB connection string
-CONNECTION_STRING = postgresql://$(DB_USER_NAME):$(DB_PASSWORD)@$(DB_HOST):$(DB_PORT)
+CONNECTION_STRING = postgresql://$(DB_USER_NAME):$(DB_USER_PASSWORD)@$(DB_HOST):$(DB_PORT)
 
 # Path to migration files
 MIGRATION_PATH = internal/storage/db/migration
