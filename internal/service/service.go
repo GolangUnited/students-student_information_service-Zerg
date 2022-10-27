@@ -16,3 +16,7 @@ func New(repo *repository.Repository, logger logger.Logger) *Service {
 		logger: logger,
 	}
 }
+
+func (s *Service) Repo() *repository.Repository {
+	return s.repo
+}

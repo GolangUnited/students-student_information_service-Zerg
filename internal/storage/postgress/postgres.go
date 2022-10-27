@@ -1,10 +1,10 @@
-package db
+package postgress
 
 import (
 	"database/sql"
 	"fmt"
-
 	_ "github.com/lib/pq"
+	"zerg-team-student-information-service/internal/storage"
 )
 
 type PGConfig struct {
@@ -13,11 +13,11 @@ type PGConfig struct {
 	Username string
 	DBName   string
 	Password string
-	SSLMode  bool
+	SSLMode  string
 }
 
 func (cfg *PGConfig) CreateConnectString() string {
-	return fmt.Sprintf("host=%s port=%v user=%s dbname=%s password=%s sslmode=%v",
+	return fmt.Sprintf("host=%s port=%v user=%s dbname=%s password=%s sslmode=%s",
 		cfg.Host, cfg.Port, cfg.Username, cfg.DBName, cfg.Password, cfg.SSLMode)
 }
 
@@ -25,7 +25,7 @@ type PostgresConnect struct {
 	conn *sql.DB
 }
 
-func NewPostgresConnect(cfg DbConfig) (*PostgresConnect, error) {
+func NewPostgresConnect(cfg storage.DbConfig) (*PostgresConnect, error) {
 	conn, err := sql.Open("postgres", cfg.CreateConnectString())
 
 	if err != nil {
