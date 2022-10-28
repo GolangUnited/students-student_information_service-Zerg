@@ -23,9 +23,23 @@ func (u *UserDb) GetById(id int) (models.User, error) {
 func (u *UserDb) Create(user models.User) (int64, error) {
 	sqlStatement := "INSERT INTO users (first_name, last_name, birthday, email, password_hash) "
 	sqlStatement += "VALUES ($1, $2, $3, $4, $5) RETURNING id"
-	result, err := u.dbConn.GetConn().Exec(sqlStatement, user.FirstName, user.LastName, user.Birthday, user.Email, user.PasswordHash)
+	var id int64
+	err := u.dbConn.GetConn().QueryRow(sqlStatement, user.FirstName, user.LastName, user.Birthday, user.Email, user.PasswordHash).Scan(&id)
 	if err != nil {
 		return 0, err
 	}
-	return result.LastInsertId()
+	return id, nil
+}
+
+func (u *UserDb) EmailExist(email string) (ex bool, err error) {
+	row := u.dbConn.GetConn().QueryRow("SELECT EXISTS (SELECT * FROM users WHERE email = $1);", email)
+	err = row.Scan(&ex)
+	return
+}
+
+func (u *UserDb) GetByEmail(email string) (models.User, error) {
+	var userModel models.User
+	row := u.dbConn.GetConn().QueryRow("SELECT * FROM users WHERE email=$1", email)
+	err := row.Scan(&userModel.Id, &userModel.FirstName, &userModel.LastName, &userModel.Birthday, &userModel.Email, &userModel.PasswordHash)
+	return userModel, err
 }
