@@ -36,6 +36,8 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	}))
 
 	router.GET("/health", h.healthCheck)
+	router.POST("/signup", h.CreateUser)
+	router.GET("/login", h.GetUser)
 
 	return router
 }
