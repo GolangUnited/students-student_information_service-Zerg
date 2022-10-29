@@ -15,7 +15,6 @@ func TestNewHandler(t *testing.T) {
 	h := handler.NewHandler(&service.Service{}, logger.NewLogrusLogger())
 
 	assert.IsType(t, &handler.Handler{}, h, "unexpected Handler type")
-
 }
 
 func TestNewHandler_Init(t *testing.T) {
@@ -30,5 +29,6 @@ func TestNewHandler_Init(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
+	defer res.Body.Close()
 	assert.Equal(t, http.StatusOK, res.StatusCode, "status code is not 200")
 }

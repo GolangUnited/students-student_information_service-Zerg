@@ -25,7 +25,7 @@ func New(dbms string, logger logger.Logger) (*Repository, error) {
 			return nil, err
 		}
 
-		return &Repository{dbConnect, logger, postgress.NewUserDb(dbConnect)}, nil
+		return &Repository{dbConnect, logger, postgress.NewUserDB(dbConnect)}, nil
 	default:
 		return nil, errors.New("DBMS not supported")
 	}

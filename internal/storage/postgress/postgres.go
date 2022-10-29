@@ -3,8 +3,9 @@ package postgress
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/lib/pq"
 	"zerg-team-student-information-service/internal/storage"
+
+	_ "github.com/lib/pq"
 )
 
 type PGConfig struct {
@@ -25,7 +26,7 @@ type PostgresConnect struct {
 	conn *sql.DB
 }
 
-func NewPostgresConnect(cfg storage.DbConfig) (*PostgresConnect, error) {
+func NewPostgresConnect(cfg storage.DBConfig) (*PostgresConnect, error) {
 	conn, err := sql.Open("postgres", cfg.CreateConnectString())
 
 	if err != nil {
@@ -38,7 +39,6 @@ func NewPostgresConnect(cfg storage.DbConfig) (*PostgresConnect, error) {
 }
 
 func (db *PostgresConnect) CheckConn() error {
-
 	err := db.conn.Ping()
 
 	if err != nil {

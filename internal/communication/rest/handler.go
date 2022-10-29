@@ -19,7 +19,6 @@ func NewHandler(service *service.Service, logger logger.Logger) *Handler {
 		service: service,
 		logger:  logger,
 	}
-
 }
 
 func (h *Handler) InitRoutes() *gin.Engine {
