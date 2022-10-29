@@ -1,5 +1,9 @@
 # binaries directory
 bin/
+
+# Desktop Services Store (MacOS specific)
 .DS_Store
+
+# Jetbrains IDE dirs
 .idea/
 .fleet/
