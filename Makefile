@@ -42,6 +42,9 @@ run: build
 	$(PROJECT_BIN)/student-base
 
 test:
+	go test ./...
+
+test-verbose:
 	go test -v ./...
 
 createdb:
