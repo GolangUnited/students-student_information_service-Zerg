@@ -13,7 +13,6 @@ import (
 )
 
 func main() {
-
 	appPort := os.Getenv("APP_PORT")
 	logrusLogger := logger.NewLogrusLogger()
 

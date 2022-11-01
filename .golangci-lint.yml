@@ -1,0 +1,19 @@
+linters-settings:
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - performance
+      - style
+  misspell:
+    locale: US
+  lll:
+    line-length: 100
+
+linters:
+  disable-all: true
+  enable:
+    - bodyclose
+    - lll
+    - misspell
+    - stylecheck
+    - whitespace

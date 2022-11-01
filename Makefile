@@ -42,6 +42,9 @@ run: build
 	$(PROJECT_BIN)/student-base
 
 test:
+	go test ./...
+
+test-verbose:
 	go test -v ./...
 
 createdb:
@@ -64,7 +67,7 @@ migratedown: .install-migrate-tool
 
 .PHONY: lint
 lint: .install-linter
-	$(GOLANGCI_LINT) run ./... 
+	$(GOLANGCI_LINT) run ./... -c .golangci-lint.yml
 	
 .PHONY: lint-fast
 lint-fast: .install-linter

@@ -10,6 +10,6 @@ type DBConnect interface {
 	Close() error
 }
 
-type DbConfig interface {
+type DBConfig interface {
 	CreateConnectString() string
 }

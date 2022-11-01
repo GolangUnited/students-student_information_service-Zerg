@@ -21,7 +21,6 @@ func TestNewServer(t *testing.T) {
 }
 
 func TestNewServer_Run(t *testing.T) {
-
 	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Millisecond)
 	defer cancel()
 
@@ -36,11 +35,9 @@ func TestNewServer_Run(t *testing.T) {
 	}()
 
 	<-ctx.Done()
-
 }
 
 func TestNewServer_Shutdown(t *testing.T) {
-
 	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Millisecond)
 	defer cancel()
 

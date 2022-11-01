@@ -2,6 +2,7 @@ package postgress
 
 import (
 	"database/sql"
+
 	"github.com/DATA-DOG/go-sqlmock"
 )
 
@@ -19,7 +20,7 @@ func NewMockConnect() (*MockConnect, error) {
 	}, err
 }
 
-func (cfg *MockConnect) CreateConnectString() string {
+func (db *MockConnect) CreateConnectString() string {
 	return ""
 }
 
