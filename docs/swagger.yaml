@@ -1,0 +1,15 @@
+host: localhost:8080
+info:
+  contact: {}
+  description: API for managment students database
+  title: Zerg Team Student Information Service
+  version: "0.1"
+paths:
+  /health:
+    get:
+      description: Get status of webserver
+      responses:
+        "200":
+          description: OK
+      summary: App Healthcheck
+swagger: "2.0"

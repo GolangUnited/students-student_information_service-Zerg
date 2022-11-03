@@ -1,0 +1,23 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API for managment students database",
+        "title": "Zerg Team Student Information Service",
+        "contact": {},
+        "version": "0.1"
+    },
+    "host": "localhost:8080",
+    "paths": {
+        "/health": {
+            "get": {
+                "description": "Get status of webserver",
+                "summary": "App Healthcheck",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    }
+}

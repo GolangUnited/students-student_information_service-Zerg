@@ -12,6 +12,12 @@ import (
 	"zerg-team-student-information-service/internal/storage/repository"
 )
 
+// @title           Zerg Team Student Information Service
+// @version         0.1
+// @description     API for management students database
+
+// @host      localhost:8080
+
 func main() {
 	appPort := os.Getenv("APP_PORT")
 	logrusLogger := logger.NewLogrusLogger()
