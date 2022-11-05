@@ -1,4 +1,9 @@
 definitions:
+  models.Group:
+    properties:
+      id:
+        type: integer
+    type: object
   models.User:
     properties:
       birthday:
@@ -22,7 +27,7 @@ info:
   version: "0.1"
 paths:
   /auth/signin:
-    post:
+    get:
       consumes:
       - application/json
       description: Get user from database
@@ -91,6 +96,144 @@ paths:
       summary: Create user
       tags:
       - auth
+  /groups/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Remove group from database by id
+      operationId: delete-group-by-id
+      parameters:
+      - description: group id to delete
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Group'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Delete user
+      tags:
+      - groups
+    get:
+      consumes:
+      - application/json
+      description: Get group from database by ID
+      operationId: get-group-by-id
+      parameters:
+      - description: group id to get
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Group'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Get group by it
+      tags:
+      - groups
+    patch:
+      consumes:
+      - application/json
+      description: Update group data in database by id
+      operationId: update-group-by-id
+      parameters:
+      - description: group data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Group'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Update group
+      tags:
+      - groups
+  /groups/new:
+    post:
+      consumes:
+      - application/json
+      description: Create new group in database
+      operationId: create-group
+      parameters:
+      - description: group data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Group'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Create group
+      tags:
+      - groups
   /health:
     get:
       description: Get status of webserver
@@ -100,4 +243,142 @@ paths:
       summary: Application health check
       tags:
       - health
+  /users/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Remove user from database by id
+      operationId: remove-user-by-id
+      parameters:
+      - description: user id to delete
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Remove user by id
+      tags:
+      - users
+    get:
+      consumes:
+      - application/json
+      description: Get user from database by ID
+      operationId: get-user-by-id
+      parameters:
+      - description: user id to get
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Get user by ID
+      tags:
+      - users
+    patch:
+      consumes:
+      - application/json
+      description: Update user data in database by id
+      operationId: update-user-by-id
+      parameters:
+      - description: user data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Update user by id
+      tags:
+      - users
+  /users/new:
+    post:
+      consumes:
+      - application/json
+      description: Create new user in database
+      operationId: new-user
+      parameters:
+      - description: user data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Create user
+      tags:
+      - users
 swagger: "2.0"

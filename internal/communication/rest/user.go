@@ -16,7 +16,7 @@ import (
 // @Failure 500 {object} error
 // @Failure default {object} error
 // @Router /auth/signup [post]
-func (h *Handler) CreateUser(c *gin.Context) {
+func (h *Handler) createUser(c *gin.Context) {
 }
 
 // @Summary Get user
@@ -30,6 +30,67 @@ func (h *Handler) CreateUser(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /auth/signin [post]
-func (h *Handler) GetUser(c *gin.Context) {
+// @Router /auth/signin [get]
+func (h *Handler) getUser(c *gin.Context) {
+}
+
+// @Summary Create user
+// @Tags users
+// @Description Create new user in database
+// @ID new-user
+// @Accept  json
+// @Produce  json
+// @Param input body models.User true "user data"
+// @Success 200 {integer} integer 1
+// @Failure 400,404 {object} error
+// @Failure 500 {object} error
+// @Failure default {object} error
+// @Router /users/new [post]
+func (h *Handler) newUser(c *gin.Context) {
+	h.createUser(c)
+}
+
+// @Summary Get user by ID
+// @Tags users
+// @Description Get user from database by ID
+// @ID get-user-by-id
+// @Accept  json
+// @Produce  json
+// @Param input body models.User true "user id to get"
+// @Success 200 {integer} integer 1
+// @Failure 400,404 {object} error
+// @Failure 500 {object} error
+// @Failure default {object} error
+// @Router /users/:id [get]
+func (h *Handler) getUserByID(c *gin.Context) {
+}
+
+// @Summary Update user by id
+// @Tags users
+// @Description Update user data in database by id
+// @ID update-user-by-id
+// @Accept  json
+// @Produce  json
+// @Param input body models.User true "user data to update"
+// @Success 200 {integer} integer 1
+// @Failure 400,404 {object} error
+// @Failure 500 {object} error
+// @Failure default {object} error
+// @Router /users/:id [patch]
+func (h *Handler) updateUserByID(c *gin.Context) {
+}
+
+// @Summary Remove user by id
+// @Tags users
+// @Description Remove user from database by id
+// @ID remove-user-by-id
+// @Accept  json
+// @Produce  json
+// @Param input body models.User true "user id to delete"
+// @Success 200 {integer} integer 1
+// @Failure 400,404 {object} error
+// @Failure 500 {object} error
+// @Failure default {object} error
+// @Router /users/:id [delete]
+func (h *Handler) removeUserByID(c *gin.Context) {
 }
