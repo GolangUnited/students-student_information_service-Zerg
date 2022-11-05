@@ -1,15 +1,103 @@
+definitions:
+  models.User:
+    properties:
+      birthday:
+        type: string
+      email:
+        type: string
+      firstName:
+        type: string
+      id:
+        type: integer
+      lastName:
+        type: string
+      passwordHash:
+        type: string
+    type: object
 host: localhost:8080
 info:
   contact: {}
-  description: API for managment students database
+  description: API for management students database
   title: Zerg Team Student Information Service
   version: "0.1"
 paths:
+  /auth/signin:
+    post:
+      consumes:
+      - application/json
+      description: Get user from database
+      operationId: get-user
+      parameters:
+      - description: user to get
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Get user
+      tags:
+      - auth
+  /auth/signup:
+    post:
+      consumes:
+      - application/json
+      description: Create new user in database
+      operationId: create-user
+      parameters:
+      - description: user data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Create user
+      tags:
+      - auth
   /health:
     get:
       description: Get status of webserver
       responses:
         "200":
           description: OK
-      summary: App Healthcheck
+      summary: Application health check
+      tags:
+      - health
 swagger: "2.0"

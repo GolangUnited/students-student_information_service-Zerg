@@ -7,7 +7,8 @@ import (
 )
 
 // healthCheck godoc
-// @Summary      App Healthcheck
+// @Tags         health
+// @Summary      Application health check
 // @Description  Get status of webserver
 // @Success      200
 // @Router       /health [get]

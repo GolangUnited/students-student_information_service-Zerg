@@ -39,6 +39,13 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	}))
 
 	router.GET("/health", h.healthCheck)
+
+	auth := router.Group("/auth")
+	{
+		auth.POST("/sign-up", h.CreateUser)
+		auth.POST("/sign-in", h.GetUser)
+	}
+
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	return router
 }

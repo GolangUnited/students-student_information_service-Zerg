@@ -44,6 +44,9 @@ run: build
 test:
 	go test ./...
 
+swag:
+	swag init -g cmd/student-base/main.go
+
 test-verbose:
 	go test -v ./...
 
