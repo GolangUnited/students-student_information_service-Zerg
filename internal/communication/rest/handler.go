@@ -48,7 +48,6 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 	api := router.Group("/api", h.api)
 	{
-
 		users := api.Group("/users")
 		{
 			users.POST("/new", h.newUser)
@@ -65,54 +64,54 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			groups.DELETE("/:id", h.removeGroupByID)
 		}
 
-		// mentors := api.Group("/mentors")
-		// {
-		// mentors.POST("/new", h.newGroup)
-		// mentors.GET("/:id", h.getGroupByID)
-		// mentors.PATCH("/:id", h.updateGroupByID)
-		// mentors.DELETE("/:id", h.removeGroupByID)
-		// }
+		mentors := api.Group("/mentors")
+		{
+			mentors.POST("/new", h.addMentor)
+			mentors.GET("/:id", h.getMentorByID)
+			mentors.DELETE("/:id", h.removeMentorByID)
+		}
 
-		// admins := api.Group("/admins")
-		// {
-		// admins.POST("/new", h.newGroup)
-		// admins.GET("/:id", h.getGroupByID)
-		// admins.PATCH("/:id", h.updateGroupByID)
-		// admins.DELETE("/:id", h.removeGroupByID)
-		// }
+		admins := api.Group("/admins")
+		{
+			admins.POST("/new", h.addAdmin)
+			admins.GET("/:id", h.getAdminByID)
+			admins.DELETE("/:id", h.removeAdminByID)
+		}
 
-		// interviews := api.Group("/mentors")
-		// {
-		// interviews.POST("/new", h.newGroup)
-		// interviews.GET("/:id", h.getGroupByID)
-		// interviews.PATCH("/:id", h.updateGroupByID)
-		// interviews.DELETE("/:id", h.removeGroupByID)
-		// }
+		interviews := api.Group("/interviews")
+		{
+			interviews.POST("/new", h.newInterview)
+			interviews.GET("/:id", h.getInterviewByID)
+			interviews.PATCH("/:id", h.updateInterviewByID)
+			interviews.DELETE("/:id", h.removeInterviewByID)
+		}
 
-		// diplomas := api.Group("/mentors")
-		// {
-		// diplomas.POST("/new", h.newGroup)
-		// diplomas.GET("/:id", h.getGroupByID)
-		// diplomas.PATCH("/:id", h.updateGroupByID)
-		// diplomas.DELETE("/:id", h.removeGroupByID)
-		// }
+		diplomas := api.Group("/diplomas")
+		{
+			diplomas.POST("/new", h.newDiploma)
+			diplomas.GET("/:id", h.getDiplomaByID)
+			diplomas.PATCH("/:id", h.updateDiplomaByID)
+			diplomas.DELETE("/:id", h.removeDiplomaByID)
+		}
 
-		// certs := api.Group("/mentors")
-		// {
-		// certs.POST("/new", h.newGroup)
-		// certs.GET("/:id", h.getGroupByID)
-		// certs.PATCH("/:id", h.updateGroupByID)
-		// certs.DELETE("/:id", h.removeGroupByID)
-		// }
+		certs := api.Group("/certs")
+		{
+			certs.POST("/new", h.newCert)
+			certs.GET("/:id", h.getCertByID)
+			certs.PATCH("/:id", h.updateCertByID)
+			certs.DELETE("/:id", h.removeCertByID)
+		}
 
-		// lists := api.Group("/lists")
-		// {
-		// lists.GET("/:id", h.getGroupByID)
-		// lists.GET("/:id", h.getGroupByID)
-		// lists.GET("/:id", h.getGroupByID)
-		// lists.GET("/:id", h.getGroupByID)
-		// lists.GET("/:id", h.getGroupByID)
-		// }
+		lists := api.Group("/lists")
+		{
+			lists.GET("/users", h.usersList)
+			lists.GET("/groups", h.groupsList)
+			lists.GET("/mentors", h.mentorsList)
+			lists.GET("/admins", h.adminsList)
+			lists.GET("/interviews", h.interviewsList)
+			lists.GET("/diplomas", h.diplomasList)
+			lists.GET("/certs", h.certsList)
+		}
 	}
 
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))

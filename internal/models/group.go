@@ -6,7 +6,7 @@ import (
 
 type Group struct {
 	ID        int
-	mentor    int
-	dateStart time.Time
-	dateEnd   time.Time
+	Mentor    int
+	DateStart time.Time
+	DateEnd   time.Time
 }
