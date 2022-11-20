@@ -39,9 +39,9 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	router.GET("/health", h.healthCheck)
 
 	//test route for authorization testing
-	needAuth := router.Group("/")
+	needAuth := router.Group("/api")
 	needAuth.Use(h.middleware.auth)
-	needAuth.GET("/healthAuth", h.healthCheck)
+	needAuth.GET("/health", h.healthCheck)
 
 	return router
 }

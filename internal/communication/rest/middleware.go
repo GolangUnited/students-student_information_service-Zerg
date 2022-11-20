@@ -21,7 +21,7 @@ func (m *Middleware) auth(c *gin.Context) {
 	token := c.GetHeader(authorisationHeader)
 	if token == "" {
 		c.JSON(http.StatusUnauthorized, gin.H{
-			"message": "authorization header is null",
+			"message": "missing authorization header",
 		})
 		c.Abort()
 		return
