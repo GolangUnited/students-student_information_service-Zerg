@@ -34,7 +34,10 @@ MIGRATION_STRING = $(MIGRATE_TOOL)/migrate -path $(MIGRATION_PATH) -database "$(
 
 .SILENT:
 
-swag:
+.install-swagger:
+	[ -f swag ] || go install github.com/swaggo/swag/cmd/swag@latest
+
+swag: .install-swagger
 	swag init -g cmd/student-base/main.go
 
 build: swag
