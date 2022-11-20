@@ -9,11 +9,11 @@ import "github.com/gin-gonic/gin"
 // @Accept  json
 // @Produce  json
 // @Param input body models.Diploma true "diploma data"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /diplomas/new [post]
+// @Router /diplomas [post]
 func (h *Handler) newDiploma(c *gin.Context) {
 }
 
@@ -23,7 +23,6 @@ func (h *Handler) newDiploma(c *gin.Context) {
 // @ID get-diploma-by-id
 // @Accept  json
 // @Produce  json
-// @Param input body int true "diploma id to get"
 // @Success 200 {integer} integer 1
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -39,7 +38,7 @@ func (h *Handler) getDiplomaByID(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param input body models.Diploma true "diploma data to update"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
@@ -53,11 +52,24 @@ func (h *Handler) updateDiplomaByID(c *gin.Context) {
 // @ID remove-diploma-by-id
 // @Accept  json
 // @Produce  json
-// @Param input body int true "diploma id to remove"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
 // @Router /diplomas/:id [delete]
 func (h *Handler) removeDiplomaByID(c *gin.Context) {
+}
+
+// @Summary Get diplomas list
+// @Tags diplomas
+// @Description Get list of all diplomas
+// @ID diplomas-list
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} []models.Diploma
+// @Failure 400,404 {object} error
+// @Failure 500 {object} error
+// @Failure default {object} error
+// @Router /diplomas [get]
+func (h *Handler) diplomasList(c *gin.Context) {
 }

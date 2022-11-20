@@ -8,3 +8,8 @@ type User struct {
 	Email        string
 	PasswordHash string
 }
+
+type Student struct {
+	User
+	GroupID int
+}

@@ -34,7 +34,10 @@ MIGRATION_STRING = $(MIGRATE_TOOL)/migrate -path $(MIGRATION_PATH) -database "$(
 
 .SILENT:
 
-build:
+swag:
+	swag init -g cmd/student-base/main.go
+
+build: swag
 	$(shell [ -f bin ] || mkdir -p $(PROJECT_BIN))
 	go build -o $(PROJECT_BIN) ./...
 
@@ -43,9 +46,6 @@ run: build
 
 test:
 	go test ./...
-
-swag:
-	swag init -g cmd/student-base/main.go
 
 test-verbose:
 	go test -v ./...

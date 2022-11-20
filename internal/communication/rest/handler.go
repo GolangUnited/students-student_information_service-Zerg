@@ -50,67 +50,88 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	{
 		users := api.Group("/users")
 		{
-			users.POST("/new", h.newUser)
+			users.POST("/", h.newUser)
 			users.GET("/:id", h.getUserByID)
 			users.PATCH("/:id", h.updateUserByID)
 			users.DELETE("/:id", h.removeUserByID)
+			users.GET("/", h.usersList)
+		}
+
+		students := api.Group("/students")
+		{
+			students.POST("/", h.addStudent)
+			students.GET("/:id", h.getStudentByID)
+			students.DELETE("/:id", h.removeStudentByID)
+			students.GET("/", h.studentsList)
+
+			items := api.Group(":id")
+			{
+				items.GET("/cert", h.getCertByStudentID)
+				items.GET("/diploma", h.getDiplomaByStudentID)
+				items.GET("/interview", h.getInterviewByStudentID)
+				items.GET("/hw-grades", h.getHWGradesByStudentID)
+			}
 		}
 
 		groups := api.Group("/groups")
 		{
-			groups.POST("/new", h.newGroup)
+			groups.POST("/", h.newGroup)
 			groups.GET("/:id", h.getGroupByID)
 			groups.PATCH("/:id", h.updateGroupByID)
 			groups.DELETE("/:id", h.removeGroupByID)
+			groups.GET("/", h.groupsList)
 		}
 
 		mentors := api.Group("/mentors")
 		{
-			mentors.POST("/new", h.addMentor)
+			mentors.POST("/", h.addMentor)
 			mentors.GET("/:id", h.getMentorByID)
 			mentors.DELETE("/:id", h.removeMentorByID)
+			mentors.GET("/", h.mentorsList)
 		}
 
 		admins := api.Group("/admins")
 		{
-			admins.POST("/new", h.addAdmin)
+			admins.POST("/", h.addAdmin)
 			admins.GET("/:id", h.getAdminByID)
 			admins.DELETE("/:id", h.removeAdminByID)
+			admins.GET("/", h.adminsList)
 		}
 
 		interviews := api.Group("/interviews")
 		{
-			interviews.POST("/new", h.newInterview)
+			interviews.POST("/", h.newInterview)
 			interviews.GET("/:id", h.getInterviewByID)
 			interviews.PATCH("/:id", h.updateInterviewByID)
 			interviews.DELETE("/:id", h.removeInterviewByID)
+			interviews.GET("/", h.interviewsList)
 		}
 
 		diplomas := api.Group("/diplomas")
 		{
-			diplomas.POST("/new", h.newDiploma)
+			diplomas.POST("/", h.newDiploma)
 			diplomas.GET("/:id", h.getDiplomaByID)
 			diplomas.PATCH("/:id", h.updateDiplomaByID)
 			diplomas.DELETE("/:id", h.removeDiplomaByID)
+			diplomas.GET("/", h.diplomasList)
 		}
 
 		certs := api.Group("/certs")
 		{
-			certs.POST("/new", h.newCert)
+			certs.POST("/", h.newCert)
 			certs.GET("/:id", h.getCertByID)
 			certs.PATCH("/:id", h.updateCertByID)
 			certs.DELETE("/:id", h.removeCertByID)
+			certs.GET("/", h.certsList)
 		}
 
-		lists := api.Group("/lists")
+		homework := api.Group("/homework")
 		{
-			lists.GET("/users", h.usersList)
-			lists.GET("/groups", h.groupsList)
-			lists.GET("/mentors", h.mentorsList)
-			lists.GET("/admins", h.adminsList)
-			lists.GET("/interviews", h.interviewsList)
-			lists.GET("/diplomas", h.diplomasList)
-			lists.GET("/certs", h.certsList)
+			homework.POST("/", h.newHomework)
+			homework.GET("/:id", h.getHomeworkByID)
+			homework.PATCH("/:id", h.updateHomeworkByID)
+			homework.DELETE("/:id", h.removeHomeworkByID)
+			homework.GET("/", h.HomeworksList)
 		}
 	}
 

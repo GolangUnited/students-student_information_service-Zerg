@@ -9,11 +9,11 @@ import "github.com/gin-gonic/gin"
 // @Accept  json
 // @Produce  json
 // @Param input body int true "mentor id"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /mentors/new [post]
+// @Router /mentors [post]
 func (h *Handler) addMentor(c *gin.Context) {
 }
 
@@ -23,7 +23,6 @@ func (h *Handler) addMentor(c *gin.Context) {
 // @ID get-mentor-by-id
 // @Accept  json
 // @Produce  json
-// @Param input body int true "mentor id to get"
 // @Success 200 {integer} integer 1
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -38,11 +37,24 @@ func (h *Handler) getMentorByID(c *gin.Context) {
 // @ID remove-mentor-by-id
 // @Accept  json
 // @Produce  json
-// @Param input body int true "mentor id to remove"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
 // @Router /mentors/:id [delete]
 func (h *Handler) removeMentorByID(c *gin.Context) {
+}
+
+// @Summary Get mentors list
+// @Tags mentors
+// @Description Get list of all mentors
+// @ID mentors-list
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} []models.User
+// @Failure 400,404 {object} error
+// @Failure 500 {object} error
+// @Failure default {object} error
+// @Router /mentors [get]
+func (h *Handler) mentorsList(c *gin.Context) {
 }

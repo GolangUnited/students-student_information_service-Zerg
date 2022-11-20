@@ -28,6 +28,24 @@ definitions:
       mentor:
         type: integer
     type: object
+  models.Homework:
+    properties:
+      deadline:
+        type: string
+      homeworkID:
+        type: integer
+      text:
+        type: string
+    type: object
+  models.HomeworkGrade:
+    properties:
+      grade:
+        type: integer
+      homeworkID:
+        type: integer
+      userID:
+        type: integer
+    type: object
   models.Interview:
     properties:
       date:
@@ -40,6 +58,23 @@ definitions:
         type: string
       studentID:
         type: integer
+    type: object
+  models.Student:
+    properties:
+      birthday:
+        type: string
+      email:
+        type: string
+      firstName:
+        type: string
+      groupID:
+        type: integer
+      id:
+        type: integer
+      lastName:
+        type: string
+      passwordHash:
+        type: string
     type: object
   models.User:
     properties:
@@ -63,14 +98,43 @@ info:
   title: Zerg Team Student Information Service
   version: "0.1"
 paths:
-  /admins/:id:
-    delete:
+  /admins:
+    get:
       consumes:
       - application/json
-      description: Remove admin from database by id
-      operationId: remove-admin-by-id
+      description: Get list of all admins
+      operationId: admins-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.User'
+            type: array
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Get admins list
+      tags:
+      - admins
+    post:
+      consumes:
+      - application/json
+      description: Create new group in database
+      operationId: new-admin
       parameters:
-      - description: admin id to remove
+      - description: admin id
         in: body
         name: input
         required: true
@@ -81,8 +145,32 @@ paths:
       responses:
         "200":
           description: OK
-          schema:
-            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Add admin
+      tags:
+      - admins
+  /admins/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Remove admin from database by id
+      operationId: remove-admin-by-id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
         "400":
           description: Bad Request
           schema: {}
@@ -103,13 +191,6 @@ paths:
       - application/json
       description: Get admin from database by ID
       operationId: get-admin-by-id
-      parameters:
-      - description: admin id to get
-        in: body
-        name: input
-        required: true
-        schema:
-          type: integer
       produces:
       - application/json
       responses:
@@ -132,43 +213,8 @@ paths:
       summary: Get admin by id
       tags:
       - admins
-  /admins/new:
-    post:
-      consumes:
-      - application/json
-      description: Create new group in database
-      operationId: new-admin
-      parameters:
-      - description: admin id
-        in: body
-        name: input
-        required: true
-        schema:
-          type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: integer
-        "400":
-          description: Bad Request
-          schema: {}
-        "404":
-          description: Not Found
-          schema: {}
-        "500":
-          description: Internal Server Error
-          schema: {}
-        default:
-          description: ""
-          schema: {}
-      summary: Add admin
-      tags:
-      - admins
   /auth/signin:
-    get:
+    post:
       consumes:
       - application/json
       description: Get user from database
@@ -186,7 +232,7 @@ paths:
         "200":
           description: OK
           schema:
-            type: integer
+            type: string
         "400":
           description: Bad Request
           schema: {}
@@ -237,26 +283,79 @@ paths:
       summary: Create user
       tags:
       - auth
-  /certs/:id:
-    delete:
+  /certs:
+    get:
       consumes:
       - application/json
-      description: Remove cert from database by id
-      operationId: remove-cert-by-id
-      parameters:
-      - description: cert id to remove
-        in: body
-        name: input
-        required: true
-        schema:
-          type: integer
+      description: Get list of all certs
+      operationId: certs-list
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            type: integer
+            items:
+              $ref: '#/definitions/models.Cert'
+            type: array
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Get certs list
+      tags:
+      - certs
+    post:
+      consumes:
+      - application/json
+      description: Create new cert in database
+      operationId: create-cert
+      parameters:
+      - description: cert data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Cert'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Create cert
+      tags:
+      - certs
+  /certs/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Remove cert from database by id
+      operationId: remove-cert-by-id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
         "400":
           description: Bad Request
           schema: {}
@@ -277,20 +376,13 @@ paths:
       - application/json
       description: Get cert from database by ID
       operationId: get-cert-by-id
-      parameters:
-      - description: cert id to get
-        in: body
-        name: input
-        required: true
-        schema:
-          type: integer
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            type: integer
+            $ref: '#/definitions/models.Cert'
         "400":
           description: Bad Request
           schema: {}
@@ -323,8 +415,6 @@ paths:
       responses:
         "200":
           description: OK
-          schema:
-            type: integer
         "400":
           description: Bad Request
           schema: {}
@@ -340,26 +430,21 @@ paths:
       summary: Update cert
       tags:
       - certs
-  /certs/new:
-    post:
+  /diplomas:
+    get:
       consumes:
       - application/json
-      description: Create new cert in database
-      operationId: create-cert
-      parameters:
-      - description: cert data
-        in: body
-        name: input
-        required: true
-        schema:
-          $ref: '#/definitions/models.Cert'
+      description: Get list of all diplomas
+      operationId: diplomas-list
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            type: integer
+            items:
+              $ref: '#/definitions/models.Diploma'
+            type: array
         "400":
           description: Bad Request
           schema: {}
@@ -372,29 +457,52 @@ paths:
         default:
           description: ""
           schema: {}
-      summary: Create cert
+      summary: Get diplomas list
       tags:
-      - certs
+      - diplomas
+    post:
+      consumes:
+      - application/json
+      description: Create new diploma in database
+      operationId: create-diploma
+      parameters:
+      - description: diploma data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Diploma'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Create diploma
+      tags:
+      - diplomas
   /diplomas/:id:
     delete:
       consumes:
       - application/json
       description: Remove diploma from database by id
       operationId: remove-diploma-by-id
-      parameters:
-      - description: diploma id to remove
-        in: body
-        name: input
-        required: true
-        schema:
-          type: integer
       produces:
       - application/json
       responses:
         "200":
           description: OK
-          schema:
-            type: integer
         "400":
           description: Bad Request
           schema: {}
@@ -415,13 +523,6 @@ paths:
       - application/json
       description: Get diploma from database by ID
       operationId: get-diploma-by-id
-      parameters:
-      - description: diploma id to get
-        in: body
-        name: input
-        required: true
-        schema:
-          type: integer
       produces:
       - application/json
       responses:
@@ -461,8 +562,6 @@ paths:
       responses:
         "200":
           description: OK
-          schema:
-            type: integer
         "400":
           description: Bad Request
           schema: {}
@@ -478,19 +577,12 @@ paths:
       summary: Update diploma
       tags:
       - diplomas
-  /diplomas/new:
-    post:
+  /groups:
+    get:
       consumes:
       - application/json
-      description: Create new diploma in database
-      operationId: create-diploma
-      parameters:
-      - description: diploma data
-        in: body
-        name: input
-        required: true
-        schema:
-          $ref: '#/definitions/models.Diploma'
+      description: Get list of all groups
+      operationId: groups-list
       produces:
       - application/json
       responses:
@@ -510,29 +602,52 @@ paths:
         default:
           description: ""
           schema: {}
-      summary: Create diploma
+      summary: Get groups list
       tags:
-      - diplomas
+      - groups
+    post:
+      consumes:
+      - application/json
+      description: Create new group in database
+      operationId: create-group
+      parameters:
+      - description: group data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Group'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Create group
+      tags:
+      - groups
   /groups/:id:
     delete:
       consumes:
       - application/json
       description: Remove group from database by id
       operationId: remove-group-by-id
-      parameters:
-      - description: group id to remove
-        in: body
-        name: input
-        required: true
-        schema:
-          type: integer
       produces:
       - application/json
       responses:
         "200":
           description: OK
-          schema:
-            type: integer
         "400":
           description: Bad Request
           schema: {}
@@ -553,13 +668,6 @@ paths:
       - application/json
       description: Get group from database by ID
       operationId: get-group-by-id
-      parameters:
-      - description: group id to get
-        in: body
-        name: input
-        required: true
-        schema:
-          type: integer
       produces:
       - application/json
       responses:
@@ -599,8 +707,6 @@ paths:
       responses:
         "200":
           description: OK
-          schema:
-            type: integer
         "400":
           description: Bad Request
           schema: {}
@@ -616,26 +722,30 @@ paths:
       summary: Update group
       tags:
       - groups
-  /groups/new:
-    post:
+  /health:
+    get:
+      description: Get status of webserver
+      responses:
+        "200":
+          description: OK
+      summary: Application health check
+      tags:
+      - health
+  /homeworks:
+    get:
       consumes:
       - application/json
-      description: Create new group in database
-      operationId: create-group
-      parameters:
-      - description: group data
-        in: body
-        name: input
-        required: true
-        schema:
-          $ref: '#/definitions/models.Group'
+      description: Get list of all homeworks
+      operationId: homeworks-list
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            type: integer
+            items:
+              $ref: '#/definitions/models.Homework'
+            type: array
         "400":
           description: Bad Request
           schema: {}
@@ -648,38 +758,199 @@ paths:
         default:
           description: ""
           schema: {}
-      summary: Create group
+      summary: Get homeworks list
       tags:
-      - groups
-  /health:
-    get:
-      description: Get status of webserver
-      responses:
-        "200":
-          description: OK
-      summary: Application health check
-      tags:
-      - health
-  /interviews/:id:
-    delete:
+      - homeworks
+    post:
       consumes:
       - application/json
-      description: Remove interview from database by id
-      operationId: remove-interview-by-id
+      description: Create new homework in database
+      operationId: create-homework
       parameters:
-      - description: interview id to remove
+      - description: homework data
         in: body
         name: input
         required: true
         schema:
-          type: integer
+          $ref: '#/definitions/models.Homework'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Create homework
+      tags:
+      - homeworks
+  /homeworks/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Remove homework from database by id
+      operationId: remove-homework-by-id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Remove homework
+      tags:
+      - homeworks
+    get:
+      consumes:
+      - application/json
+      description: Get homework from database by ID
+      operationId: get-homework-by-id
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            type: integer
+            $ref: '#/definitions/models.Homework'
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Get homework by id
+      tags:
+      - homeworks
+    patch:
+      consumes:
+      - application/json
+      description: Update homework data in database by id
+      operationId: update-homework-by-id
+      parameters:
+      - description: homework data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Homework'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Update homework
+      tags:
+      - homeworks
+  /interviews:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all interviews
+      operationId: interviews-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Interview'
+            type: array
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Get interviews list
+      tags:
+      - interviews
+    post:
+      consumes:
+      - application/json
+      description: Create new interview in database
+      operationId: create-interview
+      parameters:
+      - description: interview data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Interview'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Create interview
+      tags:
+      - interviews
+  /interviews/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Remove interview from database by id
+      operationId: remove-interview-by-id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
         "400":
           description: Bad Request
           schema: {}
@@ -700,13 +971,6 @@ paths:
       - application/json
       description: Get interview from database by ID
       operationId: get-interview-by-id
-      parameters:
-      - description: interview id to get
-        in: body
-        name: input
-        required: true
-        schema:
-          type: integer
       produces:
       - application/json
       responses:
@@ -746,8 +1010,6 @@ paths:
       responses:
         "200":
           description: OK
-          schema:
-            type: integer
         "400":
           description: Bad Request
           schema: {}
@@ -763,182 +1025,7 @@ paths:
       summary: Update interview
       tags:
       - interviews
-  /interviews/new:
-    post:
-      consumes:
-      - application/json
-      description: Create new interview in database
-      operationId: create-interview
-      parameters:
-      - description: interview data
-        in: body
-        name: input
-        required: true
-        schema:
-          $ref: '#/definitions/models.Interview'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: integer
-        "400":
-          description: Bad Request
-          schema: {}
-        "404":
-          description: Not Found
-          schema: {}
-        "500":
-          description: Internal Server Error
-          schema: {}
-        default:
-          description: ""
-          schema: {}
-      summary: Create interview
-      tags:
-      - interviews
-  /lists/admins:
-    get:
-      consumes:
-      - application/json
-      description: Get list of all admins
-      operationId: admins-list
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: integer
-        "400":
-          description: Bad Request
-          schema: {}
-        "404":
-          description: Not Found
-          schema: {}
-        "500":
-          description: Internal Server Error
-          schema: {}
-        default:
-          description: ""
-          schema: {}
-      summary: Get admins list
-      tags:
-      - lists
-  /lists/certs:
-    get:
-      consumes:
-      - application/json
-      description: Get list of all certs
-      operationId: certs-list
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: integer
-        "400":
-          description: Bad Request
-          schema: {}
-        "404":
-          description: Not Found
-          schema: {}
-        "500":
-          description: Internal Server Error
-          schema: {}
-        default:
-          description: ""
-          schema: {}
-      summary: Get certs list
-      tags:
-      - lists
-  /lists/diplomas:
-    get:
-      consumes:
-      - application/json
-      description: Get list of all diplomas
-      operationId: diplomas-list
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: integer
-        "400":
-          description: Bad Request
-          schema: {}
-        "404":
-          description: Not Found
-          schema: {}
-        "500":
-          description: Internal Server Error
-          schema: {}
-        default:
-          description: ""
-          schema: {}
-      summary: Get diplomas list
-      tags:
-      - lists
-  /lists/groups:
-    get:
-      consumes:
-      - application/json
-      description: Get list of all groups
-      operationId: groups-list
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: integer
-        "400":
-          description: Bad Request
-          schema: {}
-        "404":
-          description: Not Found
-          schema: {}
-        "500":
-          description: Internal Server Error
-          schema: {}
-        default:
-          description: ""
-          schema: {}
-      summary: Get groups list
-      tags:
-      - lists
-  /lists/interviews:
-    get:
-      consumes:
-      - application/json
-      description: Get list of all interviews
-      operationId: interviews-list
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: integer
-        "400":
-          description: Bad Request
-          schema: {}
-        "404":
-          description: Not Found
-          schema: {}
-        "500":
-          description: Internal Server Error
-          schema: {}
-        default:
-          description: ""
-          schema: {}
-      summary: Get interviews list
-      tags:
-      - lists
-  /lists/mentors:
+  /mentors:
     get:
       consumes:
       - application/json
@@ -950,7 +1037,9 @@ paths:
         "200":
           description: OK
           schema:
-            type: integer
+            items:
+              $ref: '#/definitions/models.User'
+            type: array
         "400":
           description: Bad Request
           schema: {}
@@ -965,20 +1054,24 @@ paths:
           schema: {}
       summary: Get mentors list
       tags:
-      - lists
-  /lists/users:
-    get:
+      - mentors
+    post:
       consumes:
       - application/json
-      description: Get list of all users
-      operationId: users-list
+      description: Create new group in database
+      operationId: new-mentor
+      parameters:
+      - description: mentor id
+        in: body
+        name: input
+        required: true
+        schema:
+          type: integer
       produces:
       - application/json
       responses:
         "200":
           description: OK
-          schema:
-            type: integer
         "400":
           description: Bad Request
           schema: {}
@@ -991,29 +1084,20 @@ paths:
         default:
           description: ""
           schema: {}
-      summary: Get users list
+      summary: Add mentor
       tags:
-      - lists
+      - mentors
   /mentors/:id:
     delete:
       consumes:
       - application/json
       description: Remove mentor from database by id
       operationId: remove-mentor-by-id
-      parameters:
-      - description: mentor id to remove
-        in: body
-        name: input
-        required: true
-        schema:
-          type: integer
       produces:
       - application/json
       responses:
         "200":
           description: OK
-          schema:
-            type: integer
         "400":
           description: Bad Request
           schema: {}
@@ -1034,13 +1118,6 @@ paths:
       - application/json
       description: Get mentor from database by ID
       operationId: get-mentor-by-id
-      parameters:
-      - description: mentor id to get
-        in: body
-        name: input
-        required: true
-        schema:
-          type: integer
       produces:
       - application/json
       responses:
@@ -1063,26 +1140,21 @@ paths:
       summary: Get mentor by id
       tags:
       - mentors
-  /mentors/new:
-    post:
+  /students:
+    get:
       consumes:
       - application/json
-      description: Create new group in database
-      operationId: new-mentor
-      parameters:
-      - description: mentor id
-        in: body
-        name: input
-        required: true
-        schema:
-          type: integer
+      description: Get list of all students
+      operationId: students-list
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            type: integer
+            items:
+              $ref: '#/definitions/models.Student'
+            type: array
         "400":
           description: Bad Request
           schema: {}
@@ -1095,17 +1167,245 @@ paths:
         default:
           description: ""
           schema: {}
-      summary: Add mentor
+      summary: Get students list
       tags:
-      - mentors
-  /users/:id:
+      - students
+    post:
+      consumes:
+      - application/json
+      description: Create new group in database
+      operationId: new-student
+      parameters:
+      - description: student data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Student'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Add student
+      tags:
+      - students
+  /students/:id:
     delete:
       consumes:
       - application/json
-      description: Remove user from database by id
-      operationId: remove-user-by-id
+      description: Remove student from database by id
+      operationId: remove-student-by-id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Remove student by id
+      tags:
+      - students
+    get:
+      consumes:
+      - application/json
+      description: Get student from database by ID
+      operationId: get-student-by-id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Student'
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Get student by id
+      tags:
+      - students
+  /students/:id/cert:
+    get:
+      consumes:
+      - application/json
+      description: Get student's cert from database by student ID
+      operationId: get-cert-by-student-id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Cert'
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Get cert by student ID
+      tags:
+      - students
+  /students/:id/diploma:
+    get:
+      consumes:
+      - application/json
+      description: Get student's diploma from database by student ID
+      operationId: get-diploma-by-student-id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Diploma'
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Get diploma by student ID
+      tags:
+      - students
+  /students/:id/hw-grades:
+    get:
+      consumes:
+      - application/json
+      description: Get student's homework grades from database by student ID
+      operationId: get-hw-grades-by-student-id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.HomeworkGrade'
+            type: array
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Get homework grades by student ID
+      tags:
+      - students
+  /students/:id/interview:
+    get:
+      consumes:
+      - application/json
+      description: Get student's interview from database by student ID
+      operationId: get-interview-by-student-id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Interview'
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Get interview by student ID
+      tags:
+      - students
+  /users:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all users
+      operationId: users-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.User'
+            type: array
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Get users list
+      tags:
+      - users
+    post:
+      consumes:
+      - application/json
+      description: Create new user in database
+      operationId: new-user
       parameters:
-      - description: user id to delete
+      - description: user data
         in: body
         name: input
         required: true
@@ -1116,8 +1416,32 @@ paths:
       responses:
         "200":
           description: OK
-          schema:
-            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Create user
+      tags:
+      - users
+  /users/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Remove user from database by id
+      operationId: remove-user-by-id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
         "400":
           description: Bad Request
           schema: {}
@@ -1138,20 +1462,13 @@ paths:
       - application/json
       description: Get user from database by ID
       operationId: get-user-by-id
-      parameters:
-      - description: user id to get
-        in: body
-        name: input
-        required: true
-        schema:
-          $ref: '#/definitions/models.User'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            type: integer
+            $ref: '#/definitions/models.User'
         "400":
           description: Bad Request
           schema: {}
@@ -1184,8 +1501,6 @@ paths:
       responses:
         "200":
           description: OK
-          schema:
-            type: integer
         "400":
           description: Bad Request
           schema: {}
@@ -1199,41 +1514,6 @@ paths:
           description: ""
           schema: {}
       summary: Update user by id
-      tags:
-      - users
-  /users/new:
-    post:
-      consumes:
-      - application/json
-      description: Create new user in database
-      operationId: new-user
-      parameters:
-      - description: user data
-        in: body
-        name: input
-        required: true
-        schema:
-          $ref: '#/definitions/models.User'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: integer
-        "400":
-          description: Bad Request
-          schema: {}
-        "404":
-          description: Not Found
-          schema: {}
-        "500":
-          description: Internal Server Error
-          schema: {}
-        default:
-          description: ""
-          schema: {}
-      summary: Create user
       tags:
       - users
 swagger: "2.0"

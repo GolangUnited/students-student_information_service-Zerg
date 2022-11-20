@@ -26,11 +26,11 @@ func (h *Handler) createUser(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param input body models.User true "user to get"
-// @Success 200 {integer} integer 1
+// @Success 200 {object} string
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /auth/signin [get]
+// @Router /auth/signin [post]
 func (h *Handler) getUser(c *gin.Context) {
 }
 
@@ -41,11 +41,11 @@ func (h *Handler) getUser(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param input body models.User true "user data"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /users/new [post]
+// @Router /users [post]
 func (h *Handler) newUser(c *gin.Context) {
 	h.createUser(c)
 }
@@ -56,8 +56,7 @@ func (h *Handler) newUser(c *gin.Context) {
 // @ID get-user-by-id
 // @Accept  json
 // @Produce  json
-// @Param input body models.User true "user id to get"
-// @Success 200 {integer} integer 1
+// @Success 200 {object} models.User
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
@@ -72,7 +71,7 @@ func (h *Handler) getUserByID(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param input body models.User true "user data to update"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
@@ -86,11 +85,24 @@ func (h *Handler) updateUserByID(c *gin.Context) {
 // @ID remove-user-by-id
 // @Accept  json
 // @Produce  json
-// @Param input body models.User true "user id to delete"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
 // @Router /users/:id [delete]
 func (h *Handler) removeUserByID(c *gin.Context) {
+}
+
+// @Summary Get users list
+// @Tags users
+// @Description Get list of all users
+// @ID users-list
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} []models.User
+// @Failure 400,404 {object} error
+// @Failure 500 {object} error
+// @Failure default {object} error
+// @Router /users [get]
+func (h *Handler) usersList(c *gin.Context) {
 }

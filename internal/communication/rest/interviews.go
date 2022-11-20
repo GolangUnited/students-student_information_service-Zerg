@@ -9,11 +9,11 @@ import "github.com/gin-gonic/gin"
 // @Accept  json
 // @Produce  json
 // @Param input body models.Interview true "interview data"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /interviews/new [post]
+// @Router /interviews [post]
 func (h *Handler) newInterview(c *gin.Context) {
 }
 
@@ -23,7 +23,6 @@ func (h *Handler) newInterview(c *gin.Context) {
 // @ID get-interview-by-id
 // @Accept  json
 // @Produce  json
-// @Param input body int true "interview id to get"
 // @Success 200 {integer} integer 1
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -39,7 +38,7 @@ func (h *Handler) getInterviewByID(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param input body models.Interview true "interview data to update"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
@@ -53,11 +52,24 @@ func (h *Handler) updateInterviewByID(c *gin.Context) {
 // @ID remove-interview-by-id
 // @Accept  json
 // @Produce  json
-// @Param input body int true "interview id to remove"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
 // @Router /interviews/:id [delete]
 func (h *Handler) removeInterviewByID(c *gin.Context) {
+}
+
+// @Summary Get interviews list
+// @Tags interviews
+// @Description Get list of all interviews
+// @ID interviews-list
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} []models.Interview
+// @Failure 400,404 {object} error
+// @Failure 500 {object} error
+// @Failure default {object} error
+// @Router /interviews [get]
+func (h *Handler) interviewsList(c *gin.Context) {
 }

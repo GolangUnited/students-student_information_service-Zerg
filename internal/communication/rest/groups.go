@@ -9,11 +9,11 @@ import "github.com/gin-gonic/gin"
 // @Accept  json
 // @Produce  json
 // @Param input body models.Group true "group data"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /groups/new [post]
+// @Router /groups [post]
 func (h *Handler) newGroup(c *gin.Context) {
 }
 
@@ -23,7 +23,6 @@ func (h *Handler) newGroup(c *gin.Context) {
 // @ID get-group-by-id
 // @Accept  json
 // @Produce  json
-// @Param input body int true "group id to get"
 // @Success 200 {integer} integer 1
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -39,7 +38,7 @@ func (h *Handler) getGroupByID(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param input body models.Group true "group data to update"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
@@ -53,11 +52,24 @@ func (h *Handler) updateGroupByID(c *gin.Context) {
 // @ID remove-group-by-id
 // @Accept  json
 // @Produce  json
-// @Param input body int true "group id to remove"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
 // @Router /groups/:id [delete]
 func (h *Handler) removeGroupByID(c *gin.Context) {
+}
+
+// @Summary Get groups list
+// @Tags groups
+// @Description Get list of all groups
+// @ID groups-list
+// @Accept  json
+// @Produce  json
+// @Success 200 {integer} []models.Group
+// @Failure 400,404 {object} error
+// @Failure 500 {object} error
+// @Failure default {object} error
+// @Router /groups [get]
+func (h *Handler) groupsList(c *gin.Context) {
 }

@@ -8,6 +8,95 @@
     },
     "host": "localhost:8080",
     "paths": {
+        "/admins": {
+            "get": {
+                "description": "Get list of all admins",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "admins"
+                ],
+                "summary": "Get admins list",
+                "operationId": "admins-list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.User"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            },
+            "post": {
+                "description": "Create new group in database",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "admins"
+                ],
+                "summary": "Add admin",
+                "operationId": "new-admin",
+                "parameters": [
+                    {
+                        "description": "admin id",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            }
+        },
         "/admins/:id": {
             "get": {
                 "description": "Get admin from database by ID",
@@ -22,17 +111,6 @@
                 ],
                 "summary": "Get admin by id",
                 "operationId": "get-admin-by-id",
-                "parameters": [
-                    {
-                        "description": "admin id to get",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -71,74 +149,9 @@
                 ],
                 "summary": "Remove admin by id",
                 "operationId": "remove-admin-by-id",
-                "parameters": [
-                    {
-                        "description": "admin id to remove",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {}
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {}
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {}
-                    },
-                    "default": {
-                        "description": "",
-                        "schema": {}
-                    }
-                }
-            }
-        },
-        "/admins/new": {
-            "post": {
-                "description": "Create new group in database",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "admins"
-                ],
-                "summary": "Add admin",
-                "operationId": "new-admin",
-                "parameters": [
-                    {
-                        "description": "admin id",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "description": "OK"
                     },
                     "400": {
                         "description": "Bad Request",
@@ -160,7 +173,7 @@
             }
         },
         "/auth/signin": {
-            "get": {
+            "post": {
                 "description": "Get user from database",
                 "consumes": [
                     "application/json"
@@ -188,7 +201,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
                         }
                     },
                     "400": {
@@ -261,6 +274,95 @@
                 }
             }
         },
+        "/certs": {
+            "get": {
+                "description": "Get list of all certs",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "certs"
+                ],
+                "summary": "Get certs list",
+                "operationId": "certs-list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Cert"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            },
+            "post": {
+                "description": "Create new cert in database",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "certs"
+                ],
+                "summary": "Create cert",
+                "operationId": "create-cert",
+                "parameters": [
+                    {
+                        "description": "cert data",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Cert"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            }
+        },
         "/certs/:id": {
             "get": {
                 "description": "Get cert from database by ID",
@@ -275,22 +377,11 @@
                 ],
                 "summary": "Get cert by id",
                 "operationId": "get-cert-by-id",
-                "parameters": [
-                    {
-                        "description": "cert id to get",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "integer"
+                            "$ref": "#/definitions/models.Cert"
                         }
                     },
                     "400": {
@@ -324,23 +415,9 @@
                 ],
                 "summary": "Remove cert",
                 "operationId": "remove-cert-by-id",
-                "parameters": [
-                    {
-                        "description": "cert id to remove",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "description": "OK"
                     },
                     "400": {
                         "description": "Bad Request",
@@ -386,10 +463,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "description": "OK"
                     },
                     "400": {
                         "description": "Bad Request",
@@ -410,9 +484,9 @@
                 }
             }
         },
-        "/certs/new": {
-            "post": {
-                "description": "Create new cert in database",
+        "/diplomas": {
+            "get": {
+                "description": "Get list of all diplomas",
                 "consumes": [
                     "application/json"
                 ],
@@ -420,27 +494,65 @@
                     "application/json"
                 ],
                 "tags": [
-                    "certs"
+                    "diplomas"
                 ],
-                "summary": "Create cert",
-                "operationId": "create-cert",
+                "summary": "Get diplomas list",
+                "operationId": "diplomas-list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Diploma"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            },
+            "post": {
+                "description": "Create new diploma in database",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "diplomas"
+                ],
+                "summary": "Create diploma",
+                "operationId": "create-diploma",
                 "parameters": [
                     {
-                        "description": "cert data",
+                        "description": "diploma data",
                         "name": "input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Cert"
+                            "$ref": "#/definitions/models.Diploma"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "description": "OK"
                     },
                     "400": {
                         "description": "Bad Request",
@@ -475,17 +587,6 @@
                 ],
                 "summary": "Get diploma by id",
                 "operationId": "get-diploma-by-id",
-                "parameters": [
-                    {
-                        "description": "diploma id to get",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -524,23 +625,9 @@
                 ],
                 "summary": "Remove diploma",
                 "operationId": "remove-diploma-by-id",
-                "parameters": [
-                    {
-                        "description": "diploma id to remove",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "description": "OK"
                     },
                     "400": {
                         "description": "Bad Request",
@@ -586,6 +673,43 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/groups": {
+            "get": {
+                "description": "Get list of all groups",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "groups"
+                ],
+                "summary": "Get groups list",
+                "operationId": "groups-list",
+                "responses": {
+                    "200": {
                         "description": "OK",
                         "schema": {
                             "type": "integer"
@@ -608,11 +732,9 @@
                         "schema": {}
                     }
                 }
-            }
-        },
-        "/diplomas/new": {
+            },
             "post": {
-                "description": "Create new diploma in database",
+                "description": "Create new group in database",
                 "consumes": [
                     "application/json"
                 ],
@@ -620,27 +742,24 @@
                     "application/json"
                 ],
                 "tags": [
-                    "diplomas"
+                    "groups"
                 ],
-                "summary": "Create diploma",
-                "operationId": "create-diploma",
+                "summary": "Create group",
+                "operationId": "create-group",
                 "parameters": [
                     {
-                        "description": "diploma data",
+                        "description": "group data",
                         "name": "input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Diploma"
+                            "$ref": "#/definitions/models.Group"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "description": "OK"
                     },
                     "400": {
                         "description": "Bad Request",
@@ -675,17 +794,6 @@
                 ],
                 "summary": "Get group by id",
                 "operationId": "get-group-by-id",
-                "parameters": [
-                    {
-                        "description": "group id to get",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -724,23 +832,9 @@
                 ],
                 "summary": "Remove group",
                 "operationId": "remove-group-by-id",
-                "parameters": [
-                    {
-                        "description": "group id to remove",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "description": "OK"
                     },
                     "400": {
                         "description": "Bad Request",
@@ -786,61 +880,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {}
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {}
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {}
-                    },
-                    "default": {
-                        "description": "",
-                        "schema": {}
-                    }
-                }
-            }
-        },
-        "/groups/new": {
-            "post": {
-                "description": "Create new group in database",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "groups"
-                ],
-                "summary": "Create group",
-                "operationId": "create-group",
-                "parameters": [
-                    {
-                        "description": "group data",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.Group"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "description": "OK"
                     },
                     "400": {
                         "description": "Bad Request",
@@ -875,6 +915,305 @@
                 }
             }
         },
+        "/homeworks": {
+            "get": {
+                "description": "Get list of all homeworks",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "homeworks"
+                ],
+                "summary": "Get homeworks list",
+                "operationId": "homeworks-list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Homework"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            },
+            "post": {
+                "description": "Create new homework in database",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "homeworks"
+                ],
+                "summary": "Create homework",
+                "operationId": "create-homework",
+                "parameters": [
+                    {
+                        "description": "homework data",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Homework"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/homeworks/:id": {
+            "get": {
+                "description": "Get homework from database by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "homeworks"
+                ],
+                "summary": "Get homework by id",
+                "operationId": "get-homework-by-id",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Homework"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            },
+            "delete": {
+                "description": "Remove homework from database by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "homeworks"
+                ],
+                "summary": "Remove homework",
+                "operationId": "remove-homework-by-id",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update homework data in database by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "homeworks"
+                ],
+                "summary": "Update homework",
+                "operationId": "update-homework-by-id",
+                "parameters": [
+                    {
+                        "description": "homework data to update",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Homework"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/interviews": {
+            "get": {
+                "description": "Get list of all interviews",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "interviews"
+                ],
+                "summary": "Get interviews list",
+                "operationId": "interviews-list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Interview"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            },
+            "post": {
+                "description": "Create new interview in database",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "interviews"
+                ],
+                "summary": "Create interview",
+                "operationId": "create-interview",
+                "parameters": [
+                    {
+                        "description": "interview data",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Interview"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            }
+        },
         "/interviews/:id": {
             "get": {
                 "description": "Get interview from database by ID",
@@ -889,17 +1228,6 @@
                 ],
                 "summary": "Get interview by id",
                 "operationId": "get-interview-by-id",
-                "parameters": [
-                    {
-                        "description": "interview id to get",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -938,23 +1266,9 @@
                 ],
                 "summary": "Remove interview",
                 "operationId": "remove-interview-by-id",
-                "parameters": [
-                    {
-                        "description": "interview id to remove",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "description": "OK"
                     },
                     "400": {
                         "description": "Bad Request",
@@ -1000,10 +1314,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "description": "OK"
                     },
                     "400": {
                         "description": "Bad Request",
@@ -1024,258 +1335,7 @@
                 }
             }
         },
-        "/interviews/new": {
-            "post": {
-                "description": "Create new interview in database",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "interviews"
-                ],
-                "summary": "Create interview",
-                "operationId": "create-interview",
-                "parameters": [
-                    {
-                        "description": "interview data",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.Interview"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {}
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {}
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {}
-                    },
-                    "default": {
-                        "description": "",
-                        "schema": {}
-                    }
-                }
-            }
-        },
-        "/lists/admins": {
-            "get": {
-                "description": "Get list of all admins",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "lists"
-                ],
-                "summary": "Get admins list",
-                "operationId": "admins-list",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {}
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {}
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {}
-                    },
-                    "default": {
-                        "description": "",
-                        "schema": {}
-                    }
-                }
-            }
-        },
-        "/lists/certs": {
-            "get": {
-                "description": "Get list of all certs",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "lists"
-                ],
-                "summary": "Get certs list",
-                "operationId": "certs-list",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {}
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {}
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {}
-                    },
-                    "default": {
-                        "description": "",
-                        "schema": {}
-                    }
-                }
-            }
-        },
-        "/lists/diplomas": {
-            "get": {
-                "description": "Get list of all diplomas",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "lists"
-                ],
-                "summary": "Get diplomas list",
-                "operationId": "diplomas-list",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {}
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {}
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {}
-                    },
-                    "default": {
-                        "description": "",
-                        "schema": {}
-                    }
-                }
-            }
-        },
-        "/lists/groups": {
-            "get": {
-                "description": "Get list of all groups",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "lists"
-                ],
-                "summary": "Get groups list",
-                "operationId": "groups-list",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {}
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {}
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {}
-                    },
-                    "default": {
-                        "description": "",
-                        "schema": {}
-                    }
-                }
-            }
-        },
-        "/lists/interviews": {
-            "get": {
-                "description": "Get list of all interviews",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "lists"
-                ],
-                "summary": "Get interviews list",
-                "operationId": "interviews-list",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {}
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {}
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {}
-                    },
-                    "default": {
-                        "description": "",
-                        "schema": {}
-                    }
-                }
-            }
-        },
-        "/lists/mentors": {
+        "/mentors": {
             "get": {
                 "description": "Get list of all mentors",
                 "consumes": [
@@ -1285,7 +1345,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "lists"
+                    "mentors"
                 ],
                 "summary": "Get mentors list",
                 "operationId": "mentors-list",
@@ -1293,7 +1353,10 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "integer"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.User"
+                            }
                         }
                     },
                     "400": {
@@ -1313,11 +1376,9 @@
                         "schema": {}
                     }
                 }
-            }
-        },
-        "/lists/users": {
-            "get": {
-                "description": "Get list of all users",
+            },
+            "post": {
+                "description": "Create new group in database",
                 "consumes": [
                     "application/json"
                 ],
@@ -1325,16 +1386,24 @@
                     "application/json"
                 ],
                 "tags": [
-                    "lists"
+                    "mentors"
                 ],
-                "summary": "Get users list",
-                "operationId": "users-list",
-                "responses": {
-                    "200": {
-                        "description": "OK",
+                "summary": "Add mentor",
+                "operationId": "new-mentor",
+                "parameters": [
+                    {
+                        "description": "mentor id",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
                         "schema": {
                             "type": "integer"
                         }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
                     },
                     "400": {
                         "description": "Bad Request",
@@ -1369,17 +1438,6 @@
                 ],
                 "summary": "Get mentor by id",
                 "operationId": "get-mentor-by-id",
-                "parameters": [
-                    {
-                        "description": "mentor id to get",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1418,22 +1476,212 @@
                 ],
                 "summary": "Remove mentor by id",
                 "operationId": "remove-mentor-by-id",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/students": {
+            "get": {
+                "description": "Get list of all students",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "students"
+                ],
+                "summary": "Get students list",
+                "operationId": "students-list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Student"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            },
+            "post": {
+                "description": "Create new group in database",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "students"
+                ],
+                "summary": "Add student",
+                "operationId": "new-student",
                 "parameters": [
                     {
-                        "description": "mentor id to remove",
+                        "description": "student data",
                         "name": "input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "$ref": "#/definitions/models.Student"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/students/:id": {
+            "get": {
+                "description": "Get student from database by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "students"
+                ],
+                "summary": "Get student by id",
+                "operationId": "get-student-by-id",
+                "responses": {
+                    "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "integer"
+                            "$ref": "#/definitions/models.Student"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            },
+            "delete": {
+                "description": "Remove student from database by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "students"
+                ],
+                "summary": "Remove student by id",
+                "operationId": "remove-student-by-id",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/students/:id/cert": {
+            "get": {
+                "description": "Get student's cert from database by student ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "students"
+                ],
+                "summary": "Get cert by student ID",
+                "operationId": "get-cert-by-student-id",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Cert"
                         }
                     },
                     "400": {
@@ -1455,9 +1703,9 @@
                 }
             }
         },
-        "/mentors/new": {
-            "post": {
-                "description": "Create new group in database",
+        "/students/:id/diploma": {
+            "get": {
+                "description": "Get student's diploma from database by student ID",
                 "consumes": [
                     "application/json"
                 ],
@@ -1465,27 +1713,188 @@
                     "application/json"
                 ],
                 "tags": [
-                    "mentors"
+                    "students"
                 ],
-                "summary": "Add mentor",
-                "operationId": "new-mentor",
+                "summary": "Get diploma by student ID",
+                "operationId": "get-diploma-by-student-id",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Diploma"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/students/:id/hw-grades": {
+            "get": {
+                "description": "Get student's homework grades from database by student ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "students"
+                ],
+                "summary": "Get homework grades by student ID",
+                "operationId": "get-hw-grades-by-student-id",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.HomeworkGrade"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/students/:id/interview": {
+            "get": {
+                "description": "Get student's interview from database by student ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "students"
+                ],
+                "summary": "Get interview by student ID",
+                "operationId": "get-interview-by-student-id",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Interview"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "description": "Get list of all users",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get users list",
+                "operationId": "users-list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.User"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            },
+            "post": {
+                "description": "Create new user in database",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Create user",
+                "operationId": "new-user",
                 "parameters": [
                     {
-                        "description": "mentor id",
+                        "description": "user data",
                         "name": "input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "$ref": "#/definitions/models.User"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "description": "OK"
                     },
                     "400": {
                         "description": "Bad Request",
@@ -1520,22 +1929,11 @@
                 ],
                 "summary": "Get user by ID",
                 "operationId": "get-user-by-id",
-                "parameters": [
-                    {
-                        "description": "user id to get",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.User"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "integer"
+                            "$ref": "#/definitions/models.User"
                         }
                     },
                     "400": {
@@ -1569,23 +1967,9 @@
                 ],
                 "summary": "Remove user by id",
                 "operationId": "remove-user-by-id",
-                "parameters": [
-                    {
-                        "description": "user id to delete",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.User"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "description": "OK"
                     },
                     "400": {
                         "description": "Bad Request",
@@ -1631,61 +2015,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {}
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {}
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {}
-                    },
-                    "default": {
-                        "description": "",
-                        "schema": {}
-                    }
-                }
-            }
-        },
-        "/users/new": {
-            "post": {
-                "description": "Create new user in database",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "users"
-                ],
-                "summary": "Create user",
-                "operationId": "new-user",
-                "parameters": [
-                    {
-                        "description": "user data",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.User"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "description": "OK"
                     },
                     "400": {
                         "description": "Bad Request",
@@ -1753,6 +2083,34 @@
                 }
             }
         },
+        "models.Homework": {
+            "type": "object",
+            "properties": {
+                "deadline": {
+                    "type": "string"
+                },
+                "homeworkID": {
+                    "type": "integer"
+                },
+                "text": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.HomeworkGrade": {
+            "type": "object",
+            "properties": {
+                "grade": {
+                    "type": "integer"
+                },
+                "homeworkID": {
+                    "type": "integer"
+                },
+                "userID": {
+                    "type": "integer"
+                }
+            }
+        },
         "models.Interview": {
             "type": "object",
             "properties": {
@@ -1770,6 +2128,32 @@
                 },
                 "studentID": {
                     "type": "integer"
+                }
+            }
+        },
+        "models.Student": {
+            "type": "object",
+            "properties": {
+                "birthday": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "groupID": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "passwordHash": {
+                    "type": "string"
                 }
             }
         },

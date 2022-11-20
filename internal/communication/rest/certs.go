@@ -9,11 +9,11 @@ import "github.com/gin-gonic/gin"
 // @Accept  json
 // @Produce  json
 // @Param input body models.Cert true "cert data"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /certs/new [post]
+// @Router /certs [post]
 func (h *Handler) newCert(c *gin.Context) {
 }
 
@@ -23,8 +23,7 @@ func (h *Handler) newCert(c *gin.Context) {
 // @ID get-cert-by-id
 // @Accept  json
 // @Produce  json
-// @Param input body int true "cert id to get"
-// @Success 200 {integer} integer 1
+// @Success 200 {object} models.Cert
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
@@ -39,7 +38,7 @@ func (h *Handler) getCertByID(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param input body models.Cert true "cert data to update"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
@@ -53,11 +52,24 @@ func (h *Handler) updateCertByID(c *gin.Context) {
 // @ID remove-cert-by-id
 // @Accept  json
 // @Produce  json
-// @Param input body int true "cert id to remove"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
 // @Router /certs/:id [delete]
 func (h *Handler) removeCertByID(c *gin.Context) {
+}
+
+// @Summary Get certs list
+// @Tags certs
+// @Description Get list of all certs
+// @ID certs-list
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} []models.Cert
+// @Failure 400,404 {object} error
+// @Failure 500 {object} error
+// @Failure default {object} error
+// @Router /certs [get]
+func (h *Handler) certsList(c *gin.Context) {
 }

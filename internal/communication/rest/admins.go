@@ -9,11 +9,11 @@ import "github.com/gin-gonic/gin"
 // @Accept  json
 // @Produce  json
 // @Param input body int true "admin id"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /admins/new [post]
+// @Router /admins [post]
 func (h *Handler) addAdmin(c *gin.Context) {
 }
 
@@ -23,7 +23,6 @@ func (h *Handler) addAdmin(c *gin.Context) {
 // @ID get-admin-by-id
 // @Accept  json
 // @Produce  json
-// @Param input body int true "admin id to get"
 // @Success 200 {integer} integer 1
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -38,11 +37,24 @@ func (h *Handler) getAdminByID(c *gin.Context) {
 // @ID remove-admin-by-id
 // @Accept  json
 // @Produce  json
-// @Param input body int true "admin id to remove"
-// @Success 200 {integer} integer 1
+// @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
 // @Router /admins/:id [delete]
 func (h *Handler) removeAdminByID(c *gin.Context) {
+}
+
+// @Summary Get admins list
+// @Tags admins
+// @Description Get list of all admins
+// @ID admins-list
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} []models.User
+// @Failure 400,404 {object} error
+// @Failure 500 {object} error
+// @Failure default {object} error
+// @Router /admins [get]
+func (h *Handler) adminsList(c *gin.Context) {
 }
