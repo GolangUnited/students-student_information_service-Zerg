@@ -12,8 +12,8 @@ func TestCreateUser(t *testing.T) {
 	dbConnect, _ := postgress.NewMockConnect()
 	defer dbConnect.Close()
 
-	user := models.User{1, "Ivan", "Sidorov", "30.01.1985",
-		"ivan.sidorov@mail.ru", "sst67a8dfge638"}
+	user := models.User{FirstName: "Ivan", LastName: "Sidorov", Birthday: "30.01.1985",
+		Email: "ivan.sidorov@mail.ru", PasswordHash: "sst67a8dfge638"}
 	dbConnect.Mock.ExpectExec("INSERT INTO users").WithArgs(user.FirstName, user.LastName,
 		user.Birthday, user.Email, user.PasswordHash).WillReturnResult(sqlmock.NewResult(5, 1))
 
