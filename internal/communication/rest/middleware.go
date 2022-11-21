@@ -6,7 +6,7 @@ import (
 	"zerg-team-student-information-service/internal/jwt"
 )
 
-const authorisationHeader = "Authorisation"
+const authorizationHeader = "Authorization"
 
 type Middleware struct {
 	jwtSecret string
@@ -18,7 +18,7 @@ func NewMiddleware(jwtSecret string) *Middleware {
 	}
 }
 func (m *Middleware) auth(c *gin.Context) {
-	token := c.GetHeader(authorisationHeader)
+	token := c.GetHeader(authorizationHeader)
 	if token == "" {
 		c.JSON(http.StatusUnauthorized, gin.H{
 			"message": "missing authorization header",
