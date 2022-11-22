@@ -1,4 +1,4 @@
-package postgress
+package postgres
 
 import (
 	"zerg-team-student-information-service/internal/models"

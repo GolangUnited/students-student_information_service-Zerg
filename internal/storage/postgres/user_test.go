@@ -1,11 +1,11 @@
-package postgress_test
+package postgres_test
 
 import (
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/stretchr/testify/assert"
 	"testing"
 	"zerg-team-student-information-service/internal/models"
-	"zerg-team-student-information-service/internal/storage/postgress"
+	"zerg-team-student-information-service/internal/storage/postgres"
 )
 
 var userModel = models.User{ID: 7, FirstName: "Ivan", LastName: "Sidorov", Birthday: "30.01.1985",
@@ -14,7 +14,7 @@ var userModel = models.User{ID: 7, FirstName: "Ivan", LastName: "Sidorov", Birth
 var columns = []string{"id", "first_name", "last_name", "birthday", "email", "password_hash"}
 
 func TestCreateUser(t *testing.T) {
-	dbConnect, _ := postgress.NewMockConnect()
+	dbConnect, _ := postgres.NewMockConnect()
 	defer dbConnect.Close()
 
 	userId := int64(5)
@@ -23,7 +23,7 @@ func TestCreateUser(t *testing.T) {
 			userModel.Birthday, userModel.Email, userModel.PasswordHash).
 		WillReturnResult(sqlmock.NewResult(userId, 1))
 
-	db := postgress.NewUserDB(dbConnect)
+	db := postgres.NewUserDB(dbConnect)
 	id, err := db.Create(userModel)
 
 	assert.Equal(t, nil, err)
@@ -31,7 +31,7 @@ func TestCreateUser(t *testing.T) {
 }
 
 func TestGetByEmail(t *testing.T) {
-	dbConnect, _ := postgress.NewMockConnect()
+	dbConnect, _ := postgres.NewMockConnect()
 	defer dbConnect.Close()
 
 	dbConnect.Mock.ExpectQuery(`SELECT \* FROM users WHERE email=(.+)`).
@@ -39,7 +39,7 @@ func TestGetByEmail(t *testing.T) {
 		WillReturnRows(sqlmock.NewRows(columns).AddRow(userModel.ID, userModel.FirstName, userModel.LastName,
 			userModel.Birthday, userModel.Email, userModel.PasswordHash))
 
-	db := postgress.NewUserDB(dbConnect)
+	db := postgres.NewUserDB(dbConnect)
 	user, err := db.GetByEmail(userModel.Email)
 
 	assert.Equal(t, nil, err)
@@ -47,7 +47,7 @@ func TestGetByEmail(t *testing.T) {
 }
 
 func TestGetByID(t *testing.T) {
-	dbConnect, _ := postgress.NewMockConnect()
+	dbConnect, _ := postgres.NewMockConnect()
 	defer dbConnect.Close()
 
 	dbConnect.Mock.ExpectQuery(`SELECT \* FROM users WHERE id=(.+)`).
@@ -55,7 +55,7 @@ func TestGetByID(t *testing.T) {
 		WillReturnRows(sqlmock.NewRows(columns).AddRow(userModel.ID, userModel.FirstName, userModel.LastName,
 			userModel.Birthday, userModel.Email, userModel.PasswordHash))
 
-	db := postgress.NewUserDB(dbConnect)
+	db := postgres.NewUserDB(dbConnect)
 	user, err := db.GetByID(userModel.ID)
 
 	assert.Equal(t, nil, err)

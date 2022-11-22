@@ -4,7 +4,7 @@ import (
 	"errors"
 	"zerg-team-student-information-service/internal/logger"
 	"zerg-team-student-information-service/internal/storage"
-	"zerg-team-student-information-service/internal/storage/postgress"
+	"zerg-team-student-information-service/internal/storage/postgres"
 )
 
 type Repository struct {
@@ -16,8 +16,8 @@ type Repository struct {
 func New(dbms string, logger logger.Logger) (*Repository, error) {
 	switch dbms {
 	case "postgres":
-		cfg := postgress.PGConfig{}
-		dbConnect, err := postgress.NewPostgresConnect(&cfg)
+		cfg := postgres.PGConfig{}
+		dbConnect, err := postgres.NewPostgresConnect(&cfg)
 		if err != nil {
 			return nil, err
 		}
@@ -25,7 +25,7 @@ func New(dbms string, logger logger.Logger) (*Repository, error) {
 			return nil, err
 		}
 
-		return &Repository{dbConnect, logger, postgress.NewUserDB(dbConnect)}, nil
+		return &Repository{dbConnect, logger, postgres.NewUserDB(dbConnect)}, nil
 	default:
 		return nil, errors.New("DBMS not supported")
 	}
