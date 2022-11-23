@@ -14,7 +14,7 @@ import (
 
 func TestNewServer(t *testing.T) {
 	l := logger.NewLogrusLogger()
-	h := rest.NewHandler(&service.Service{}, l)
+	h := rest.NewHandler(&service.Service{}, l, rest.NewMiddleware(""))
 	srv := server.New(h.InitRoutes(), "8080", l)
 
 	assert.IsType(t, &server.Server{}, srv, "Invalid server type")
@@ -25,7 +25,7 @@ func TestNewServer_Run(t *testing.T) {
 	defer cancel()
 
 	l := logger.NewLogrusLogger()
-	h := rest.NewHandler(&service.Service{}, l)
+	h := rest.NewHandler(&service.Service{}, l, rest.NewMiddleware(""))
 	srv := server.New(h.InitRoutes(), "8080", l)
 
 	go func() {
@@ -42,7 +42,7 @@ func TestNewServer_Shutdown(t *testing.T) {
 	defer cancel()
 
 	l := logger.NewLogrusLogger()
-	h := rest.NewHandler(&service.Service{}, l)
+	h := rest.NewHandler(&service.Service{}, l, rest.NewMiddleware(""))
 	srv := server.New(h.InitRoutes(), "8080", l)
 
 	go func() {

@@ -12,13 +12,13 @@ import (
 )
 
 func TestNewHandler(t *testing.T) {
-	h := handler.NewHandler(&service.Service{}, logger.NewLogrusLogger())
+	h := handler.NewHandler(&service.Service{}, logger.NewLogrusLogger(), handler.NewMiddleware(""))
 
 	assert.IsType(t, &handler.Handler{}, h, "unexpected Handler type")
 }
 
 func TestNewHandler_Init(t *testing.T) {
-	h := handler.NewHandler(&service.Service{}, logger.NewLogrusLogger())
+	h := handler.NewHandler(&service.Service{}, logger.NewLogrusLogger(), handler.NewMiddleware(""))
 
 	router := h.InitRoutes()
 
