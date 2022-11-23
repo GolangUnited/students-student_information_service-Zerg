@@ -1,37 +1,37 @@
-package postgress_test
+package postgres_test
 
 import (
 	"testing"
 	"zerg-team-student-information-service/internal/storage"
-	"zerg-team-student-information-service/internal/storage/postgress"
+	"zerg-team-student-information-service/internal/storage/postgres"
 
 	"github.com/stretchr/testify/assert"
 )
 
 func TestCreateConnectString(t *testing.T) {
-	cfg := postgress.PGConfig{
+	cfg := postgres.PGConfig{
 		Host:     "localhost",
 		Port:     5432,
 		Username: "postgres",
-		DBName:   "postgress",
+		DBName:   "postgres",
 		Password: "password",
 		SSLMode:  "require",
 	}
 	res := cfg.CreateConnectString()
-	exp := "host=localhost port=5432 user=postgres dbname=postgress password=password sslmode=require"
+	exp := "host=localhost port=5432 user=postgres dbname=postgres password=password sslmode=require"
 
 	assert.Equal(t, exp, res, "invalid connection string")
 }
 
 func TestPGConfigImplementsDBConfig(t *testing.T) {
-	cfg := &postgress.PGConfig{}
+	cfg := &postgres.PGConfig{}
 	assert.Implements(t, (*storage.DBConfig)(nil), cfg, "PGConfig not implementing DbConfig interface")
 }
 
 func TestNewPostgresConnect(t *testing.T) {
-	cfg := &postgress.PGConfig{}
+	cfg := &postgres.PGConfig{}
 
-	conn, err := postgress.NewPostgresConnect(cfg)
+	conn, err := postgres.NewPostgresConnect(cfg)
 	if err != nil {
 		t.Error(err)
 	}

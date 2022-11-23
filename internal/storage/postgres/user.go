@@ -1,4 +1,4 @@
-package postgress
+package postgres
 
 import (
 	"zerg-team-student-information-service/internal/models"
@@ -16,6 +16,20 @@ func NewUserDB(dbConn storage.DBConnect) *UserDB {
 func (u *UserDB) GetByID(id int) (models.User, error) {
 	var userModel models.User
 	row := u.dbConn.GetConn().QueryRow("SELECT * FROM users WHERE id=$1", id)
+	err := row.Scan(
+		&userModel.ID,
+		&userModel.FirstName,
+		&userModel.LastName,
+		&userModel.Birthday,
+		&userModel.Email,
+		&userModel.PasswordHash,
+	)
+	return userModel, err
+}
+
+func (u *UserDB) GetByEmail(email string) (models.User, error) {
+	var userModel models.User
+	row := u.dbConn.GetConn().QueryRow("SELECT * FROM users WHERE email=$1", email)
 	err := row.Scan(
 		&userModel.ID,
 		&userModel.FirstName,
