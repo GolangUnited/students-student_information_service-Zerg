@@ -12,7 +12,8 @@ type User struct {
 	LastName     string    `json:"last_name"`
 	Birthday     time.Time `json:"birthday"`
 	Email        string    `json:"email"`
-	PasswordHash string    `json:"password"`
+	Password     string    `json:"password"`
+	PasswordHash string
 }
 
 func (u *User) Validate() error {
@@ -49,7 +50,7 @@ func (u *User) LoginAndPasswordValidation() error {
 		return errors.New("invalid email")
 	}
 
-	if !validator.MinChars(u.PasswordHash, 8) {
+	if !validator.MinChars(u.Password, 8) {
 		return errors.New("password must be at least 8 characters long")
 	}
 

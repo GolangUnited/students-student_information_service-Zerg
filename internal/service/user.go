@@ -3,90 +3,85 @@ package service
 import (
 	"database/sql"
 	"errors"
-	"net/http"
+	"strings"
 	"zerg-team-student-information-service/internal/jwt"
 	"zerg-team-student-information-service/internal/models"
 
 	"golang.org/x/crypto/bcrypt"
 )
 
-func (s *Service) CreateUser(user models.User) (id int64, httpCode int, err error) {
+var (
+	ErrUserValidation    = errors.New("user validate error")
+	ErrDuplicateKeyRu    = errors.New("pq: повторяющееся значение ключа")
+	ErrDuplicateKeyEn    = errors.New("pq: duplicate key value")
+	ErrUserAlreadyExists = errors.New("user alredy exists")
+	ErrIncorrectPassword = errors.New("incorrect password")
+	ErrLoginDoesntExist  = errors.New("login doesn't exist")
+	ErrServer            = errors.New("server error")
+)
+
+func (s *Service) CreateUser(user models.User) (id int64, err error) {
+
 	err = user.Validate()
 	if err != nil {
-		s.logger.Warn(err)
-		httpCode = http.StatusBadRequest
+		s.logger.Warn("create user err ", err.Error())
+		err = ErrUserValidation
 		return
 	}
 
-	_, err = s.repo.User().GetByEmail(user.Email)
-	if err == nil {
-		s.logger.Warn(err)
-		err = errors.New("a user with this email already exists")
-		httpCode = http.StatusForbidden
-		return
-	}
-
-	hash, err := bcrypt.GenerateFromPassword([]byte(user.PasswordHash), 12)
+	hash, err := bcrypt.GenerateFromPassword([]byte(user.Password), 12)
 	if err != nil {
-		s.logger.Warn(err)
-		err = errors.New("server error")
-		httpCode = http.StatusInternalServerError
+		s.logger.Warn("create user err ", err.Error())
+		err = ErrServer
 		return
 	}
 
 	user.PasswordHash = string(hash)
 	id, err = s.repo.User().Create(user)
+	if err != nil && (strings.Contains(err.Error(), ErrDuplicateKeyEn.Error()) ||
+		strings.Contains(err.Error(), ErrDuplicateKeyRu.Error())) {
+		s.logger.Warn("create user err ", err.Error())
+		err = ErrUserAlreadyExists
+		return
+	}
 	if err != nil {
-		s.logger.Warn(err)
-		err = errors.New("server error")
-		httpCode = http.StatusInternalServerError
+		s.logger.Warn("create user err ", err.Error())
+		err = ErrServer
 		return
 	}
 
-	return id, http.StatusCreated, nil
+	return id, nil
 }
 
-func (s *Service) GetUser(login models.User) (httpCode int, token string, err error) {
-	err = login.LoginAndPasswordValidation()
-	if err != nil {
-		s.logger.Warn(err)
-		httpCode = http.StatusBadRequest
-		return
-	}
+func (s *Service) SignIn(login models.User) (token string, err error) {
 
 	user, err := s.repo.User().GetByEmail(login.Email)
 	if err == sql.ErrNoRows {
-		s.logger.Warn(err)
-		err = errors.New("Wrong email or password")
-		httpCode = http.StatusUnauthorized
+		s.logger.Warn("sign in err ", err.Error())
+		err = ErrLoginDoesntExist
 		return
 	}
 	if err != nil {
-		s.logger.Warn(err)
-		err = errors.New("Server error")
-		httpCode = http.StatusInternalServerError
+		s.logger.Warn("sign in err ", err.Error())
+		err = ErrServer
 		return
 	}
 
 	hash := []byte(user.PasswordHash)
 
-	err = bcrypt.CompareHashAndPassword(hash, []byte(login.PasswordHash))
+	err = bcrypt.CompareHashAndPassword(hash, []byte(login.Password))
 	if err != nil {
-		s.logger.Warn(err)
-		err = errors.New("Wrong email or password")
-		httpCode = http.StatusUnauthorized
+		s.logger.Warn("sign in err ", err.Error())
+		err = ErrIncorrectPassword
 		return
 	}
 
-	token, err = jwt.GenerateUserToken(user)
+	token, err = jwt.GenerateUserToken(user, jwt.JwtEnvKey)
 	if err != nil {
-		s.logger.Warn(err)
-		err = errors.New("Server error")
-		httpCode = http.StatusInternalServerError
+		s.logger.Warn("sign in err ", err.Error())
+		err = ErrServer
 		return
 	}
-
-	httpCode = http.StatusOK
 
 	return
 }
