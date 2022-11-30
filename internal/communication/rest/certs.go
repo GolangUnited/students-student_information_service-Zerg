@@ -27,7 +27,7 @@ func (h *Handler) newCert(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /certs/:id [get]
+// @Router /certs/{cert_id} [get]
 func (h *Handler) getCertByID(c *gin.Context) {
 }
 
@@ -42,7 +42,7 @@ func (h *Handler) getCertByID(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /certs/:id [patch]
+// @Router /certs/{cert_id} [patch]
 func (h *Handler) updateCertByID(c *gin.Context) {
 }
 
@@ -56,7 +56,7 @@ func (h *Handler) updateCertByID(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /certs/:id [delete]
+// @Router /certs/{cert_id} [delete]
 func (h *Handler) removeCertByID(c *gin.Context) {
 }
 

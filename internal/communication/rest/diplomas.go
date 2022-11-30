@@ -27,7 +27,7 @@ func (h *Handler) newDiploma(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /diplomas/:id [get]
+// @Router /diplomas/{diploma_id} [get]
 func (h *Handler) getDiplomaByID(c *gin.Context) {
 }
 
@@ -42,7 +42,7 @@ func (h *Handler) getDiplomaByID(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /diplomas/:id [patch]
+// @Router /diplomas/{diploma_id} [patch]
 func (h *Handler) updateDiplomaByID(c *gin.Context) {
 }
 
@@ -56,7 +56,7 @@ func (h *Handler) updateDiplomaByID(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /diplomas/:id [delete]
+// @Router /diplomas/{diploma_id} [delete]
 func (h *Handler) removeDiplomaByID(c *gin.Context) {
 }
 

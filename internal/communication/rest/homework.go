@@ -27,7 +27,7 @@ func (h *Handler) newHomework(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /homeworks/:id [get]
+// @Router /homeworks/{homework_id} [get]
 func (h *Handler) getHomeworkByID(c *gin.Context) {
 }
 
@@ -42,7 +42,7 @@ func (h *Handler) getHomeworkByID(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /homeworks/:id [patch]
+// @Router /homeworks/{homework_id} [patch]
 func (h *Handler) updateHomeworkByID(c *gin.Context) {
 }
 
@@ -56,7 +56,7 @@ func (h *Handler) updateHomeworkByID(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /homeworks/:id [delete]
+// @Router /homeworks/{homework_id} [delete]
 func (h *Handler) removeHomeworkByID(c *gin.Context) {
 }
 

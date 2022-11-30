@@ -27,7 +27,7 @@ func (h *Handler) newGroup(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /groups/:id [get]
+// @Router /groups/{group_id} [get]
 func (h *Handler) getGroupByID(c *gin.Context) {
 }
 
@@ -42,7 +42,7 @@ func (h *Handler) getGroupByID(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /groups/:id [patch]
+// @Router /groups/{group_id} [patch]
 func (h *Handler) updateGroupByID(c *gin.Context) {
 }
 
@@ -56,7 +56,7 @@ func (h *Handler) updateGroupByID(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /groups/:id [delete]
+// @Router /groups/{group_id} [delete]
 func (h *Handler) removeGroupByID(c *gin.Context) {
 }
 
@@ -66,7 +66,7 @@ func (h *Handler) removeGroupByID(c *gin.Context) {
 // @ID groups-list
 // @Accept  json
 // @Produce  json
-// @Success 200 {integer} []models.Group
+// @Success 200 {object} []models.Group
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error

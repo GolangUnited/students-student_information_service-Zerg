@@ -59,6 +59,39 @@ definitions:
       studentID:
         type: integer
     type: object
+  models.JWT:
+    properties:
+      access_token:
+        type: string
+    type: object
+  models.Login:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  models.Mentor:
+    properties:
+      birthday:
+        type: string
+      email:
+        type: string
+      firstName:
+        type: string
+      groups:
+        items:
+          $ref: '#/definitions/models.Group'
+        type: array
+      id:
+        type: integer
+      lastName:
+        type: string
+      password:
+        type: string
+      passwordHash:
+        type: string
+    type: object
   models.Student:
     properties:
       birthday:
@@ -72,6 +105,8 @@ definitions:
       id:
         type: integer
       lastName:
+        type: string
+      password:
         type: string
       passwordHash:
         type: string
@@ -87,6 +122,8 @@ definitions:
       id:
         type: integer
       lastName:
+        type: string
+      password:
         type: string
       passwordHash:
         type: string
@@ -134,12 +171,11 @@ paths:
       description: Create new group in database
       operationId: new-admin
       parameters:
-      - description: admin id
-        in: body
-        name: input
+      - description: New admin ID
+        in: header
+        name: id
         required: true
-        schema:
-          type: integer
+        type: integer
       produces:
       - application/json
       responses:
@@ -160,7 +196,7 @@ paths:
       summary: Add admin
       tags:
       - admins
-  /admins/:id:
+  /admins/{admin_id}:
     delete:
       consumes:
       - application/json
@@ -197,7 +233,7 @@ paths:
         "200":
           description: OK
           schema:
-            type: integer
+            $ref: '#/definitions/models.User'
         "400":
           description: Bad Request
           schema: {}
@@ -225,14 +261,14 @@ paths:
         name: input
         required: true
         schema:
-          $ref: '#/definitions/models.User'
+          $ref: '#/definitions/models.Login'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            type: string
+            $ref: '#/definitions/models.JWT'
         "400":
           description: Bad Request
           schema: {}
@@ -345,7 +381,7 @@ paths:
       summary: Create cert
       tags:
       - certs
-  /certs/:id:
+  /certs/{cert_id}:
     delete:
       consumes:
       - application/json
@@ -492,7 +528,7 @@ paths:
       summary: Create diploma
       tags:
       - diplomas
-  /diplomas/:id:
+  /diplomas/{diploma_id}:
     delete:
       consumes:
       - application/json
@@ -589,7 +625,9 @@ paths:
         "200":
           description: OK
           schema:
-            type: integer
+            items:
+              $ref: '#/definitions/models.Group'
+            type: array
         "400":
           description: Bad Request
           schema: {}
@@ -637,7 +675,7 @@ paths:
       summary: Create group
       tags:
       - groups
-  /groups/:id:
+  /groups/{group_id}:
     delete:
       consumes:
       - application/json
@@ -793,7 +831,7 @@ paths:
       summary: Create homework
       tags:
       - homeworks
-  /homeworks/:id:
+  /homeworks/{homework_id}:
     delete:
       consumes:
       - application/json
@@ -940,7 +978,7 @@ paths:
       summary: Create interview
       tags:
       - interviews
-  /interviews/:id:
+  /interviews/{interview_id}:
     delete:
       consumes:
       - application/json
@@ -1038,7 +1076,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/models.User'
+              $ref: '#/definitions/models.Mentor'
             type: array
         "400":
           description: Bad Request
@@ -1061,12 +1099,11 @@ paths:
       description: Create new group in database
       operationId: new-mentor
       parameters:
-      - description: mentor id
-        in: body
-        name: input
+      - description: New mentor ID
+        in: header
+        name: id
         required: true
-        schema:
-          type: integer
+        type: integer
       produces:
       - application/json
       responses:
@@ -1087,7 +1124,7 @@ paths:
       summary: Add mentor
       tags:
       - mentors
-  /mentors/:id:
+  /mentors/{mentor_id}:
     delete:
       consumes:
       - application/json
@@ -1124,7 +1161,7 @@ paths:
         "200":
           description: OK
           schema:
-            type: integer
+            $ref: '#/definitions/models.Mentor'
         "400":
           description: Bad Request
           schema: {}
@@ -1202,7 +1239,7 @@ paths:
       summary: Add student
       tags:
       - students
-  /students/:id:
+  /students/{student_id}:
     delete:
       consumes:
       - application/json
@@ -1255,7 +1292,7 @@ paths:
       summary: Get student by id
       tags:
       - students
-  /students/:id/cert:
+  /students/{student_id}/cert:
     get:
       consumes:
       - application/json
@@ -1283,7 +1320,7 @@ paths:
       summary: Get cert by student ID
       tags:
       - students
-  /students/:id/diploma:
+  /students/{student_id}/diploma:
     get:
       consumes:
       - application/json
@@ -1311,7 +1348,7 @@ paths:
       summary: Get diploma by student ID
       tags:
       - students
-  /students/:id/hw-grades:
+  /students/{student_id}/hw-grades:
     get:
       consumes:
       - application/json
@@ -1341,7 +1378,7 @@ paths:
       summary: Get homework grades by student ID
       tags:
       - students
-  /students/:id/interview:
+  /students/{student_id}/interview:
     get:
       consumes:
       - application/json
@@ -1431,7 +1468,7 @@ paths:
       summary: Create user
       tags:
       - users
-  /users/:id:
+  /users/{user_id}:
     delete:
       consumes:
       - application/json

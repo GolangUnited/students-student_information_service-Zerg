@@ -27,7 +27,7 @@ func (h *Handler) newInterview(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /interviews/:id [get]
+// @Router /interviews/{interview_id} [get]
 func (h *Handler) getInterviewByID(c *gin.Context) {
 }
 
@@ -42,7 +42,7 @@ func (h *Handler) getInterviewByID(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /interviews/:id [patch]
+// @Router /interviews/{interview_id} [patch]
 func (h *Handler) updateInterviewByID(c *gin.Context) {
 }
 
@@ -56,7 +56,7 @@ func (h *Handler) updateInterviewByID(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /interviews/:id [delete]
+// @Router /interviews/{interview_id} [delete]
 func (h *Handler) removeInterviewByID(c *gin.Context) {
 }
 

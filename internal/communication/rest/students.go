@@ -27,7 +27,7 @@ func (h *Handler) addStudent(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /students/:id [get]
+// @Router /students/{student_id} [get]
 func (h *Handler) getStudentByID(c *gin.Context) {
 }
 
@@ -41,7 +41,7 @@ func (h *Handler) getStudentByID(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /students/:id [delete]
+// @Router /students/{student_id} [delete]
 func (h *Handler) removeStudentByID(c *gin.Context) {
 }
 
@@ -69,7 +69,7 @@ func (h *Handler) studentsList(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /students/:id/cert [get]
+// @Router /students/{student_id}/cert [get]
 func (h *Handler) getCertByStudentID(c *gin.Context) {
 }
 
@@ -83,7 +83,7 @@ func (h *Handler) getCertByStudentID(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /students/:id/diploma [get]
+// @Router /students/{student_id}/diploma [get]
 func (h *Handler) getDiplomaByStudentID(c *gin.Context) {
 }
 
@@ -97,7 +97,7 @@ func (h *Handler) getDiplomaByStudentID(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /students/:id/interview [get]
+// @Router /students/{student_id}/interview [get]
 func (h *Handler) getInterviewByStudentID(c *gin.Context) {
 }
 
@@ -111,6 +111,6 @@ func (h *Handler) getInterviewByStudentID(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /students/:id/hw-grades [get]
+// @Router /students/{student_id}/hw-grades [get]
 func (h *Handler) getHWGradesByStudentID(c *gin.Context) {
 }

@@ -8,7 +8,7 @@ import "github.com/gin-gonic/gin"
 // @ID new-admin
 // @Accept  json
 // @Produce  json
-// @Param input body int true "admin id"
+// @Param id header int true "New admin ID"
 // @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -23,11 +23,11 @@ func (h *Handler) addAdmin(c *gin.Context) {
 // @ID get-admin-by-id
 // @Accept  json
 // @Produce  json
-// @Success 200 {integer} integer 1
+// @Success 200 {object} models.User
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /admins/:id [get]
+// @Router /admins/{admin_id} [get]
 func (h *Handler) getAdminByID(c *gin.Context) {
 }
 
@@ -41,7 +41,7 @@ func (h *Handler) getAdminByID(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /admins/:id [delete]
+// @Router /admins/{admin_id} [delete]
 func (h *Handler) removeAdminByID(c *gin.Context) {
 }
 

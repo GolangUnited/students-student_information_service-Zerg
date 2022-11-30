@@ -2,10 +2,11 @@ package jwt
 
 import (
 	"fmt"
-	"github.com/golang-jwt/jwt/v4"
 	"os"
 	"time"
 	"zerg-team-student-information-service/internal/models"
+
+	"github.com/golang-jwt/jwt/v4"
 )
 
 const JwtEnvKey = "JWT_SECRET"
@@ -27,9 +28,10 @@ func GenerateUserToken(user models.User) (string, error) {
 }
 
 func GetDataFromToken(tokenString string) (*TokenData, error) {
-	token, err := jwt.ParseWithClaims(tokenString, &TokenData{}, func(token *jwt.Token) (interface{}, error) {
-		return []byte(os.Getenv(JwtEnvKey)), nil
-	})
+	token, err := jwt.ParseWithClaims(
+		tokenString, &TokenData{}, func(token *jwt.Token) (interface{}, error) {
+			return []byte(os.Getenv(JwtEnvKey)), nil
+		})
 	if err != nil {
 		return nil, fmt.Errorf("token parsing error: %w", err)
 	}

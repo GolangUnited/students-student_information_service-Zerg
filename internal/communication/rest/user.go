@@ -25,13 +25,13 @@ func (h *Handler) createUser(c *gin.Context) {
 // @ID get-user
 // @Accept  json
 // @Produce  json
-// @Param input body models.User true "user to get"
-// @Success 200 {object} string
+// @Param input body models.Login true "user to get"
+// @Success 200 {object} models.JWT
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
 // @Router /auth/signin [post]
-func (h *Handler) getUser(c *gin.Context) {
+func (h *Handler) signin(c *gin.Context) {
 }
 
 // @Summary Create user
@@ -60,7 +60,7 @@ func (h *Handler) newUser(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /users/:id [get]
+// @Router /users/{user_id} [get]
 func (h *Handler) getUserByID(c *gin.Context) {
 }
 
@@ -75,7 +75,7 @@ func (h *Handler) getUserByID(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /users/:id [patch]
+// @Router /users/{user_id} [patch]
 func (h *Handler) updateUserByID(c *gin.Context) {
 }
 
@@ -89,7 +89,7 @@ func (h *Handler) updateUserByID(c *gin.Context) {
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /users/:id [delete]
+// @Router /users/{user_id} [delete]
 func (h *Handler) removeUserByID(c *gin.Context) {
 }
 

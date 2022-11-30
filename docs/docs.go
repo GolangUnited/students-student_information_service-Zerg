@@ -73,13 +73,11 @@ const docTemplate = `{
                 "operationId": "new-admin",
                 "parameters": [
                     {
-                        "description": "admin id",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "type": "integer",
+                        "description": "New admin ID",
+                        "name": "id",
+                        "in": "header",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -105,7 +103,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/admins/:id": {
+        "/admins/{admin_id}": {
             "get": {
                 "description": "Get admin from database by ID",
                 "consumes": [
@@ -123,7 +121,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "integer"
+                            "$ref": "#/definitions/models.User"
                         }
                     },
                     "400": {
@@ -201,7 +199,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.User"
+                            "$ref": "#/definitions/models.Login"
                         }
                     }
                 ],
@@ -209,7 +207,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.JWT"
                         }
                     },
                     "400": {
@@ -371,7 +369,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/certs/:id": {
+        "/certs/{cert_id}": {
             "get": {
                 "description": "Get cert from database by ID",
                 "consumes": [
@@ -581,7 +579,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/diplomas/:id": {
+        "/diplomas/{diploma_id}": {
             "get": {
                 "description": "Get diploma from database by ID",
                 "consumes": [
@@ -720,7 +718,10 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "integer"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Group"
+                            }
                         }
                     },
                     "400": {
@@ -788,7 +789,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/groups/:id": {
+        "/groups/{group_id}": {
             "get": {
                 "description": "Get group from database by ID",
                 "consumes": [
@@ -1012,7 +1013,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/homeworks/:id": {
+        "/homeworks/{homework_id}": {
             "get": {
                 "description": "Get homework from database by ID",
                 "consumes": [
@@ -1222,7 +1223,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/interviews/:id": {
+        "/interviews/{interview_id}": {
             "get": {
                 "description": "Get interview from database by ID",
                 "consumes": [
@@ -1363,7 +1364,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/models.User"
+                                "$ref": "#/definitions/models.Mentor"
                             }
                         }
                     },
@@ -1400,13 +1401,11 @@ const docTemplate = `{
                 "operationId": "new-mentor",
                 "parameters": [
                     {
-                        "description": "mentor id",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "type": "integer",
+                        "description": "New mentor ID",
+                        "name": "id",
+                        "in": "header",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -1432,7 +1431,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/mentors/:id": {
+        "/mentors/{mentor_id}": {
             "get": {
                 "description": "Get mentor from database by ID",
                 "consumes": [
@@ -1450,7 +1449,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "integer"
+                            "$ref": "#/definitions/models.Mentor"
                         }
                     },
                     "400": {
@@ -1596,7 +1595,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/students/:id": {
+        "/students/{student_id}": {
             "get": {
                 "description": "Get student from database by ID",
                 "consumes": [
@@ -1671,7 +1670,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/students/:id/cert": {
+        "/students/{student_id}/cert": {
             "get": {
                 "description": "Get student's cert from database by student ID",
                 "consumes": [
@@ -1711,7 +1710,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/students/:id/diploma": {
+        "/students/{student_id}/diploma": {
             "get": {
                 "description": "Get student's diploma from database by student ID",
                 "consumes": [
@@ -1751,7 +1750,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/students/:id/hw-grades": {
+        "/students/{student_id}/hw-grades": {
             "get": {
                 "description": "Get student's homework grades from database by student ID",
                 "consumes": [
@@ -1794,7 +1793,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/students/:id/interview": {
+        "/students/{student_id}/interview": {
             "get": {
                 "description": "Get student's interview from database by student ID",
                 "consumes": [
@@ -1923,7 +1922,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/users/:id": {
+        "/users/{user_id}": {
             "get": {
                 "description": "Get user from database by ID",
                 "consumes": [
@@ -2139,6 +2138,57 @@ const docTemplate = `{
                 }
             }
         },
+        "models.JWT": {
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Login": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Mentor": {
+            "type": "object",
+            "properties": {
+                "birthday": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "groups": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Group"
+                    }
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "passwordHash": {
+                    "type": "string"
+                }
+            }
+        },
         "models.Student": {
             "type": "object",
             "properties": {
@@ -2158,6 +2208,9 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "lastName": {
+                    "type": "string"
+                },
+                "password": {
                     "type": "string"
                 },
                 "passwordHash": {
@@ -2181,6 +2234,9 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "lastName": {
+                    "type": "string"
+                },
+                "password": {
                     "type": "string"
                 },
                 "passwordHash": {
