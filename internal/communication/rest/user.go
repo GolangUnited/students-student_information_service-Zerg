@@ -25,7 +25,7 @@ func (h *Handler) CreateUser(c *gin.Context) {
 			"message": "validation error",
 		})
 	case service.ErrUserAlreadyExists:
-		c.JSON(http.StatusForbidden, gin.H{
+		c.JSON(http.StatusBadRequest, gin.H{
 			"message": "User with this email already exists",
 		})
 	case service.ErrServer:
