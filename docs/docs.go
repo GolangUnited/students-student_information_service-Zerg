@@ -1670,9 +1670,9 @@ const docTemplate = `{
                 }
             }
         },
-        "/students/{student_id}/cert": {
+        "/students/{student_id}/certs": {
             "get": {
-                "description": "Get student's cert from database by student ID",
+                "description": "Get student's certs from database by student ID",
                 "consumes": [
                     "application/json"
                 ],
@@ -1682,13 +1682,16 @@ const docTemplate = `{
                 "tags": [
                     "students"
                 ],
-                "summary": "Get cert by student ID",
-                "operationId": "get-cert-by-student-id",
+                "summary": "Get certs by student ID",
+                "operationId": "get-certs-by-student-id",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Cert"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Cert"
+                            }
                         }
                     },
                     "400": {
@@ -2048,13 +2051,13 @@ const docTemplate = `{
         "models.Cert": {
             "type": "object",
             "properties": {
-                "certID": {
+                "cert_id": {
                     "type": "string"
                 },
                 "issued": {
                     "type": "string"
                 },
-                "studentID": {
+                "student_id": {
                     "type": "integer"
                 }
             }
@@ -2065,7 +2068,7 @@ const docTemplate = `{
                 "description": {
                     "type": "string"
                 },
-                "studentID": {
+                "student_id": {
                     "type": "integer"
                 },
                 "theme": {
@@ -2076,16 +2079,16 @@ const docTemplate = `{
         "models.Group": {
             "type": "object",
             "properties": {
-                "dateEnd": {
+                "date_end": {
                     "type": "string"
                 },
-                "dateStart": {
+                "date_start": {
                     "type": "string"
                 },
-                "id": {
+                "group_id": {
                     "type": "integer"
                 },
-                "mentor": {
+                "mentor_id": {
                     "type": "integer"
                 }
             }
@@ -2096,10 +2099,10 @@ const docTemplate = `{
                 "deadline": {
                     "type": "string"
                 },
-                "homeworkID": {
+                "homework_id": {
                     "type": "integer"
                 },
-                "text": {
+                "homework_text": {
                     "type": "string"
                 }
             }
@@ -2110,10 +2113,10 @@ const docTemplate = `{
                 "grade": {
                     "type": "integer"
                 },
-                "homeworkID": {
+                "homework_id": {
                     "type": "integer"
                 },
-                "userID": {
+                "student_id": {
                     "type": "integer"
                 }
             }
@@ -2121,19 +2124,19 @@ const docTemplate = `{
         "models.Interview": {
             "type": "object",
             "properties": {
-                "date": {
+                "interview_date": {
                     "type": "string"
                 },
                 "mark": {
                     "type": "integer"
                 },
-                "mentorID": {
+                "mentor_id": {
                     "type": "integer"
                 },
                 "notes": {
                     "type": "string"
                 },
-                "studentID": {
+                "student_id": {
                     "type": "integer"
                 }
             }
@@ -2160,13 +2163,13 @@ const docTemplate = `{
         "models.Mentor": {
             "type": "object",
             "properties": {
-                "birthday": {
+                "bitrhday": {
                     "type": "string"
                 },
                 "email": {
                     "type": "string"
                 },
-                "firstName": {
+                "first_name": {
                     "type": "string"
                 },
                 "groups": {
@@ -2175,10 +2178,7 @@ const docTemplate = `{
                         "$ref": "#/definitions/models.Group"
                     }
                 },
-                "id": {
-                    "type": "integer"
-                },
-                "lastName": {
+                "last_name": {
                     "type": "string"
                 },
                 "password": {
@@ -2186,28 +2186,28 @@ const docTemplate = `{
                 },
                 "passwordHash": {
                     "type": "string"
+                },
+                "student_id": {
+                    "type": "integer"
                 }
             }
         },
         "models.Student": {
             "type": "object",
             "properties": {
-                "birthday": {
+                "bitrhday": {
                     "type": "string"
                 },
                 "email": {
                     "type": "string"
                 },
-                "firstName": {
+                "first_name": {
                     "type": "string"
                 },
-                "groupID": {
+                "group_id": {
                     "type": "integer"
                 },
-                "id": {
-                    "type": "integer"
-                },
-                "lastName": {
+                "last_name": {
                     "type": "string"
                 },
                 "password": {
@@ -2215,25 +2215,25 @@ const docTemplate = `{
                 },
                 "passwordHash": {
                     "type": "string"
+                },
+                "student_id": {
+                    "type": "integer"
                 }
             }
         },
         "models.User": {
             "type": "object",
             "properties": {
-                "birthday": {
+                "bitrhday": {
                     "type": "string"
                 },
                 "email": {
                     "type": "string"
                 },
-                "firstName": {
+                "first_name": {
                     "type": "string"
                 },
-                "id": {
-                    "type": "integer"
-                },
-                "lastName": {
+                "last_name": {
                     "type": "string"
                 },
                 "password": {
@@ -2241,6 +2241,9 @@ const docTemplate = `{
                 },
                 "passwordHash": {
                     "type": "string"
+                },
+                "student_id": {
+                    "type": "integer"
                 }
             }
         }

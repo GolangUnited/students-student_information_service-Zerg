@@ -3,13 +3,13 @@ package models
 import "time"
 
 type Homework struct {
-	HomeworkID int
-	Text       string
-	Deadline   time.Time
+	HomeworkID int       `json:"homework_id"`
+	Text       string    `json:"homework_text"`
+	Deadline   time.Time `json:"deadline"`
 }
 
 type HomeworkGrade struct {
-	UserID     int
-	HomeworkID int
-	Grade      int
+	StudentID  int `json:"student_id"`
+	HomeworkID int `json:"homework_id"`
+	Grade      int `json:"grade"`
 }

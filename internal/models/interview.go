@@ -5,9 +5,9 @@ import (
 )
 
 type Interview struct {
-	StudentID int
-	MentorID  int
-	Date      time.Time
-	Mark      int
-	Notes     string
+	StudentID int       `json:"student_id"`
+	MentorID  int       `json:"mentor_id"`
+	Date      time.Time `json:"interview_date"`
+	Mark      int       `json:"mark"`
+	Notes     string    `json:"notes"`
 }

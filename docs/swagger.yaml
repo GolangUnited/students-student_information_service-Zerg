@@ -1,62 +1,62 @@
 definitions:
   models.Cert:
     properties:
-      certID:
+      cert_id:
         type: string
       issued:
         type: string
-      studentID:
+      student_id:
         type: integer
     type: object
   models.Diploma:
     properties:
       description:
         type: string
-      studentID:
+      student_id:
         type: integer
       theme:
         type: string
     type: object
   models.Group:
     properties:
-      dateEnd:
+      date_end:
         type: string
-      dateStart:
+      date_start:
         type: string
-      id:
+      group_id:
         type: integer
-      mentor:
+      mentor_id:
         type: integer
     type: object
   models.Homework:
     properties:
       deadline:
         type: string
-      homeworkID:
+      homework_id:
         type: integer
-      text:
+      homework_text:
         type: string
     type: object
   models.HomeworkGrade:
     properties:
       grade:
         type: integer
-      homeworkID:
+      homework_id:
         type: integer
-      userID:
+      student_id:
         type: integer
     type: object
   models.Interview:
     properties:
-      date:
+      interview_date:
         type: string
       mark:
         type: integer
-      mentorID:
+      mentor_id:
         type: integer
       notes:
         type: string
-      studentID:
+      student_id:
         type: integer
     type: object
   models.JWT:
@@ -73,60 +73,60 @@ definitions:
     type: object
   models.Mentor:
     properties:
-      birthday:
+      bitrhday:
         type: string
       email:
         type: string
-      firstName:
+      first_name:
         type: string
       groups:
         items:
           $ref: '#/definitions/models.Group'
         type: array
-      id:
-        type: integer
-      lastName:
+      last_name:
         type: string
       password:
         type: string
       passwordHash:
         type: string
+      student_id:
+        type: integer
     type: object
   models.Student:
     properties:
-      birthday:
+      bitrhday:
         type: string
       email:
         type: string
-      firstName:
+      first_name:
         type: string
-      groupID:
+      group_id:
         type: integer
-      id:
-        type: integer
-      lastName:
+      last_name:
         type: string
       password:
         type: string
       passwordHash:
         type: string
+      student_id:
+        type: integer
     type: object
   models.User:
     properties:
-      birthday:
+      bitrhday:
         type: string
       email:
         type: string
-      firstName:
+      first_name:
         type: string
-      id:
-        type: integer
-      lastName:
+      last_name:
         type: string
       password:
         type: string
       passwordHash:
         type: string
+      student_id:
+        type: integer
     type: object
 host: localhost:8080
 info:
@@ -1292,19 +1292,21 @@ paths:
       summary: Get student by id
       tags:
       - students
-  /students/{student_id}/cert:
+  /students/{student_id}/certs:
     get:
       consumes:
       - application/json
-      description: Get student's cert from database by student ID
-      operationId: get-cert-by-student-id
+      description: Get student's certs from database by student ID
+      operationId: get-certs-by-student-id
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Cert'
+            items:
+              $ref: '#/definitions/models.Cert'
+            type: array
         "400":
           description: Bad Request
           schema: {}
@@ -1317,7 +1319,7 @@ paths:
         default:
           description: ""
           schema: {}
-      summary: Get cert by student ID
+      summary: Get certs by student ID
       tags:
       - students
   /students/{student_id}/diploma:

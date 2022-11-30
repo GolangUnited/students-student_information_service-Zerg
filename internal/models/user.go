@@ -1,18 +1,18 @@
 package models
 
 type User struct {
-	ID           int
-	FirstName    string
-	LastName     string
-	Birthday     string
-	Email        string
+	ID           int    `json:"student_id"`
+	FirstName    string `json:"first_name"`
+	LastName     string `json:"last_name"`
+	Birthday     string `json:"bitrhday"`
+	Email        string `json:"email"`
 	Password     string
 	PasswordHash string
 }
 
 type Student struct {
 	User
-	GroupID int
+	GroupID int `json:"group_id"`
 }
 
 type Mentor struct {
@@ -21,6 +21,6 @@ type Mentor struct {
 }
 
 type Login struct {
-	Email    string
-	Password string
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
