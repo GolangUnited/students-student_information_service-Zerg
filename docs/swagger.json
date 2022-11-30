@@ -2148,9 +2148,6 @@
                 "password": {
                     "type": "string"
                 },
-                "passwordHash": {
-                    "type": "string"
-                },
                 "student_id": {
                     "type": "integer"
                 }
@@ -2172,9 +2169,6 @@
                     "type": "string"
                 },
                 "password": {
-                    "type": "string"
-                },
-                "passwordHash": {
                     "type": "string"
                 },
                 "student_id": {

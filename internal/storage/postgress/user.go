@@ -15,6 +15,7 @@ func NewUserDB(dbConn storage.DBConnect) *UserDB {
 
 func (u *UserDB) GetByID(id int) (models.User, error) {
 	var userModel models.User
+	var passwordHash string
 	row := u.dbConn.GetConn().QueryRow("SELECT * FROM users WHERE id=$1", id)
 	err := row.Scan(
 		&userModel.ID,
@@ -22,8 +23,9 @@ func (u *UserDB) GetByID(id int) (models.User, error) {
 		&userModel.LastName,
 		&userModel.Birthday,
 		&userModel.Email,
-		&userModel.PasswordHash,
+		&passwordHash,
 	)
+	userModel.SetPasswordHash(passwordHash)
 	return userModel, err
 }
 
@@ -36,7 +38,7 @@ func (u *UserDB) Create(user models.User) (int64, error) {
 		user.LastName,
 		user.Birthday,
 		user.Email,
-		user.PasswordHash,
+		user.GetPasswordHash(),
 	)
 	if err != nil {
 		return 0, err

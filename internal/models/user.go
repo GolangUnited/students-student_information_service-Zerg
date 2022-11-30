@@ -11,7 +11,15 @@ type UserData struct {
 type User struct {
 	UserData
 	Password     string `json:"password"`
-	PasswordHash string
+	passwordHash string
+}
+
+func (u *User) GetPasswordHash() string {
+	return u.passwordHash
+}
+
+func (u *User) SetPasswordHash(passwordHash string) {
+	u.passwordHash = passwordHash
 }
 
 type Student struct {

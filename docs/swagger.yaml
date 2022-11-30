@@ -102,8 +102,6 @@ definitions:
         type: string
       password:
         type: string
-      passwordHash:
-        type: string
       student_id:
         type: integer
     type: object
@@ -118,8 +116,6 @@ definitions:
       last_name:
         type: string
       password:
-        type: string
-      passwordHash:
         type: string
       student_id:
         type: integer

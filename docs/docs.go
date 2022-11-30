@@ -2156,9 +2156,6 @@ const docTemplate = `{
                 "password": {
                     "type": "string"
                 },
-                "passwordHash": {
-                    "type": "string"
-                },
                 "student_id": {
                     "type": "integer"
                 }
@@ -2180,9 +2177,6 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "password": {
-                    "type": "string"
-                },
-                "passwordHash": {
                     "type": "string"
                 },
                 "student_id": {
