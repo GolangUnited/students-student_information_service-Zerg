@@ -59,18 +59,18 @@ func (h *Handler) removeStudentByID(c *gin.Context) {
 func (h *Handler) studentsList(c *gin.Context) {
 }
 
-// @Summary Get cert by student ID
+// @Summary Get certs by student ID
 // @Tags students
-// @Description Get student's cert from database by student ID
-// @ID get-cert-by-student-id
+// @Description Get student's certs from database by student ID
+// @ID get-certs-by-student-id
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} models.Cert
+// @Success 200 {object} []models.Cert
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
-// @Router /students/{student_id}/cert [get]
-func (h *Handler) getCertByStudentID(c *gin.Context) {
+// @Router /students/{student_id}/certs [get]
+func (h *Handler) getCertsByStudentID(c *gin.Context) {
 }
 
 // @Summary Get diploma by student ID

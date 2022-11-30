@@ -66,7 +66,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 			items := api.Group(":id")
 			{
-				items.GET("/cert", h.getCertByStudentID)
+				items.GET("/certs", h.getCertsByStudentID)
 				items.GET("/diploma", h.getDiplomaByStudentID)
 				items.GET("/interview", h.getInterviewByStudentID)
 				items.GET("/hw-grades", h.getHWGradesByStudentID)
