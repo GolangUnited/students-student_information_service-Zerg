@@ -18,6 +18,10 @@ import (
 
 // @host      localhost:8080
 
+// @securityDefinitions.apikey ApiToken
+// @in header
+// @name Authorization
+
 func main() {
 	appPort := os.Getenv("APP_PORT")
 	logrusLogger := logger.NewLogrusLogger()

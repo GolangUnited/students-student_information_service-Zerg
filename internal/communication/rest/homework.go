@@ -4,6 +4,7 @@ import "github.com/gin-gonic/gin"
 
 // @Summary Create homework
 // @Tags homeworks
+// @Security ApiToken
 // @Description Create new homework in database
 // @ID create-homework
 // @Accept  json
@@ -19,6 +20,7 @@ func (h *Handler) newHomework(c *gin.Context) {
 
 // @Summary Get homework by id
 // @Tags homeworks
+// @Security ApiToken
 // @Description Get homework from database by ID
 // @ID get-homework-by-id
 // @Accept  json
@@ -34,6 +36,7 @@ func (h *Handler) getHomeworkByID(c *gin.Context) {
 
 // @Summary Update homework
 // @Tags homeworks
+// @Security ApiToken
 // @Description Update homework data in database by id
 // @ID update-homework-by-id
 // @Accept  json
@@ -50,6 +53,7 @@ func (h *Handler) updateHomeworkByID(c *gin.Context) {
 
 // @Summary Remove homework
 // @Tags homeworks
+// @Security ApiToken
 // @Description Remove homework from database by id
 // @ID remove-homework-by-id
 // @Accept  json
@@ -65,6 +69,7 @@ func (h *Handler) removeHomeworkByID(c *gin.Context) {
 
 // @Summary Get homeworks list
 // @Tags homeworks
+// @Security ApiToken
 // @Description Get list of all homeworks
 // @ID homeworks-list
 // @Accept  json

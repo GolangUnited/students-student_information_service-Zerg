@@ -4,6 +4,7 @@ import "github.com/gin-gonic/gin"
 
 // @Summary Create diploma
 // @Tags diplomas
+// @Security ApiToken
 // @Description Create new diploma in database
 // @ID create-diploma
 // @Accept  json
@@ -19,6 +20,7 @@ func (h *Handler) newDiploma(c *gin.Context) {
 
 // @Summary Get diploma by id
 // @Tags diplomas
+// @Security ApiToken
 // @Description Get diploma from database by ID
 // @ID get-diploma-by-id
 // @Accept  json
@@ -34,6 +36,7 @@ func (h *Handler) getDiplomaByID(c *gin.Context) {
 
 // @Summary Update diploma
 // @Tags diplomas
+// @Security ApiToken
 // @Description Update diploma data in database by id
 // @ID update-diploma-by-id
 // @Accept  json
@@ -50,6 +53,7 @@ func (h *Handler) updateDiplomaByID(c *gin.Context) {
 
 // @Summary Remove diploma
 // @Tags diplomas
+// @Security ApiToken
 // @Description Remove diploma from database by id
 // @ID remove-diploma-by-id
 // @Accept  json
@@ -65,6 +69,7 @@ func (h *Handler) removeDiplomaByID(c *gin.Context) {
 
 // @Summary Get diplomas list
 // @Tags diplomas
+// @Security ApiToken
 // @Description Get list of all diplomas
 // @ID diplomas-list
 // @Accept  json

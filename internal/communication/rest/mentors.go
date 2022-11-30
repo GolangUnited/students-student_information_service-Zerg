@@ -4,6 +4,7 @@ import "github.com/gin-gonic/gin"
 
 // @Summary Add mentor
 // @Tags mentors
+// @Security ApiToken
 // @Description Create new group in database
 // @ID new-mentor
 // @Accept  json
@@ -19,6 +20,7 @@ func (h *Handler) addMentor(c *gin.Context) {
 
 // @Summary Get mentor by id
 // @Tags mentors
+// @Security ApiToken
 // @Description Get mentor from database by ID
 // @ID get-mentor-by-id
 // @Accept  json
@@ -34,6 +36,7 @@ func (h *Handler) getMentorByID(c *gin.Context) {
 
 // @Summary Remove mentor by id
 // @Tags mentors
+// @Security ApiToken
 // @Description Remove mentor from database by id
 // @ID remove-mentor-by-id
 // @Accept  json
@@ -49,6 +52,7 @@ func (h *Handler) removeMentorByID(c *gin.Context) {
 
 // @Summary Get mentors list
 // @Tags mentors
+// @Security ApiToken
 // @Description Get list of all mentors
 // @ID mentors-list
 // @Accept  json

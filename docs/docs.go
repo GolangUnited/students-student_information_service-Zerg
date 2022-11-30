@@ -18,6 +18,11 @@ const docTemplate = `{
     "paths": {
         "/admins": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get list of all admins",
                 "consumes": [
                     "application/json"
@@ -59,6 +64,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Create new group in database",
                 "consumes": [
                     "application/json"
@@ -105,6 +115,11 @@ const docTemplate = `{
         },
         "/admins/{admin_id}": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get admin from database by ID",
                 "consumes": [
                     "application/json"
@@ -152,6 +167,11 @@ const docTemplate = `{
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Remove admin from database by id",
                 "consumes": [
                     "application/json"
@@ -196,7 +216,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/auth/signin": {
+        "/auth/sign-in": {
             "post": {
                 "description": "Get user from database",
                 "consumes": [
@@ -209,7 +229,7 @@ const docTemplate = `{
                     "auth"
                 ],
                 "summary": "Get user",
-                "operationId": "get-user",
+                "operationId": "sign-in",
                 "parameters": [
                     {
                         "description": "user to get",
@@ -247,8 +267,64 @@ const docTemplate = `{
                 }
             }
         },
+        "/auth/sign-up": {
+            "post": {
+                "description": "Sign up new user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Create user",
+                "operationId": "sign-up",
+                "parameters": [
+                    {
+                        "description": "user data",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {}
+                    }
+                }
+            }
+        },
         "/certs": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get list of all certs",
                 "consumes": [
                     "application/json"
@@ -290,6 +366,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Create new cert in database",
                 "consumes": [
                     "application/json"
@@ -338,6 +419,11 @@ const docTemplate = `{
         },
         "/certs/{cert_id}": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get cert from database by ID",
                 "consumes": [
                     "application/json"
@@ -385,6 +471,11 @@ const docTemplate = `{
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Remove cert from database by id",
                 "consumes": [
                     "application/json"
@@ -429,6 +520,11 @@ const docTemplate = `{
                 }
             },
             "patch": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Update cert data in database by id",
                 "consumes": [
                     "application/json"
@@ -484,6 +580,11 @@ const docTemplate = `{
         },
         "/diplomas": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get list of all diplomas",
                 "consumes": [
                     "application/json"
@@ -525,6 +626,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Create new diploma in database",
                 "consumes": [
                     "application/json"
@@ -573,6 +679,11 @@ const docTemplate = `{
         },
         "/diplomas/{diploma_id}": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get diploma from database by ID",
                 "consumes": [
                     "application/json"
@@ -620,6 +731,11 @@ const docTemplate = `{
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Remove diploma from database by id",
                 "consumes": [
                     "application/json"
@@ -664,6 +780,11 @@ const docTemplate = `{
                 }
             },
             "patch": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Update diploma data in database by id",
                 "consumes": [
                     "application/json"
@@ -719,6 +840,11 @@ const docTemplate = `{
         },
         "/groups": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get list of all groups",
                 "consumes": [
                     "application/json"
@@ -760,6 +886,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Create new group in database",
                 "consumes": [
                     "application/json"
@@ -808,6 +939,11 @@ const docTemplate = `{
         },
         "/groups/{group_id}": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get group from database by ID",
                 "consumes": [
                     "application/json"
@@ -855,6 +991,11 @@ const docTemplate = `{
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Remove group from database by id",
                 "consumes": [
                     "application/json"
@@ -899,6 +1040,11 @@ const docTemplate = `{
                 }
             },
             "patch": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Update group data in database by id",
                 "consumes": [
                     "application/json"
@@ -968,6 +1114,11 @@ const docTemplate = `{
         },
         "/homeworks": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get list of all homeworks",
                 "consumes": [
                     "application/json"
@@ -1009,6 +1160,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Create new homework in database",
                 "consumes": [
                     "application/json"
@@ -1057,6 +1213,11 @@ const docTemplate = `{
         },
         "/homeworks/{homework_id}": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get homework from database by ID",
                 "consumes": [
                     "application/json"
@@ -1104,6 +1265,11 @@ const docTemplate = `{
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Remove homework from database by id",
                 "consumes": [
                     "application/json"
@@ -1148,6 +1314,11 @@ const docTemplate = `{
                 }
             },
             "patch": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Update homework data in database by id",
                 "consumes": [
                     "application/json"
@@ -1203,6 +1374,11 @@ const docTemplate = `{
         },
         "/interviews": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get list of all interviews",
                 "consumes": [
                     "application/json"
@@ -1244,6 +1420,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Create new interview in database",
                 "consumes": [
                     "application/json"
@@ -1292,6 +1473,11 @@ const docTemplate = `{
         },
         "/interviews/{interview_id}": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get interview from database by ID",
                 "consumes": [
                     "application/json"
@@ -1339,6 +1525,11 @@ const docTemplate = `{
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Remove interview from database by id",
                 "consumes": [
                     "application/json"
@@ -1383,6 +1574,11 @@ const docTemplate = `{
                 }
             },
             "patch": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Update interview data in database by id",
                 "consumes": [
                     "application/json"
@@ -1438,6 +1634,11 @@ const docTemplate = `{
         },
         "/mentors": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get list of all mentors",
                 "consumes": [
                     "application/json"
@@ -1479,6 +1680,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Create new group in database",
                 "consumes": [
                     "application/json"
@@ -1525,6 +1731,11 @@ const docTemplate = `{
         },
         "/mentors/{mentor_id}": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get mentor from database by ID",
                 "consumes": [
                     "application/json"
@@ -1572,6 +1783,11 @@ const docTemplate = `{
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Remove mentor from database by id",
                 "consumes": [
                     "application/json"
@@ -1618,6 +1834,11 @@ const docTemplate = `{
         },
         "/students": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get list of all students",
                 "consumes": [
                     "application/json"
@@ -1659,6 +1880,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Create new group in database",
                 "consumes": [
                     "application/json"
@@ -1707,6 +1933,11 @@ const docTemplate = `{
         },
         "/students/{student_id}": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get student from database by ID",
                 "consumes": [
                     "application/json"
@@ -1754,6 +1985,11 @@ const docTemplate = `{
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Remove student from database by id",
                 "consumes": [
                     "application/json"
@@ -1800,6 +2036,11 @@ const docTemplate = `{
         },
         "/students/{student_id}/certs": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get student's certs from database by student ID",
                 "consumes": [
                     "application/json"
@@ -1852,6 +2093,11 @@ const docTemplate = `{
         },
         "/students/{student_id}/diploma": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get student's diploma from database by student ID",
                 "consumes": [
                     "application/json"
@@ -1901,6 +2147,11 @@ const docTemplate = `{
         },
         "/students/{student_id}/hw-grades": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get student's homework grades from database by student ID",
                 "consumes": [
                     "application/json"
@@ -1953,6 +2204,11 @@ const docTemplate = `{
         },
         "/students/{student_id}/interview": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get student's interview from database by student ID",
                 "consumes": [
                     "application/json"
@@ -2002,6 +2258,11 @@ const docTemplate = `{
         },
         "/users": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get list of all users",
                 "consumes": [
                     "application/json"
@@ -2043,6 +2304,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Create new user in database",
                 "consumes": [
                     "application/json"
@@ -2091,6 +2357,11 @@ const docTemplate = `{
         },
         "/users/{user_id}": {
             "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Get user from database by ID",
                 "consumes": [
                     "application/json"
@@ -2138,6 +2409,11 @@ const docTemplate = `{
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Remove user from database by id",
                 "consumes": [
                     "application/json"
@@ -2182,6 +2458,11 @@ const docTemplate = `{
                 }
             },
             "patch": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
                 "description": "Update user data in database by id",
                 "consumes": [
                     "application/json"
@@ -2443,6 +2724,13 @@ const docTemplate = `{
                     "type": "integer"
                 }
             }
+        }
+    },
+    "securityDefinitions": {
+        "ApiToken": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
         }
     }
 }`

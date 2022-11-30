@@ -4,6 +4,7 @@ import "github.com/gin-gonic/gin"
 
 // @Summary Add admin
 // @Tags admins
+// @Security ApiToken
 // @Description Create new group in database
 // @ID new-admin
 // @Accept  json
@@ -19,6 +20,7 @@ func (h *Handler) addAdmin(c *gin.Context) {
 
 // @Summary Get admin by id
 // @Tags admins
+// @Security ApiToken
 // @Description Get admin from database by ID
 // @ID get-admin-by-id
 // @Accept  json
@@ -34,6 +36,7 @@ func (h *Handler) getAdminByID(c *gin.Context) {
 
 // @Summary Remove admin by id
 // @Tags admins
+// @Security ApiToken
 // @Description Remove admin from database by id
 // @ID remove-admin-by-id
 // @Accept  json
@@ -49,6 +52,7 @@ func (h *Handler) removeAdminByID(c *gin.Context) {
 
 // @Summary Get admins list
 // @Tags admins
+// @Security ApiToken
 // @Description Get list of all admins
 // @ID admins-list
 // @Accept  json

@@ -4,6 +4,7 @@ import "github.com/gin-gonic/gin"
 
 // @Summary Create cert
 // @Tags certs
+// @Security ApiToken
 // @Description Create new cert in database
 // @ID create-cert
 // @Accept  json
@@ -19,6 +20,7 @@ func (h *Handler) newCert(c *gin.Context) {
 
 // @Summary Get cert by id
 // @Tags certs
+// @Security ApiToken
 // @Description Get cert from database by ID
 // @ID get-cert-by-id
 // @Accept  json
@@ -34,6 +36,7 @@ func (h *Handler) getCertByID(c *gin.Context) {
 
 // @Summary Update cert
 // @Tags certs
+// @Security ApiToken
 // @Description Update cert data in database by id
 // @ID update-cert-by-id
 // @Accept  json
@@ -50,6 +53,7 @@ func (h *Handler) updateCertByID(c *gin.Context) {
 
 // @Summary Remove cert
 // @Tags certs
+// @Security ApiToken
 // @Description Remove cert from database by id
 // @ID remove-cert-by-id
 // @Accept  json
@@ -65,6 +69,7 @@ func (h *Handler) removeCertByID(c *gin.Context) {
 
 // @Summary Get certs list
 // @Tags certs
+// @Security ApiToken
 // @Description Get list of all certs
 // @ID certs-list
 // @Accept  json

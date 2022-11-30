@@ -4,6 +4,7 @@ import "github.com/gin-gonic/gin"
 
 // @Summary Add student
 // @Tags students
+// @Security ApiToken
 // @Description Create new group in database
 // @ID new-student
 // @Accept  json
@@ -19,6 +20,7 @@ func (h *Handler) addStudent(c *gin.Context) {
 
 // @Summary Get student by id
 // @Tags students
+// @Security ApiToken
 // @Description Get student from database by ID
 // @ID get-student-by-id
 // @Accept  json
@@ -34,6 +36,7 @@ func (h *Handler) getStudentByID(c *gin.Context) {
 
 // @Summary Remove student by id
 // @Tags students
+// @Security ApiToken
 // @Description Remove student from database by id
 // @ID remove-student-by-id
 // @Accept  json
@@ -49,6 +52,7 @@ func (h *Handler) removeStudentByID(c *gin.Context) {
 
 // @Summary Get students list
 // @Tags students
+// @Security ApiToken
 // @Description Get list of all students
 // @ID students-list
 // @Accept  json
@@ -63,6 +67,7 @@ func (h *Handler) studentsList(c *gin.Context) {
 
 // @Summary Get certs by student ID
 // @Tags students
+// @Security ApiToken
 // @Description Get student's certs from database by student ID
 // @ID get-certs-by-student-id
 // @Accept  json
@@ -78,6 +83,7 @@ func (h *Handler) getCertsByStudentID(c *gin.Context) {
 
 // @Summary Get diploma by student ID
 // @Tags students
+// @Security ApiToken
 // @Description Get student's diploma from database by student ID
 // @ID get-diploma-by-student-id
 // @Accept  json
@@ -93,6 +99,7 @@ func (h *Handler) getDiplomaByStudentID(c *gin.Context) {
 
 // @Summary Get interview by student ID
 // @Tags students
+// @Security ApiToken
 // @Description Get student's interview from database by student ID
 // @ID get-interview-by-student-id
 // @Accept  json
@@ -108,6 +115,7 @@ func (h *Handler) getInterviewByStudentID(c *gin.Context) {
 
 // @Summary Get homework grades by student ID
 // @Tags students
+// @Security ApiToken
 // @Description Get student's homework grades from database by student ID
 // @ID get-hw-grades-by-student-id
 // @Accept  json
