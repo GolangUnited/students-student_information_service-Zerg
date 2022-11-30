@@ -4,21 +4,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// @Summary Create user
-// @Tags auth
-// @Description Create new user in database
-// @ID create-user
-// @Accept  json
-// @Produce  json
-// @Param input body models.User true "user data"
-// @Success 200 {integer} integer 1
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
-// @Router /auth/signup [post]
-func (h *Handler) createUser(c *gin.Context) {
-}
-
 // @Summary Get user
 // @Tags auth
 // @Description Get user from database
@@ -47,7 +32,6 @@ func (h *Handler) signin(c *gin.Context) {
 // @Failure default {object} error
 // @Router /users [post]
 func (h *Handler) newUser(c *gin.Context) {
-	h.createUser(c)
 }
 
 // @Summary Get user by ID
@@ -56,7 +40,7 @@ func (h *Handler) newUser(c *gin.Context) {
 // @ID get-user-by-id
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} models.User
+// @Success 200 {object} models.UserData
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
@@ -99,7 +83,7 @@ func (h *Handler) removeUserByID(c *gin.Context) {
 // @ID users-list
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} []models.User
+// @Success 200 {object} []models.UserData
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error

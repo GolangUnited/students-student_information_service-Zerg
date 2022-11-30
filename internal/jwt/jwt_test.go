@@ -1,16 +1,18 @@
 package jwt_test
 
 import (
-	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
 	"zerg-team-student-information-service/internal/jwt"
 	"zerg-team-student-information-service/internal/models"
+
+	"github.com/stretchr/testify/assert"
 )
 
 const testSecret = "test_secret_string"
 
-var testUser = models.User{Email: "test@example.com"}
+var userData = models.UserData{Email: "test@example.com"}
+var testUser = models.User{UserData: userData}
 
 func TestUserToken(t *testing.T) {
 	os.Setenv(jwt.JwtEnvKey, testSecret)

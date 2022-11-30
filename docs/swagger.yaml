@@ -85,10 +85,6 @@ definitions:
         type: array
       last_name:
         type: string
-      password:
-        type: string
-      passwordHash:
-        type: string
       student_id:
         type: integer
     type: object
@@ -128,6 +124,19 @@ definitions:
       student_id:
         type: integer
     type: object
+  models.UserData:
+    properties:
+      bitrhday:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      student_id:
+        type: integer
+    type: object
 host: localhost:8080
 info:
   contact: {}
@@ -148,7 +157,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/models.User'
+              $ref: '#/definitions/models.UserData'
             type: array
         "400":
           description: Bad Request
@@ -233,7 +242,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.User'
+            $ref: '#/definitions/models.UserData'
         "400":
           description: Bad Request
           schema: {}
@@ -282,41 +291,6 @@ paths:
           description: ""
           schema: {}
       summary: Get user
-      tags:
-      - auth
-  /auth/signup:
-    post:
-      consumes:
-      - application/json
-      description: Create new user in database
-      operationId: create-user
-      parameters:
-      - description: user data
-        in: body
-        name: input
-        required: true
-        schema:
-          $ref: '#/definitions/models.User'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: integer
-        "400":
-          description: Bad Request
-          schema: {}
-        "404":
-          description: Not Found
-          schema: {}
-        "500":
-          description: Internal Server Error
-          schema: {}
-        default:
-          description: ""
-          schema: {}
-      summary: Create user
       tags:
       - auth
   /certs:
@@ -1421,7 +1395,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/models.User'
+              $ref: '#/definitions/models.UserData'
             type: array
         "400":
           description: Bad Request
@@ -1507,7 +1481,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.User'
+            $ref: '#/definitions/models.UserData'
         "400":
           description: Bad Request
           schema: {}

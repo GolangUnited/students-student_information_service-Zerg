@@ -23,7 +23,7 @@ func (h *Handler) addAdmin(c *gin.Context) {
 // @ID get-admin-by-id
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} models.User
+// @Success 200 {object} models.UserData
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
@@ -51,7 +51,7 @@ func (h *Handler) removeAdminByID(c *gin.Context) {
 // @ID admins-list
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} []models.User
+// @Success 200 {object} []models.UserData
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
 // @Failure default {object} error
