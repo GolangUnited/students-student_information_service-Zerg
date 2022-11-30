@@ -11,9 +11,9 @@ import "github.com/gin-gonic/gin"
 // @Produce  json
 // @Param input body models.Homework true "homework data"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /homeworks [post]
 func (h *Handler) newHomework(c *gin.Context) {
 }
@@ -27,9 +27,9 @@ func (h *Handler) newHomework(c *gin.Context) {
 // @Produce  json
 // @Param homework_id path int true "Homework ID to get"
 // @Success 200 {object} models.Homework
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /homeworks/{homework_id} [get]
 func (h *Handler) getHomeworkByID(c *gin.Context) {
 }
@@ -44,9 +44,9 @@ func (h *Handler) getHomeworkByID(c *gin.Context) {
 // @Param homework_id path int true "Homework ID to update"
 // @Param input body models.Homework true "homework data to update"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /homeworks/{homework_id} [patch]
 func (h *Handler) updateHomeworkByID(c *gin.Context) {
 }
@@ -60,9 +60,9 @@ func (h *Handler) updateHomeworkByID(c *gin.Context) {
 // @Produce  json
 // @Param homework_id path int true "Homework ID to delete"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /homeworks/{homework_id} [delete]
 func (h *Handler) removeHomeworkByID(c *gin.Context) {
 }
@@ -75,9 +75,9 @@ func (h *Handler) removeHomeworkByID(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} []models.Homework
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /homeworks [get]
 func (h *Handler) HomeworksList(c *gin.Context) {
 }

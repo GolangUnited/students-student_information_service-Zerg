@@ -47,19 +47,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -96,19 +104,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -150,19 +166,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -199,19 +223,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -250,19 +282,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -301,19 +341,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -349,19 +397,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -400,19 +456,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -454,19 +518,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -503,19 +575,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -561,19 +641,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -609,19 +697,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -660,19 +756,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -714,19 +818,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -763,19 +875,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -821,19 +941,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -869,19 +997,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -920,19 +1056,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -974,19 +1118,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -1023,19 +1175,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -1081,19 +1241,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -1143,19 +1311,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -1194,19 +1370,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -1248,19 +1432,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -1297,19 +1489,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -1355,19 +1555,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -1403,19 +1611,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -1454,19 +1670,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -1503,24 +1727,32 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "integer"
+                            "$ref": "#/definitions/models.Interview"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -1557,19 +1789,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -1615,19 +1855,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -1663,19 +1911,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -1712,19 +1968,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -1766,19 +2030,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -1815,19 +2087,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -1863,19 +2143,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -1914,19 +2202,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -1968,19 +2264,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -2017,19 +2321,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -2074,19 +2386,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -2128,19 +2448,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -2185,19 +2513,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -2239,19 +2575,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -2287,19 +2631,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -2338,19 +2690,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -2392,19 +2752,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -2441,19 +2809,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             },
@@ -2499,19 +2875,27 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "404": {
                         "description": "Not Found",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     },
                     "default": {
                         "description": "",
-                        "schema": {}
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
                     }
                 }
             }
@@ -2722,6 +3106,14 @@ const docTemplate = `{
                 },
                 "student_id": {
                     "type": "integer"
+                }
+            }
+        },
+        "rest.ErrorMessage": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
                 }
             }
         }

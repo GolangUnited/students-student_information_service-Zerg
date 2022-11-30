@@ -133,6 +133,11 @@ definitions:
       student_id:
         type: integer
     type: object
+  rest.ErrorMessage:
+    properties:
+      message:
+        type: string
+    type: object
 host: localhost:8080
 info:
   contact: {}
@@ -157,16 +162,20 @@ paths:
             type: array
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get admins list
@@ -190,16 +199,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Add admin
@@ -224,16 +237,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Remove admin by id
@@ -259,16 +276,20 @@ paths:
             $ref: '#/definitions/models.UserData'
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get admin by id
@@ -296,16 +317,20 @@ paths:
             $ref: '#/definitions/models.JWT'
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       summary: Get user
       tags:
       - auth
@@ -331,16 +356,20 @@ paths:
             type: integer
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       summary: Create user
       tags:
       - auth
@@ -361,16 +390,20 @@ paths:
             type: array
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get certs list
@@ -395,16 +428,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Create cert
@@ -429,16 +466,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Remove cert
@@ -464,16 +505,20 @@ paths:
             $ref: '#/definitions/models.Cert'
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get cert by id
@@ -503,16 +548,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Update cert
@@ -535,16 +584,20 @@ paths:
             type: array
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get diplomas list
@@ -569,16 +622,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Create diploma
@@ -603,16 +660,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Remove diploma
@@ -638,16 +699,20 @@ paths:
             type: integer
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get diploma by id
@@ -677,16 +742,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Update diploma
@@ -709,16 +778,20 @@ paths:
             type: array
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get groups list
@@ -743,16 +816,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Create group
@@ -777,16 +854,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Remove group
@@ -812,16 +893,20 @@ paths:
             type: integer
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get group by id
@@ -851,16 +936,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Update group
@@ -892,16 +981,20 @@ paths:
             type: array
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get homeworks list
@@ -926,16 +1019,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Create homework
@@ -960,16 +1057,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Remove homework
@@ -995,16 +1096,20 @@ paths:
             $ref: '#/definitions/models.Homework'
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get homework by id
@@ -1034,16 +1139,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Update homework
@@ -1066,16 +1175,20 @@ paths:
             type: array
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get interviews list
@@ -1100,16 +1213,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Create interview
@@ -1134,16 +1251,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Remove interview
@@ -1166,19 +1287,23 @@ paths:
         "200":
           description: OK
           schema:
-            type: integer
+            $ref: '#/definitions/models.Interview'
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get interview by id
@@ -1208,16 +1333,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Update interview
@@ -1240,16 +1369,20 @@ paths:
             type: array
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get mentors list
@@ -1273,16 +1406,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Add mentor
@@ -1307,16 +1444,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Remove mentor by id
@@ -1342,16 +1483,20 @@ paths:
             $ref: '#/definitions/models.Mentor'
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get mentor by id
@@ -1374,16 +1519,20 @@ paths:
             type: array
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get students list
@@ -1408,16 +1557,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Add student
@@ -1442,16 +1595,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Remove student by id
@@ -1477,16 +1634,20 @@ paths:
             $ref: '#/definitions/models.Student'
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get student by id
@@ -1515,16 +1676,20 @@ paths:
             type: array
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get certs by student ID
@@ -1551,16 +1716,20 @@ paths:
             $ref: '#/definitions/models.Diploma'
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get diploma by student ID
@@ -1589,16 +1758,20 @@ paths:
             type: array
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get homework grades by student ID
@@ -1625,16 +1798,20 @@ paths:
             $ref: '#/definitions/models.Interview'
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get interview by student ID
@@ -1657,16 +1834,20 @@ paths:
             type: array
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get users list
@@ -1691,16 +1872,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Create user
@@ -1725,16 +1910,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Remove user by id
@@ -1760,16 +1949,20 @@ paths:
             $ref: '#/definitions/models.UserData'
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Get user by ID
@@ -1799,16 +1992,20 @@ paths:
           description: OK
         "400":
           description: Bad Request
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "404":
           description: Not Found
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         "500":
           description: Internal Server Error
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
         default:
           description: ""
-          schema: {}
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
       summary: Update user by id

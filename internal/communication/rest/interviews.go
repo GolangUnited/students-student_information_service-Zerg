@@ -11,9 +11,9 @@ import "github.com/gin-gonic/gin"
 // @Produce  json
 // @Param input body models.Interview true "interview data"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /interviews [post]
 func (h *Handler) newInterview(c *gin.Context) {
 }
@@ -26,10 +26,10 @@ func (h *Handler) newInterview(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param interview_id path int true "Interview ID to get"
-// @Success 200 {integer} integer 1
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Success 200 {object} models.Interview
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /interviews/{interview_id} [get]
 func (h *Handler) getInterviewByID(c *gin.Context) {
 }
@@ -44,9 +44,9 @@ func (h *Handler) getInterviewByID(c *gin.Context) {
 // @Param interview_id path int true "Interview ID to update"
 // @Param input body models.Interview true "interview data to update"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /interviews/{interview_id} [patch]
 func (h *Handler) updateInterviewByID(c *gin.Context) {
 }
@@ -60,9 +60,9 @@ func (h *Handler) updateInterviewByID(c *gin.Context) {
 // @Produce  json
 // @Param interview_id path int true "Interview ID to delete"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /interviews/{interview_id} [delete]
 func (h *Handler) removeInterviewByID(c *gin.Context) {
 }
@@ -75,9 +75,9 @@ func (h *Handler) removeInterviewByID(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} []models.Interview
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /interviews [get]
 func (h *Handler) interviewsList(c *gin.Context) {
 }

@@ -11,9 +11,9 @@ import "github.com/gin-gonic/gin"
 // @Produce  json
 // @Param user_id query int true "New mentor ID"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /mentors [post]
 func (h *Handler) addMentor(c *gin.Context) {
 }
@@ -27,9 +27,9 @@ func (h *Handler) addMentor(c *gin.Context) {
 // @Produce  json
 // @Param mentor_id path int true "Mentor ID to get"
 // @Success 200 {object} models.Mentor
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /mentors/{mentor_id} [get]
 func (h *Handler) getMentorByID(c *gin.Context) {
 }
@@ -43,9 +43,9 @@ func (h *Handler) getMentorByID(c *gin.Context) {
 // @Produce  json
 // @Param mentor_id path int true "Mentor ID to delete"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /mentors/{mentor_id} [delete]
 func (h *Handler) removeMentorByID(c *gin.Context) {
 }
@@ -58,9 +58,9 @@ func (h *Handler) removeMentorByID(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} []models.Mentor
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /mentors [get]
 func (h *Handler) mentorsList(c *gin.Context) {
 }

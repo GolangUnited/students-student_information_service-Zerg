@@ -11,9 +11,9 @@ import "github.com/gin-gonic/gin"
 // @Produce  json
 // @Param input body models.Cert true "cert data"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /certs [post]
 func (h *Handler) newCert(c *gin.Context) {
 }
@@ -27,9 +27,9 @@ func (h *Handler) newCert(c *gin.Context) {
 // @Produce  json
 // @Param cert_id path int true "Cert ID to get"
 // @Success 200 {object} models.Cert
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /certs/{cert_id} [get]
 func (h *Handler) getCertByID(c *gin.Context) {
 }
@@ -44,9 +44,9 @@ func (h *Handler) getCertByID(c *gin.Context) {
 // @Param cert_id path int true "Cert ID to update"
 // @Param input body models.Cert true "cert data to update"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /certs/{cert_id} [patch]
 func (h *Handler) updateCertByID(c *gin.Context) {
 }
@@ -60,9 +60,9 @@ func (h *Handler) updateCertByID(c *gin.Context) {
 // @Produce  json
 // @Param cert_id path int true "Cert ID to delete"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /certs/{cert_id} [delete]
 func (h *Handler) removeCertByID(c *gin.Context) {
 }
@@ -75,9 +75,9 @@ func (h *Handler) removeCertByID(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} []models.Cert
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /certs [get]
 func (h *Handler) certsList(c *gin.Context) {
 }

@@ -12,9 +12,9 @@ import (
 // @Produce  json
 // @Param input body models.User true "user data"
 // @Success 200 {integer} integer 1
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /auth/sign-up [post]
 func (h *Handler) signUp(c *gin.Context) {
 	h.newUser(c)
@@ -28,9 +28,9 @@ func (h *Handler) signUp(c *gin.Context) {
 // @Produce  json
 // @Param input body models.Login true "user to get"
 // @Success 200 {object} models.JWT
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /auth/sign-in [post]
 func (h *Handler) signin(c *gin.Context) {
 }
@@ -44,9 +44,9 @@ func (h *Handler) signin(c *gin.Context) {
 // @Produce  json
 // @Param input body models.User true "user data"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /users [post]
 func (h *Handler) newUser(c *gin.Context) {
 }
@@ -60,9 +60,9 @@ func (h *Handler) newUser(c *gin.Context) {
 // @Produce  json
 // @Param user_id path int true "User ID to get"
 // @Success 200 {object} models.UserData
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /users/{user_id} [get]
 func (h *Handler) getUserByID(c *gin.Context) {
 }
@@ -77,9 +77,9 @@ func (h *Handler) getUserByID(c *gin.Context) {
 // @Param user_id path int true "User ID to update"
 // @Param input body models.User true "user data to update"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /users/{user_id} [patch]
 func (h *Handler) updateUserByID(c *gin.Context) {
 }
@@ -93,9 +93,9 @@ func (h *Handler) updateUserByID(c *gin.Context) {
 // @Produce  json
 // @Param user_id path int true "User ID to delete"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /users/{user_id} [delete]
 func (h *Handler) removeUserByID(c *gin.Context) {
 }
@@ -108,9 +108,9 @@ func (h *Handler) removeUserByID(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} []models.UserData
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /users [get]
 func (h *Handler) usersList(c *gin.Context) {
 }

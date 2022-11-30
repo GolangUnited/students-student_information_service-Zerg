@@ -11,9 +11,9 @@ import "github.com/gin-gonic/gin"
 // @Produce  json
 // @Param input body models.Diploma true "diploma data"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /diplomas [post]
 func (h *Handler) newDiploma(c *gin.Context) {
 }
@@ -27,9 +27,9 @@ func (h *Handler) newDiploma(c *gin.Context) {
 // @Produce  json
 // @Param diploma_id path int true "Diploma ID to get"
 // @Success 200 {integer} integer 1
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /diplomas/{diploma_id} [get]
 func (h *Handler) getDiplomaByID(c *gin.Context) {
 }
@@ -44,9 +44,9 @@ func (h *Handler) getDiplomaByID(c *gin.Context) {
 // @Param diploma_id path int true "Diploma ID to update"
 // @Param input body models.Diploma true "diploma data to update"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /diplomas/{diploma_id} [patch]
 func (h *Handler) updateDiplomaByID(c *gin.Context) {
 }
@@ -60,9 +60,9 @@ func (h *Handler) updateDiplomaByID(c *gin.Context) {
 // @Produce  json
 // @Param diploma_id path int true "Diploma ID to delete"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /diplomas/{diploma_id} [delete]
 func (h *Handler) removeDiplomaByID(c *gin.Context) {
 }
@@ -75,9 +75,9 @@ func (h *Handler) removeDiplomaByID(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} []models.Diploma
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /diplomas [get]
 func (h *Handler) diplomasList(c *gin.Context) {
 }

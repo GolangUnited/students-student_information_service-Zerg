@@ -11,9 +11,9 @@ import "github.com/gin-gonic/gin"
 // @Produce  json
 // @Param user_id query int true "New admin ID"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /admins [post]
 func (h *Handler) addAdmin(c *gin.Context) {
 }
@@ -27,9 +27,9 @@ func (h *Handler) addAdmin(c *gin.Context) {
 // @Produce  json
 // @Param admin_id path int true "New admin ID"
 // @Success 200 {object} models.UserData
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /admins/{admin_id} [get]
 func (h *Handler) getAdminByID(c *gin.Context) {
 }
@@ -43,9 +43,9 @@ func (h *Handler) getAdminByID(c *gin.Context) {
 // @Produce  json
 // @Param admin_id path int true "Admin ID to delete"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /admins/{admin_id} [delete]
 func (h *Handler) removeAdminByID(c *gin.Context) {
 }
@@ -58,9 +58,9 @@ func (h *Handler) removeAdminByID(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} []models.UserData
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /admins [get]
 func (h *Handler) adminsList(c *gin.Context) {
 }

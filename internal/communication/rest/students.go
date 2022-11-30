@@ -11,9 +11,9 @@ import "github.com/gin-gonic/gin"
 // @Produce  json
 // @Param input body models.Student true "student data"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /students [post]
 func (h *Handler) addStudent(c *gin.Context) {
 }
@@ -27,9 +27,9 @@ func (h *Handler) addStudent(c *gin.Context) {
 // @Produce  json
 // @Param student_id path int true "Student ID to get"
 // @Success 200 {object} models.Student
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /students/{student_id} [get]
 func (h *Handler) getStudentByID(c *gin.Context) {
 }
@@ -43,9 +43,9 @@ func (h *Handler) getStudentByID(c *gin.Context) {
 // @Produce  json
 // @Param student_id path int true "Student ID to delete"
 // @Success 200
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /students/{student_id} [delete]
 func (h *Handler) removeStudentByID(c *gin.Context) {
 }
@@ -58,9 +58,9 @@ func (h *Handler) removeStudentByID(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} []models.Student
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /students [get]
 func (h *Handler) studentsList(c *gin.Context) {
 }
@@ -74,9 +74,9 @@ func (h *Handler) studentsList(c *gin.Context) {
 // @Produce  json
 // @Param student_id path int true "Student ID"
 // @Success 200 {object} []models.Cert
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /students/{student_id}/certs [get]
 func (h *Handler) getCertsByStudentID(c *gin.Context) {
 }
@@ -90,9 +90,9 @@ func (h *Handler) getCertsByStudentID(c *gin.Context) {
 // @Produce  json
 // @Param student_id path int true "Student ID"
 // @Success 200 {object} models.Diploma
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /students/{student_id}/diploma [get]
 func (h *Handler) getDiplomaByStudentID(c *gin.Context) {
 }
@@ -106,9 +106,9 @@ func (h *Handler) getDiplomaByStudentID(c *gin.Context) {
 // @Produce  json
 // @Param student_id path int true "Student ID"
 // @Success 200 {object} models.Interview
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /students/{student_id}/interview [get]
 func (h *Handler) getInterviewByStudentID(c *gin.Context) {
 }
@@ -122,9 +122,9 @@ func (h *Handler) getInterviewByStudentID(c *gin.Context) {
 // @Produce  json
 // @Param student_id path int true "Student ID"
 // @Success 200 {object} []models.HomeworkGrade
-// @Failure 400,404 {object} error
-// @Failure 500 {object} error
-// @Failure default {object} error
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
 // @Router /students/{student_id}/hw-grades [get]
 func (h *Handler) getHWGradesByStudentID(c *gin.Context) {
 }
