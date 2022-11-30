@@ -23,6 +23,7 @@ func (h *Handler) newDiploma(c *gin.Context) {
 // @ID get-diploma-by-id
 // @Accept  json
 // @Produce  json
+// @Param diploma_id path int true "Diploma ID to get"
 // @Success 200 {integer} integer 1
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -37,6 +38,7 @@ func (h *Handler) getDiplomaByID(c *gin.Context) {
 // @ID update-diploma-by-id
 // @Accept  json
 // @Produce  json
+// @Param diploma_id path int true "Diploma ID to update"
 // @Param input body models.Diploma true "diploma data to update"
 // @Success 200
 // @Failure 400,404 {object} error
@@ -52,6 +54,7 @@ func (h *Handler) updateDiplomaByID(c *gin.Context) {
 // @ID remove-diploma-by-id
 // @Accept  json
 // @Produce  json
+// @Param diploma_id path int true "Diploma ID to delete"
 // @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error

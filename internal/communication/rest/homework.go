@@ -23,6 +23,7 @@ func (h *Handler) newHomework(c *gin.Context) {
 // @ID get-homework-by-id
 // @Accept  json
 // @Produce  json
+// @Param homework_id path int true "Homework ID to get"
 // @Success 200 {object} models.Homework
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -37,6 +38,7 @@ func (h *Handler) getHomeworkByID(c *gin.Context) {
 // @ID update-homework-by-id
 // @Accept  json
 // @Produce  json
+// @Param homework_id path int true "Homework ID to update"
 // @Param input body models.Homework true "homework data to update"
 // @Success 200
 // @Failure 400,404 {object} error
@@ -52,6 +54,7 @@ func (h *Handler) updateHomeworkByID(c *gin.Context) {
 // @ID remove-homework-by-id
 // @Accept  json
 // @Produce  json
+// @Param homework_id path int true "Homework ID to delete"
 // @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error

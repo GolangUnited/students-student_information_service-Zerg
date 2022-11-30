@@ -75,8 +75,8 @@ const docTemplate = `{
                     {
                         "type": "integer",
                         "description": "New admin ID",
-                        "name": "id",
-                        "in": "header",
+                        "name": "user_id",
+                        "in": "query",
                         "required": true
                     }
                 ],
@@ -117,6 +117,15 @@ const docTemplate = `{
                 ],
                 "summary": "Get admin by id",
                 "operationId": "get-admin-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "New admin ID",
+                        "name": "admin_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -155,6 +164,15 @@ const docTemplate = `{
                 ],
                 "summary": "Remove admin by id",
                 "operationId": "remove-admin-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Admin ID to delete",
+                        "name": "admin_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -332,6 +350,15 @@ const docTemplate = `{
                 ],
                 "summary": "Get cert by id",
                 "operationId": "get-cert-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Cert ID to get",
+                        "name": "cert_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -370,6 +397,15 @@ const docTemplate = `{
                 ],
                 "summary": "Remove cert",
                 "operationId": "remove-cert-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Cert ID to delete",
+                        "name": "cert_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -406,6 +442,13 @@ const docTemplate = `{
                 "summary": "Update cert",
                 "operationId": "update-cert-by-id",
                 "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Cert ID to update",
+                        "name": "cert_id",
+                        "in": "path",
+                        "required": true
+                    },
                     {
                         "description": "cert data to update",
                         "name": "input",
@@ -542,6 +585,15 @@ const docTemplate = `{
                 ],
                 "summary": "Get diploma by id",
                 "operationId": "get-diploma-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Diploma ID to get",
+                        "name": "diploma_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -580,6 +632,15 @@ const docTemplate = `{
                 ],
                 "summary": "Remove diploma",
                 "operationId": "remove-diploma-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Diploma ID to delete",
+                        "name": "diploma_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -616,6 +677,13 @@ const docTemplate = `{
                 "summary": "Update diploma",
                 "operationId": "update-diploma-by-id",
                 "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Diploma ID to update",
+                        "name": "diploma_id",
+                        "in": "path",
+                        "required": true
+                    },
                     {
                         "description": "diploma data to update",
                         "name": "input",
@@ -752,6 +820,15 @@ const docTemplate = `{
                 ],
                 "summary": "Get group by id",
                 "operationId": "get-group-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Group ID to get",
+                        "name": "group_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -790,6 +867,15 @@ const docTemplate = `{
                 ],
                 "summary": "Remove group",
                 "operationId": "remove-group-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Group ID to delete",
+                        "name": "group_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -826,6 +912,13 @@ const docTemplate = `{
                 "summary": "Update group",
                 "operationId": "update-group-by-id",
                 "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Group ID to update",
+                        "name": "group_id",
+                        "in": "path",
+                        "required": true
+                    },
                     {
                         "description": "group data to update",
                         "name": "input",
@@ -976,6 +1069,15 @@ const docTemplate = `{
                 ],
                 "summary": "Get homework by id",
                 "operationId": "get-homework-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Homework ID to get",
+                        "name": "homework_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1014,6 +1116,15 @@ const docTemplate = `{
                 ],
                 "summary": "Remove homework",
                 "operationId": "remove-homework-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Homework ID to delete",
+                        "name": "homework_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -1050,6 +1161,13 @@ const docTemplate = `{
                 "summary": "Update homework",
                 "operationId": "update-homework-by-id",
                 "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Homework ID to update",
+                        "name": "homework_id",
+                        "in": "path",
+                        "required": true
+                    },
                     {
                         "description": "homework data to update",
                         "name": "input",
@@ -1186,6 +1304,15 @@ const docTemplate = `{
                 ],
                 "summary": "Get interview by id",
                 "operationId": "get-interview-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Interview ID to get",
+                        "name": "interview_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1224,6 +1351,15 @@ const docTemplate = `{
                 ],
                 "summary": "Remove interview",
                 "operationId": "remove-interview-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Interview ID to delete",
+                        "name": "interview_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -1260,6 +1396,13 @@ const docTemplate = `{
                 "summary": "Update interview",
                 "operationId": "update-interview-by-id",
                 "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Interview ID to update",
+                        "name": "interview_id",
+                        "in": "path",
+                        "required": true
+                    },
                     {
                         "description": "interview data to update",
                         "name": "input",
@@ -1352,8 +1495,8 @@ const docTemplate = `{
                     {
                         "type": "integer",
                         "description": "New mentor ID",
-                        "name": "id",
-                        "in": "header",
+                        "name": "user_id",
+                        "in": "query",
                         "required": true
                     }
                 ],
@@ -1394,6 +1537,15 @@ const docTemplate = `{
                 ],
                 "summary": "Get mentor by id",
                 "operationId": "get-mentor-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Mentor ID to get",
+                        "name": "mentor_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1432,6 +1584,15 @@ const docTemplate = `{
                 ],
                 "summary": "Remove mentor by id",
                 "operationId": "remove-mentor-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Mentor ID to delete",
+                        "name": "mentor_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -1558,6 +1719,15 @@ const docTemplate = `{
                 ],
                 "summary": "Get student by id",
                 "operationId": "get-student-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Student ID to get",
+                        "name": "student_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1596,6 +1766,15 @@ const docTemplate = `{
                 ],
                 "summary": "Remove student by id",
                 "operationId": "remove-student-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Student ID to delete",
+                        "name": "student_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -1633,6 +1812,15 @@ const docTemplate = `{
                 ],
                 "summary": "Get certs by student ID",
                 "operationId": "get-certs-by-student-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Student ID",
+                        "name": "student_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1676,6 +1864,15 @@ const docTemplate = `{
                 ],
                 "summary": "Get diploma by student ID",
                 "operationId": "get-diploma-by-student-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Student ID",
+                        "name": "student_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1716,6 +1913,15 @@ const docTemplate = `{
                 ],
                 "summary": "Get homework grades by student ID",
                 "operationId": "get-hw-grades-by-student-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Student ID",
+                        "name": "student_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1759,6 +1965,15 @@ const docTemplate = `{
                 ],
                 "summary": "Get interview by student ID",
                 "operationId": "get-interview-by-student-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Student ID",
+                        "name": "student_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1888,6 +2103,15 @@ const docTemplate = `{
                 ],
                 "summary": "Get user by ID",
                 "operationId": "get-user-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "User ID to get",
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1926,6 +2150,15 @@ const docTemplate = `{
                 ],
                 "summary": "Remove user by id",
                 "operationId": "remove-user-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "User ID to delete",
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -1962,6 +2195,13 @@ const docTemplate = `{
                 "summary": "Update user by id",
                 "operationId": "update-user-by-id",
                 "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "User ID to update",
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true
+                    },
                     {
                         "description": "user data to update",
                         "name": "input",

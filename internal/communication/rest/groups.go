@@ -23,6 +23,7 @@ func (h *Handler) newGroup(c *gin.Context) {
 // @ID get-group-by-id
 // @Accept  json
 // @Produce  json
+// @Param group_id path int true "Group ID to get"
 // @Success 200 {integer} integer 1
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -37,6 +38,7 @@ func (h *Handler) getGroupByID(c *gin.Context) {
 // @ID update-group-by-id
 // @Accept  json
 // @Produce  json
+// @Param group_id path int true "Group ID to update"
 // @Param input body models.Group true "group data to update"
 // @Success 200
 // @Failure 400,404 {object} error
@@ -52,6 +54,7 @@ func (h *Handler) updateGroupByID(c *gin.Context) {
 // @ID remove-group-by-id
 // @Accept  json
 // @Produce  json
+// @Param group_id path int true "Group ID to delete"
 // @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error

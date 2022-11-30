@@ -177,8 +177,8 @@ paths:
       operationId: new-admin
       parameters:
       - description: New admin ID
-        in: header
-        name: id
+        in: query
+        name: user_id
         required: true
         type: integer
       produces:
@@ -207,6 +207,12 @@ paths:
       - application/json
       description: Remove admin from database by id
       operationId: remove-admin-by-id
+      parameters:
+      - description: Admin ID to delete
+        in: path
+        name: admin_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -232,6 +238,12 @@ paths:
       - application/json
       description: Get admin from database by ID
       operationId: get-admin-by-id
+      parameters:
+      - description: New admin ID
+        in: path
+        name: admin_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -357,6 +369,12 @@ paths:
       - application/json
       description: Remove cert from database by id
       operationId: remove-cert-by-id
+      parameters:
+      - description: Cert ID to delete
+        in: path
+        name: cert_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -382,6 +400,12 @@ paths:
       - application/json
       description: Get cert from database by ID
       operationId: get-cert-by-id
+      parameters:
+      - description: Cert ID to get
+        in: path
+        name: cert_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -410,6 +434,11 @@ paths:
       description: Update cert data in database by id
       operationId: update-cert-by-id
       parameters:
+      - description: Cert ID to update
+        in: path
+        name: cert_id
+        required: true
+        type: integer
       - description: cert data to update
         in: body
         name: input
@@ -504,6 +533,12 @@ paths:
       - application/json
       description: Remove diploma from database by id
       operationId: remove-diploma-by-id
+      parameters:
+      - description: Diploma ID to delete
+        in: path
+        name: diploma_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -529,6 +564,12 @@ paths:
       - application/json
       description: Get diploma from database by ID
       operationId: get-diploma-by-id
+      parameters:
+      - description: Diploma ID to get
+        in: path
+        name: diploma_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -557,6 +598,11 @@ paths:
       description: Update diploma data in database by id
       operationId: update-diploma-by-id
       parameters:
+      - description: Diploma ID to update
+        in: path
+        name: diploma_id
+        required: true
+        type: integer
       - description: diploma data to update
         in: body
         name: input
@@ -651,6 +697,12 @@ paths:
       - application/json
       description: Remove group from database by id
       operationId: remove-group-by-id
+      parameters:
+      - description: Group ID to delete
+        in: path
+        name: group_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -676,6 +728,12 @@ paths:
       - application/json
       description: Get group from database by ID
       operationId: get-group-by-id
+      parameters:
+      - description: Group ID to get
+        in: path
+        name: group_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -704,6 +762,11 @@ paths:
       description: Update group data in database by id
       operationId: update-group-by-id
       parameters:
+      - description: Group ID to update
+        in: path
+        name: group_id
+        required: true
+        type: integer
       - description: group data to update
         in: body
         name: input
@@ -807,6 +870,12 @@ paths:
       - application/json
       description: Remove homework from database by id
       operationId: remove-homework-by-id
+      parameters:
+      - description: Homework ID to delete
+        in: path
+        name: homework_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -832,6 +901,12 @@ paths:
       - application/json
       description: Get homework from database by ID
       operationId: get-homework-by-id
+      parameters:
+      - description: Homework ID to get
+        in: path
+        name: homework_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -860,6 +935,11 @@ paths:
       description: Update homework data in database by id
       operationId: update-homework-by-id
       parameters:
+      - description: Homework ID to update
+        in: path
+        name: homework_id
+        required: true
+        type: integer
       - description: homework data to update
         in: body
         name: input
@@ -954,6 +1034,12 @@ paths:
       - application/json
       description: Remove interview from database by id
       operationId: remove-interview-by-id
+      parameters:
+      - description: Interview ID to delete
+        in: path
+        name: interview_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -979,6 +1065,12 @@ paths:
       - application/json
       description: Get interview from database by ID
       operationId: get-interview-by-id
+      parameters:
+      - description: Interview ID to get
+        in: path
+        name: interview_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -1007,6 +1099,11 @@ paths:
       description: Update interview data in database by id
       operationId: update-interview-by-id
       parameters:
+      - description: Interview ID to update
+        in: path
+        name: interview_id
+        required: true
+        type: integer
       - description: interview data to update
         in: body
         name: input
@@ -1070,8 +1167,8 @@ paths:
       operationId: new-mentor
       parameters:
       - description: New mentor ID
-        in: header
-        name: id
+        in: query
+        name: user_id
         required: true
         type: integer
       produces:
@@ -1100,6 +1197,12 @@ paths:
       - application/json
       description: Remove mentor from database by id
       operationId: remove-mentor-by-id
+      parameters:
+      - description: Mentor ID to delete
+        in: path
+        name: mentor_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -1125,6 +1228,12 @@ paths:
       - application/json
       description: Get mentor from database by ID
       operationId: get-mentor-by-id
+      parameters:
+      - description: Mentor ID to get
+        in: path
+        name: mentor_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -1215,6 +1324,12 @@ paths:
       - application/json
       description: Remove student from database by id
       operationId: remove-student-by-id
+      parameters:
+      - description: Student ID to delete
+        in: path
+        name: student_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -1240,6 +1355,12 @@ paths:
       - application/json
       description: Get student from database by ID
       operationId: get-student-by-id
+      parameters:
+      - description: Student ID to get
+        in: path
+        name: student_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -1268,6 +1389,12 @@ paths:
       - application/json
       description: Get student's certs from database by student ID
       operationId: get-certs-by-student-id
+      parameters:
+      - description: Student ID
+        in: path
+        name: student_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -1298,6 +1425,12 @@ paths:
       - application/json
       description: Get student's diploma from database by student ID
       operationId: get-diploma-by-student-id
+      parameters:
+      - description: Student ID
+        in: path
+        name: student_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -1326,6 +1459,12 @@ paths:
       - application/json
       description: Get student's homework grades from database by student ID
       operationId: get-hw-grades-by-student-id
+      parameters:
+      - description: Student ID
+        in: path
+        name: student_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -1356,6 +1495,12 @@ paths:
       - application/json
       description: Get student's interview from database by student ID
       operationId: get-interview-by-student-id
+      parameters:
+      - description: Student ID
+        in: path
+        name: student_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -1446,6 +1591,12 @@ paths:
       - application/json
       description: Remove user from database by id
       operationId: remove-user-by-id
+      parameters:
+      - description: User ID to delete
+        in: path
+        name: user_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -1471,6 +1622,12 @@ paths:
       - application/json
       description: Get user from database by ID
       operationId: get-user-by-id
+      parameters:
+      - description: User ID to get
+        in: path
+        name: user_id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -1499,6 +1656,11 @@ paths:
       description: Update user data in database by id
       operationId: update-user-by-id
       parameters:
+      - description: User ID to update
+        in: path
+        name: user_id
+        required: true
+        type: integer
       - description: user data to update
         in: body
         name: input

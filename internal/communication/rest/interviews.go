@@ -23,6 +23,7 @@ func (h *Handler) newInterview(c *gin.Context) {
 // @ID get-interview-by-id
 // @Accept  json
 // @Produce  json
+// @Param interview_id path int true "Interview ID to get"
 // @Success 200 {integer} integer 1
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -37,6 +38,7 @@ func (h *Handler) getInterviewByID(c *gin.Context) {
 // @ID update-interview-by-id
 // @Accept  json
 // @Produce  json
+// @Param interview_id path int true "Interview ID to update"
 // @Param input body models.Interview true "interview data to update"
 // @Success 200
 // @Failure 400,404 {object} error
@@ -52,6 +54,7 @@ func (h *Handler) updateInterviewByID(c *gin.Context) {
 // @ID remove-interview-by-id
 // @Accept  json
 // @Produce  json
+// @Param interview_id path int true "Interview ID to delete"
 // @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error

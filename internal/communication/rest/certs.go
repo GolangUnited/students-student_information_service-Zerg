@@ -23,6 +23,7 @@ func (h *Handler) newCert(c *gin.Context) {
 // @ID get-cert-by-id
 // @Accept  json
 // @Produce  json
+// @Param cert_id path int true "Cert ID to get"
 // @Success 200 {object} models.Cert
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -37,6 +38,7 @@ func (h *Handler) getCertByID(c *gin.Context) {
 // @ID update-cert-by-id
 // @Accept  json
 // @Produce  json
+// @Param cert_id path int true "Cert ID to update"
 // @Param input body models.Cert true "cert data to update"
 // @Success 200
 // @Failure 400,404 {object} error
@@ -52,6 +54,7 @@ func (h *Handler) updateCertByID(c *gin.Context) {
 // @ID remove-cert-by-id
 // @Accept  json
 // @Produce  json
+// @Param cert_id path int true "Cert ID to delete"
 // @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error

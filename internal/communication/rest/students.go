@@ -23,6 +23,7 @@ func (h *Handler) addStudent(c *gin.Context) {
 // @ID get-student-by-id
 // @Accept  json
 // @Produce  json
+// @Param student_id path int true "Student ID to get"
 // @Success 200 {object} models.Student
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -37,6 +38,7 @@ func (h *Handler) getStudentByID(c *gin.Context) {
 // @ID remove-student-by-id
 // @Accept  json
 // @Produce  json
+// @Param student_id path int true "Student ID to delete"
 // @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -65,6 +67,7 @@ func (h *Handler) studentsList(c *gin.Context) {
 // @ID get-certs-by-student-id
 // @Accept  json
 // @Produce  json
+// @Param student_id path int true "Student ID"
 // @Success 200 {object} []models.Cert
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -79,6 +82,7 @@ func (h *Handler) getCertsByStudentID(c *gin.Context) {
 // @ID get-diploma-by-student-id
 // @Accept  json
 // @Produce  json
+// @Param student_id path int true "Student ID"
 // @Success 200 {object} models.Diploma
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -93,6 +97,7 @@ func (h *Handler) getDiplomaByStudentID(c *gin.Context) {
 // @ID get-interview-by-student-id
 // @Accept  json
 // @Produce  json
+// @Param student_id path int true "Student ID"
 // @Success 200 {object} models.Interview
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -107,6 +112,7 @@ func (h *Handler) getInterviewByStudentID(c *gin.Context) {
 // @ID get-hw-grades-by-student-id
 // @Accept  json
 // @Produce  json
+// @Param student_id path int true "Student ID"
 // @Success 200 {object} []models.HomeworkGrade
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error

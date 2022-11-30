@@ -8,7 +8,7 @@ import "github.com/gin-gonic/gin"
 // @ID new-mentor
 // @Accept  json
 // @Produce  json
-// @Param id header int true "New mentor ID"
+// @Param user_id query int true "New mentor ID"
 // @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -23,6 +23,7 @@ func (h *Handler) addMentor(c *gin.Context) {
 // @ID get-mentor-by-id
 // @Accept  json
 // @Produce  json
+// @Param mentor_id path int true "Mentor ID to get"
 // @Success 200 {object} models.Mentor
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -37,6 +38,7 @@ func (h *Handler) getMentorByID(c *gin.Context) {
 // @ID remove-mentor-by-id
 // @Accept  json
 // @Produce  json
+// @Param mentor_id path int true "Mentor ID to delete"
 // @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error

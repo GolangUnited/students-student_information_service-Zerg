@@ -40,6 +40,7 @@ func (h *Handler) newUser(c *gin.Context) {
 // @ID get-user-by-id
 // @Accept  json
 // @Produce  json
+// @Param user_id path int true "User ID to get"
 // @Success 200 {object} models.UserData
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
@@ -54,6 +55,7 @@ func (h *Handler) getUserByID(c *gin.Context) {
 // @ID update-user-by-id
 // @Accept  json
 // @Produce  json
+// @Param user_id path int true "User ID to update"
 // @Param input body models.User true "user data to update"
 // @Success 200
 // @Failure 400,404 {object} error
@@ -69,6 +71,7 @@ func (h *Handler) updateUserByID(c *gin.Context) {
 // @ID remove-user-by-id
 // @Accept  json
 // @Produce  json
+// @Param user_id path int true "User ID to delete"
 // @Success 200
 // @Failure 400,404 {object} error
 // @Failure 500 {object} error
