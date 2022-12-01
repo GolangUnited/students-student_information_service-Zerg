@@ -38,7 +38,7 @@ type Student struct {
 
 type Mentor struct {
 	UserData
-	Groups []Group
+	Groups []Group `json:"groups"`
 }
 
 type Login struct {
