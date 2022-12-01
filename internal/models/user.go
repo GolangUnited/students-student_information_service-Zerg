@@ -32,7 +32,7 @@ type StudentData struct {
 }
 
 type Student struct {
-	User
+	UserData
 	GroupID int `json:"group_id"`
 }
 
