@@ -5,11 +5,11 @@ import "github.com/gin-gonic/gin"
 // @Summary Add student
 // @Tags students
 // @Security ApiToken
-// @Description Create new group in database
+// @Description Create new student in database
 // @ID new-student
 // @Accept  json
 // @Produce  json
-// @Param input body models.Student true "student data"
+// @Param input body models.StudentData true "student data"
 // @Success 200
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage

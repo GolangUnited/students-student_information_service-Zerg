@@ -26,6 +26,11 @@ func (u *User) SetPasswordHash(passwordHash string) {
 	u.passwordHash = passwordHash
 }
 
+type StudentData struct {
+	UserID  int `json:"user_id"`
+	GroupID int `json:"group_id"`
+}
+
 type Student struct {
 	User
 	GroupID int `json:"group_id"`

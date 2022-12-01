@@ -2173,7 +2173,7 @@ const docTemplate = `{
                         "ApiToken": []
                     }
                 ],
-                "description": "Create new group in database",
+                "description": "Create new student in database",
                 "consumes": [
                     "application/json"
                 ],
@@ -2192,7 +2192,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Student"
+                            "$ref": "#/definitions/models.StudentData"
                         }
                     }
                 ],
@@ -3260,6 +3260,17 @@ const docTemplate = `{
                 },
                 "password": {
                     "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.StudentData": {
+            "type": "object",
+            "properties": {
+                "group_id": {
+                    "type": "integer"
                 },
                 "user_id": {
                     "type": "integer"
