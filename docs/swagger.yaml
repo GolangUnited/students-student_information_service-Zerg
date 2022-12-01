@@ -43,6 +43,8 @@ definitions:
     properties:
       grade:
         type: integer
+      homework_grade_id:
+        type: integer
       homework_id:
         type: integer
       student_id:
@@ -1738,6 +1740,43 @@ paths:
       tags:
       - students
   /students/{student_id}/hw-grades:
+    delete:
+      consumes:
+      - application/json
+      description: Delete homework grade for particular student
+      operationId: delete-hw-grade
+      parameters:
+      - description: Homework ID
+        in: path
+        name: homework_grade_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Delete homework grade
+      tags:
+      - homework grades
     get:
       consumes:
       - application/json
@@ -1778,7 +1817,83 @@ paths:
       - ApiToken: []
       summary: Get homework grades by student ID
       tags:
-      - students
+      - homework grades
+    patch:
+      consumes:
+      - application/json
+      description: Update homework grade for particular student
+      operationId: update-hw-grade
+      parameters:
+      - description: homework mark
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.HomeworkGrade'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update homework grade
+      tags:
+      - homework grades
+    post:
+      consumes:
+      - application/json
+      description: Create new homework grade for particular student
+      operationId: new-hw-grade
+      parameters:
+      - description: homework mark
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.HomeworkGrade'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create new homework grade
+      tags:
+      - homework grades
   /students/{student_id}/interview:
     get:
       consumes:

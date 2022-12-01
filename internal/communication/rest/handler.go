@@ -70,6 +70,9 @@ func (h *Handler) InitRoutes() *gin.Engine {
 				items.GET("/diploma", h.getDiplomaByStudentID)
 				items.GET("/interview", h.getInterviewByStudentID)
 				items.GET("/hw-grades", h.getHWGradesByStudentID)
+				items.POST("/hw-grades", h.newHWGrade)
+				items.DELETE("/hw-grades", h.deleteHWGrade)
+				items.PATCH("/hw-grades", h.updateHWGrade)
 			}
 		}
 

@@ -112,19 +112,3 @@ func (h *Handler) getDiplomaByStudentID(c *gin.Context) {
 // @Router /students/{student_id}/interview [get]
 func (h *Handler) getInterviewByStudentID(c *gin.Context) {
 }
-
-// @Summary Get homework grades by student ID
-// @Tags students
-// @Security ApiToken
-// @Description Get student's homework grades from database by student ID
-// @ID get-hw-grades-by-student-id
-// @Accept  json
-// @Produce  json
-// @Param student_id path int true "Student ID"
-// @Success 200 {object} []models.HomeworkGrade
-// @Failure 400,404 {object} rest.ErrorMessage
-// @Failure 500 {object} rest.ErrorMessage
-// @Failure default {object} rest.ErrorMessage
-// @Router /students/{student_id}/hw-grades [get]
-func (h *Handler) getHWGradesByStudentID(c *gin.Context) {
-}

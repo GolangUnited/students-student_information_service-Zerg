@@ -9,7 +9,8 @@ type Homework struct {
 }
 
 type HomeworkGrade struct {
-	StudentID  int `json:"student_id"`
-	HomeworkID int `json:"homework_id"`
-	Grade      int `json:"grade"`
+	HomeworkGradeID int `json:"homework_grade_id"`
+	StudentID       int `json:"student_id"`
+	HomeworkID      int `json:"homework_id"`
+	Grade           int `json:"grade"`
 }
