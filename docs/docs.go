@@ -3201,6 +3201,17 @@ const docTemplate = `{
                 "bitrhday": {
                     "type": "string"
                 },
+                "contacts": {
+                    "type": "object",
+                    "properties": {
+                        "discord": {
+                            "type": "string"
+                        },
+                        "telegram": {
+                            "type": "string"
+                        }
+                    }
+                },
                 "email": {
                     "type": "string"
                 },
@@ -3215,9 +3226,6 @@ const docTemplate = `{
                 },
                 "last_name": {
                     "type": "string"
-                },
-                "user_id": {
-                    "type": "integer"
                 }
             }
         },
@@ -3226,6 +3234,17 @@ const docTemplate = `{
             "properties": {
                 "bitrhday": {
                     "type": "string"
+                },
+                "contacts": {
+                    "type": "object",
+                    "properties": {
+                        "discord": {
+                            "type": "string"
+                        },
+                        "telegram": {
+                            "type": "string"
+                        }
+                    }
                 },
                 "email": {
                     "type": "string"
@@ -3253,6 +3272,17 @@ const docTemplate = `{
                 "bitrhday": {
                     "type": "string"
                 },
+                "contacts": {
+                    "type": "object",
+                    "properties": {
+                        "discord": {
+                            "type": "string"
+                        },
+                        "telegram": {
+                            "type": "string"
+                        }
+                    }
+                },
                 "email": {
                     "type": "string"
                 },
@@ -3276,6 +3306,17 @@ const docTemplate = `{
                 "bitrhday": {
                     "type": "string"
                 },
+                "contacts": {
+                    "type": "object",
+                    "properties": {
+                        "discord": {
+                            "type": "string"
+                        },
+                        "telegram": {
+                            "type": "string"
+                        }
+                    }
+                },
                 "email": {
                     "type": "string"
                 },
@@ -3284,9 +3325,6 @@ const docTemplate = `{
                 },
                 "last_name": {
                     "type": "string"
-                },
-                "user_id": {
-                    "type": "integer"
                 }
             }
         },

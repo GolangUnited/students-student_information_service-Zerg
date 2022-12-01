@@ -79,6 +79,13 @@ definitions:
     properties:
       bitrhday:
         type: string
+      contacts:
+        properties:
+          discord:
+            type: string
+          telegram:
+            type: string
+        type: object
       email:
         type: string
       first_name:
@@ -89,13 +96,18 @@ definitions:
         type: array
       last_name:
         type: string
-      user_id:
-        type: integer
     type: object
   models.Student:
     properties:
       bitrhday:
         type: string
+      contacts:
+        properties:
+          discord:
+            type: string
+          telegram:
+            type: string
+        type: object
       email:
         type: string
       first_name:
@@ -113,6 +125,13 @@ definitions:
     properties:
       bitrhday:
         type: string
+      contacts:
+        properties:
+          discord:
+            type: string
+          telegram:
+            type: string
+        type: object
       email:
         type: string
       first_name:
@@ -128,14 +147,19 @@ definitions:
     properties:
       bitrhday:
         type: string
+      contacts:
+        properties:
+          discord:
+            type: string
+          telegram:
+            type: string
+        type: object
       email:
         type: string
       first_name:
         type: string
       last_name:
         type: string
-      user_id:
-        type: integer
     type: object
   rest.ErrorMessage:
     properties:

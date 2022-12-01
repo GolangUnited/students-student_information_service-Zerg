@@ -3193,6 +3193,17 @@
                 "bitrhday": {
                     "type": "string"
                 },
+                "contacts": {
+                    "type": "object",
+                    "properties": {
+                        "discord": {
+                            "type": "string"
+                        },
+                        "telegram": {
+                            "type": "string"
+                        }
+                    }
+                },
                 "email": {
                     "type": "string"
                 },
@@ -3207,9 +3218,6 @@
                 },
                 "last_name": {
                     "type": "string"
-                },
-                "user_id": {
-                    "type": "integer"
                 }
             }
         },
@@ -3218,6 +3226,17 @@
             "properties": {
                 "bitrhday": {
                     "type": "string"
+                },
+                "contacts": {
+                    "type": "object",
+                    "properties": {
+                        "discord": {
+                            "type": "string"
+                        },
+                        "telegram": {
+                            "type": "string"
+                        }
+                    }
                 },
                 "email": {
                     "type": "string"
@@ -3245,6 +3264,17 @@
                 "bitrhday": {
                     "type": "string"
                 },
+                "contacts": {
+                    "type": "object",
+                    "properties": {
+                        "discord": {
+                            "type": "string"
+                        },
+                        "telegram": {
+                            "type": "string"
+                        }
+                    }
+                },
                 "email": {
                     "type": "string"
                 },
@@ -3268,6 +3298,17 @@
                 "bitrhday": {
                     "type": "string"
                 },
+                "contacts": {
+                    "type": "object",
+                    "properties": {
+                        "discord": {
+                            "type": "string"
+                        },
+                        "telegram": {
+                            "type": "string"
+                        }
+                    }
+                },
                 "email": {
                     "type": "string"
                 },
@@ -3276,9 +3317,6 @@
                 },
                 "last_name": {
                     "type": "string"
-                },
-                "user_id": {
-                    "type": "integer"
                 }
             }
         },
