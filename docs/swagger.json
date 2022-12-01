@@ -84,7 +84,7 @@
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "New admin ID",
+                        "description": "ID of the user who will be granted admin rights",
                         "name": "user_id",
                         "in": "query",
                         "required": true
@@ -1948,7 +1948,7 @@
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "New mentor ID",
+                        "description": "ID of the user who will be granted mentor rights",
                         "name": "user_id",
                         "in": "query",
                         "required": true
@@ -2934,6 +2934,9 @@
                 "group_id": {
                     "type": "integer"
                 },
+                "group_name": {
+                    "type": "string"
+                },
                 "mentor_id": {
                     "type": "integer"
                 }
@@ -3027,7 +3030,7 @@
                 "last_name": {
                     "type": "string"
                 },
-                "student_id": {
+                "user_id": {
                     "type": "integer"
                 }
             }
@@ -3053,7 +3056,7 @@
                 "password": {
                     "type": "string"
                 },
-                "student_id": {
+                "user_id": {
                     "type": "integer"
                 }
             }
@@ -3076,7 +3079,7 @@
                 "password": {
                     "type": "string"
                 },
-                "student_id": {
+                "user_id": {
                     "type": "integer"
                 }
             }
@@ -3096,7 +3099,7 @@
                 "last_name": {
                     "type": "string"
                 },
-                "student_id": {
+                "user_id": {
                     "type": "integer"
                 }
             }

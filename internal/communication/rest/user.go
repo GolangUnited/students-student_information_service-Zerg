@@ -32,7 +32,7 @@ func (h *Handler) signUp(c *gin.Context) {
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
 // @Router /auth/sign-in [post]
-func (h *Handler) signin(c *gin.Context) {
+func (h *Handler) signIn(c *gin.Context) {
 }
 
 // @Summary Create user

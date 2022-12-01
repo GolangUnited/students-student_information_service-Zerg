@@ -92,7 +92,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "New admin ID",
+                        "description": "ID of the user who will be granted admin rights",
                         "name": "user_id",
                         "in": "query",
                         "required": true
@@ -1956,7 +1956,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "New mentor ID",
+                        "description": "ID of the user who will be granted mentor rights",
                         "name": "user_id",
                         "in": "query",
                         "required": true
@@ -2942,6 +2942,9 @@ const docTemplate = `{
                 "group_id": {
                     "type": "integer"
                 },
+                "group_name": {
+                    "type": "string"
+                },
                 "mentor_id": {
                     "type": "integer"
                 }
@@ -3035,7 +3038,7 @@ const docTemplate = `{
                 "last_name": {
                     "type": "string"
                 },
-                "student_id": {
+                "user_id": {
                     "type": "integer"
                 }
             }
@@ -3061,7 +3064,7 @@ const docTemplate = `{
                 "password": {
                     "type": "string"
                 },
-                "student_id": {
+                "user_id": {
                     "type": "integer"
                 }
             }
@@ -3084,7 +3087,7 @@ const docTemplate = `{
                 "password": {
                     "type": "string"
                 },
-                "student_id": {
+                "user_id": {
                     "type": "integer"
                 }
             }
@@ -3104,7 +3107,7 @@ const docTemplate = `{
                 "last_name": {
                     "type": "string"
                 },
-                "student_id": {
+                "user_id": {
                     "type": "integer"
                 }
             }

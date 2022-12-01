@@ -5,8 +5,9 @@ import (
 )
 
 type Group struct {
-	ID        int       `json:"group_id"`
-	Mentor    int       `json:"mentor_id"`
+	GroupID   int       `json:"group_id"`
+	MentorID  int       `json:"mentor_id"`
+	GroupName string    `json:"group_name"`
 	DateStart time.Time `json:"date_start"`
 	DateEnd   time.Time `json:"date_end"`
 }

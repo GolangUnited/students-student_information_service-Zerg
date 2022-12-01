@@ -9,7 +9,7 @@ import "github.com/gin-gonic/gin"
 // @ID new-admin
 // @Accept  json
 // @Produce  json
-// @Param user_id query int true "New admin ID"
+// @Param user_id query int true "ID of the user who will be granted admin rights"
 // @Success 200
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage

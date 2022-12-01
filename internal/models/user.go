@@ -1,7 +1,7 @@
 package models
 
 type UserData struct {
-	ID        int    `json:"student_id"`
+	UserID    int    `json:"user_id"`
 	FirstName string `json:"first_name"`
 	LastName  string `json:"last_name"`
 	Birthday  string `json:"bitrhday"`

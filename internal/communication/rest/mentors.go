@@ -9,7 +9,7 @@ import "github.com/gin-gonic/gin"
 // @ID new-mentor
 // @Accept  json
 // @Produce  json
-// @Param user_id query int true "New mentor ID"
+// @Param user_id query int true "ID of the user who will be granted mentor rights"
 // @Success 200
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
