@@ -3244,7 +3244,7 @@ const docTemplate = `{
         "models.Login": {
             "type": "object",
             "properties": {
-                "email": {
+                "login": {
                     "type": "string"
                 },
                 "password": {
@@ -3283,6 +3283,9 @@ const docTemplate = `{
                 },
                 "last_name": {
                     "type": "string"
+                },
+                "login": {
+                    "type": "string"
                 }
             }
         },
@@ -3313,6 +3316,9 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "last_name": {
+                    "type": "string"
+                },
+                "login": {
                     "type": "string"
                 }
             }
@@ -3354,6 +3360,9 @@ const docTemplate = `{
                 "last_name": {
                     "type": "string"
                 },
+                "login": {
+                    "type": "string"
+                },
                 "password": {
                     "type": "string"
                 },
@@ -3386,6 +3395,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "last_name": {
+                    "type": "string"
+                },
+                "login": {
                     "type": "string"
                 }
             }

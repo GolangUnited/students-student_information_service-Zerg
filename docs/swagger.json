@@ -3236,7 +3236,7 @@
         "models.Login": {
             "type": "object",
             "properties": {
-                "email": {
+                "login": {
                     "type": "string"
                 },
                 "password": {
@@ -3275,6 +3275,9 @@
                 },
                 "last_name": {
                     "type": "string"
+                },
+                "login": {
+                    "type": "string"
                 }
             }
         },
@@ -3305,6 +3308,9 @@
                     "type": "integer"
                 },
                 "last_name": {
+                    "type": "string"
+                },
+                "login": {
                     "type": "string"
                 }
             }
@@ -3346,6 +3352,9 @@
                 "last_name": {
                     "type": "string"
                 },
+                "login": {
+                    "type": "string"
+                },
                 "password": {
                     "type": "string"
                 },
@@ -3378,6 +3387,9 @@
                     "type": "string"
                 },
                 "last_name": {
+                    "type": "string"
+                },
+                "login": {
                     "type": "string"
                 }
             }
