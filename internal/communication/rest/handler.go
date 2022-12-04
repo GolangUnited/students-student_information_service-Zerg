@@ -86,6 +86,15 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			groups.GET("/", h.groupsList)
 		}
 
+		contactTypes := api.Group("/contact-types")
+		{
+			contactTypes.POST("/", h.newContactType)
+			contactTypes.GET("/:id", h.getContactTypeByID)
+			contactTypes.PUT("/:id", h.updateContactTypeByID)
+			contactTypes.DELETE("/:id", h.removeContactTypeByID)
+			contactTypes.GET("/", h.contactTypesList)
+		}
+
 		contacts := api.Group("/contacts")
 		{
 			contacts.POST("/", h.newContact)
@@ -95,12 +104,39 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			contacts.GET("/", h.contactsList)
 		}
 
+		studentNoteTypes := api.Group("/student-note-types")
+		{
+			studentNoteTypes.POST("/", h.newStudentNoteType)
+			studentNoteTypes.GET("/:id", h.geStudentNoteTypeByID)
+			studentNoteTypes.PUT("/:id", h.updateStudentNoteTypeByID)
+			studentNoteTypes.DELETE("/:id", h.removeStudentNoteTypeByID)
+			studentNoteTypes.GET("/", h.StudentNoteTypesList)
+		}
+
+		studentNotes := api.Group("/student-notes")
+		{
+			studentNotes.POST("/", h.newStudentNote)
+			studentNotes.GET("/:id", h.getStudentNoteByID)
+			studentNotes.PUT("/:id", h.updateStudentNoteByID)
+			studentNotes.DELETE("/:id", h.removeStudentNoteByID)
+			studentNotes.GET("/", h.StudentNotesList)
+		}
+
 		mentors := api.Group("/mentors")
 		{
 			mentors.POST("/", h.addMentor)
 			mentors.GET("/:id", h.getMentorByID)
 			mentors.DELETE("/:id", h.removeMentorByID)
 			mentors.GET("/", h.mentorsList)
+		}
+
+		mentorNotes := api.Group("/mentor-notes")
+		{
+			mentorNotes.POST("/", h.newMentorNote)
+			mentorNotes.GET("/:id", h.getMentorNoteByID)
+			mentorNotes.PUT("/:id", h.updateMentorNoteByID)
+			mentorNotes.DELETE("/:id", h.removeMentorNoteByID)
+			mentorNotes.GET("/", h.mentorNotesList)
 		}
 
 		admins := api.Group("/admins")
