@@ -666,6 +666,306 @@ const docTemplate = `{
                 }
             }
         },
+        "/contacts": {
+            "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Get list of all contacts",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "contacts"
+                ],
+                "summary": "Get contacts list",
+                "operationId": "contacts-list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Contact"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Create new contact in database",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "contacts"
+                ],
+                "summary": "Create contact",
+                "operationId": "create-contact",
+                "parameters": [
+                    {
+                        "description": "contact data",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Contact"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/contacts/{contact_id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Get contact from database by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "contacts"
+                ],
+                "summary": "Get contact by id",
+                "operationId": "get-contact-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "contact ID to get",
+                        "name": "contact_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Update contact data in database by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "contacts"
+                ],
+                "summary": "Update contact",
+                "operationId": "update-contact-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "contact ID to update",
+                        "name": "contact_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "contact data to update",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Contact"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Remove contact from database by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "contacts"
+                ],
+                "summary": "Remove contact",
+                "operationId": "remove-contact-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "contact ID to delete",
+                        "name": "contact_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
         "/diplomas": {
             "get": {
                 "security": [
@@ -3148,6 +3448,23 @@ const docTemplate = `{
                 }
             }
         },
+        "models.Contact": {
+            "type": "object",
+            "properties": {
+                "contact_id": {
+                    "type": "integer"
+                },
+                "contact_type_id": {
+                    "type": "integer"
+                },
+                "contact_value": {
+                    "type": "string"
+                },
+                "person_id": {
+                    "type": "integer"
+                }
+            }
+        },
         "models.Diploma": {
             "type": "object",
             "properties": {
@@ -3259,14 +3576,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "contacts": {
-                    "type": "object",
-                    "properties": {
-                        "discord": {
-                            "type": "string"
-                        },
-                        "telegram": {
-                            "type": "string"
-                        }
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Contact"
                     }
                 },
                 "email": {
@@ -3286,6 +3598,9 @@ const docTemplate = `{
                 },
                 "login": {
                     "type": "string"
+                },
+                "patronymic": {
+                    "type": "string"
                 }
             }
         },
@@ -3296,14 +3611,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "contacts": {
-                    "type": "object",
-                    "properties": {
-                        "discord": {
-                            "type": "string"
-                        },
-                        "telegram": {
-                            "type": "string"
-                        }
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Contact"
                     }
                 },
                 "email": {
@@ -3319,6 +3629,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "login": {
+                    "type": "string"
+                },
+                "patronymic": {
                     "type": "string"
                 }
             }
@@ -3341,14 +3654,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "contacts": {
-                    "type": "object",
-                    "properties": {
-                        "discord": {
-                            "type": "string"
-                        },
-                        "telegram": {
-                            "type": "string"
-                        }
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Contact"
                     }
                 },
                 "email": {
@@ -3366,6 +3674,12 @@ const docTemplate = `{
                 "password": {
                     "type": "string"
                 },
+                "patronymic": {
+                    "type": "string"
+                },
+                "primary_contact_id": {
+                    "type": "integer"
+                },
                 "user_id": {
                     "type": "integer"
                 }
@@ -3378,14 +3692,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "contacts": {
-                    "type": "object",
-                    "properties": {
-                        "discord": {
-                            "type": "string"
-                        },
-                        "telegram": {
-                            "type": "string"
-                        }
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Contact"
                     }
                 },
                 "email": {
@@ -3398,6 +3707,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "login": {
+                    "type": "string"
+                },
+                "patronymic": {
                     "type": "string"
                 }
             }

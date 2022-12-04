@@ -8,6 +8,17 @@ definitions:
       student_id:
         type: integer
     type: object
+  models.Contact:
+    properties:
+      contact_id:
+        type: integer
+      contact_type_id:
+        type: integer
+      contact_value:
+        type: string
+      person_id:
+        type: integer
+    type: object
   models.Diploma:
     properties:
       description:
@@ -80,12 +91,9 @@ definitions:
       bitrhday:
         type: string
       contacts:
-        properties:
-          discord:
-            type: string
-          telegram:
-            type: string
-        type: object
+        items:
+          $ref: '#/definitions/models.Contact'
+        type: array
       email:
         type: string
       first_name:
@@ -98,18 +106,17 @@ definitions:
         type: string
       login:
         type: string
+      patronymic:
+        type: string
     type: object
   models.Student:
     properties:
       bitrhday:
         type: string
       contacts:
-        properties:
-          discord:
-            type: string
-          telegram:
-            type: string
-        type: object
+        items:
+          $ref: '#/definitions/models.Contact'
+        type: array
       email:
         type: string
       first_name:
@@ -119,6 +126,8 @@ definitions:
       last_name:
         type: string
       login:
+        type: string
+      patronymic:
         type: string
     type: object
   models.StudentData:
@@ -133,12 +142,9 @@ definitions:
       bitrhday:
         type: string
       contacts:
-        properties:
-          discord:
-            type: string
-          telegram:
-            type: string
-        type: object
+        items:
+          $ref: '#/definitions/models.Contact'
+        type: array
       email:
         type: string
       first_name:
@@ -149,6 +155,10 @@ definitions:
         type: string
       password:
         type: string
+      patronymic:
+        type: string
+      primary_contact_id:
+        type: integer
       user_id:
         type: integer
     type: object
@@ -157,12 +167,9 @@ definitions:
       bitrhday:
         type: string
       contacts:
-        properties:
-          discord:
-            type: string
-          telegram:
-            type: string
-        type: object
+        items:
+          $ref: '#/definitions/models.Contact'
+        type: array
       email:
         type: string
       first_name:
@@ -170,6 +177,8 @@ definitions:
       last_name:
         type: string
       login:
+        type: string
+      patronymic:
         type: string
     type: object
   rest.ErrorMessage:
@@ -606,6 +615,200 @@ paths:
       summary: Update cert
       tags:
       - certs
+  /contacts:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all contacts
+      operationId: contacts-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Contact'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get contacts list
+      tags:
+      - contacts
+    post:
+      consumes:
+      - application/json
+      description: Create new contact in database
+      operationId: create-contact
+      parameters:
+      - description: contact data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Contact'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create contact
+      tags:
+      - contacts
+  /contacts/{contact_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove contact from database by id
+      operationId: remove-contact-by-id
+      parameters:
+      - description: contact ID to delete
+        in: path
+        name: contact_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove contact
+      tags:
+      - contacts
+    get:
+      consumes:
+      - application/json
+      description: Get contact from database by ID
+      operationId: get-contact-by-id
+      parameters:
+      - description: contact ID to get
+        in: path
+        name: contact_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get contact by id
+      tags:
+      - contacts
+    put:
+      consumes:
+      - application/json
+      description: Update contact data in database by id
+      operationId: update-contact-by-id
+      parameters:
+      - description: contact ID to update
+        in: path
+        name: contact_id
+        required: true
+        type: integer
+      - description: contact data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Contact'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update contact
+      tags:
+      - contacts
   /diplomas:
     get:
       consumes:
