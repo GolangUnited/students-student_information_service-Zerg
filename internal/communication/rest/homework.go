@@ -47,7 +47,7 @@ func (h *Handler) getHomeworkByID(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /homeworks/{homework_id} [patch]
+// @Router /homeworks/{homework_id} [put]
 func (h *Handler) updateHomeworkByID(c *gin.Context) {
 }
 

@@ -80,7 +80,7 @@ func (h *Handler) getUserByID(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /users/{user_id} [patch]
+// @Router /users/{user_id} [put]
 func (h *Handler) updateUserByID(c *gin.Context) {
 }
 

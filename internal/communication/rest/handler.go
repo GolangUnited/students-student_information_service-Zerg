@@ -52,7 +52,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		{
 			users.POST("/", h.newUser)
 			users.GET("/:id", h.getUserByID)
-			users.PATCH("/:id", h.updateUserByID)
+			users.PUT("/:id", h.updateUserByID)
 			users.DELETE("/:id", h.removeUserByID)
 			users.GET("/", h.usersList)
 		}
@@ -72,7 +72,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 				items.GET("/hw-grades", h.getHWGradesByStudentID)
 				items.POST("/hw-grades", h.newHWGrade)
 				items.DELETE("/hw-grades", h.deleteHWGrade)
-				items.PATCH("/hw-grades", h.updateHWGrade)
+				items.PUT("/hw-grades", h.updateHWGrade)
 			}
 		}
 
@@ -80,7 +80,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		{
 			groups.POST("/", h.newGroup)
 			groups.GET("/:id", h.getGroupByID)
-			groups.PATCH("/:id", h.updateGroupByID)
+			groups.PUT("/:id", h.updateGroupByID)
 			groups.DELETE("/:id", h.removeGroupByID)
 			groups.GET("/", h.groupsList)
 		}
@@ -105,7 +105,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		{
 			interviews.POST("/", h.newInterview)
 			interviews.GET("/:id", h.getInterviewByID)
-			interviews.PATCH("/:id", h.updateInterviewByID)
+			interviews.PUT("/:id", h.updateInterviewByID)
 			interviews.DELETE("/:id", h.removeInterviewByID)
 			interviews.GET("/", h.interviewsList)
 		}
@@ -114,7 +114,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		{
 			diplomas.POST("/", h.newDiploma)
 			diplomas.GET("/:id", h.getDiplomaByID)
-			diplomas.PATCH("/:id", h.updateDiplomaByID)
+			diplomas.PUT("/:id", h.updateDiplomaByID)
 			diplomas.DELETE("/:id", h.removeDiplomaByID)
 			diplomas.GET("/", h.diplomasList)
 		}
@@ -123,7 +123,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		{
 			certs.POST("/", h.newCert)
 			certs.GET("/:id", h.getCertByID)
-			certs.PATCH("/:id", h.updateCertByID)
+			certs.PUT("/:id", h.updateCertByID)
 			certs.DELETE("/:id", h.removeCertByID)
 			certs.GET("/", h.certsList)
 		}
@@ -132,7 +132,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		{
 			homework.POST("/", h.newHomework)
 			homework.GET("/:id", h.getHomeworkByID)
-			homework.PATCH("/:id", h.updateHomeworkByID)
+			homework.PUT("/:id", h.updateHomeworkByID)
 			homework.DELETE("/:id", h.removeHomeworkByID)
 			homework.GET("/", h.HomeworksList)
 		}

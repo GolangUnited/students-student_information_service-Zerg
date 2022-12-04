@@ -46,7 +46,7 @@ func (h *Handler) newHWGrade(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /students/{student_id}/hw-grades [patch]
+// @Router /students/{student_id}/hw-grades [put]
 func (h *Handler) updateHWGrade(c *gin.Context) {
 }
 

@@ -47,7 +47,7 @@ func (h *Handler) getCertByID(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /certs/{cert_id} [patch]
+// @Router /certs/{cert_id} [put]
 func (h *Handler) updateCertByID(c *gin.Context) {
 }
 

@@ -47,7 +47,7 @@ func (h *Handler) getDiplomaByID(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /diplomas/{diploma_id} [patch]
+// @Router /diplomas/{diploma_id} [put]
 func (h *Handler) updateDiplomaByID(c *gin.Context) {
 }
 

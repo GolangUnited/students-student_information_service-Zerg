@@ -47,7 +47,7 @@ func (h *Handler) getInterviewByID(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /interviews/{interview_id} [patch]
+// @Router /interviews/{interview_id} [put]
 func (h *Handler) updateInterviewByID(c *gin.Context) {
 }
 
