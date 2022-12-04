@@ -63,6 +63,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			students.GET("/:id", h.getStudentByID)
 			students.DELETE("/:id", h.removeStudentByID)
 			students.GET("/", h.studentsList)
+			students.PATCH("/", h.changeStudentGroup)
 
 			items := api.Group(":id")
 			{

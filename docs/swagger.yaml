@@ -1684,6 +1684,43 @@ paths:
       summary: Get student by id
       tags:
       - students
+    patch:
+      consumes:
+      - application/json
+      description: Change student's group ID
+      operationId: change-student-group
+      parameters:
+      - description: Group ID to set
+        in: query
+        name: group_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Change student's group
+      tags:
+      - students
   /students/{student_id}/certs:
     get:
       consumes:

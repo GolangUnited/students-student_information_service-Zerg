@@ -34,6 +34,22 @@ func (h *Handler) addStudent(c *gin.Context) {
 func (h *Handler) getStudentByID(c *gin.Context) {
 }
 
+// @Summary Change student's group
+// @Tags students
+// @Security ApiToken
+// @Description Change student's group ID
+// @ID change-student-group
+// @Accept  json
+// @Produce  json
+// @Param group_id query int true "Group ID to set"
+// @Success 200
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
+// @Router /students/{student_id} [patch]
+func (h *Handler) changeStudentGroup(c *gin.Context) {
+}
+
 // @Summary Remove student by id
 // @Tags students
 // @Security ApiToken
