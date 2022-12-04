@@ -1,7 +1,7 @@
 package models
 
 type Diploma struct {
-	StudentID   int    `json:"student_id"`
+	GroupID     int    `json:"group_id"`
 	Theme       string `json:"theme"`
 	Description string `json:"description"`
 }
