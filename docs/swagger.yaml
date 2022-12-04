@@ -555,7 +555,7 @@ paths:
       summary: Get cert by id
       tags:
       - certs
-    patch:
+    put:
       consumes:
       - application/json
       description: Update cert data in database by id
@@ -749,7 +749,7 @@ paths:
       summary: Get diploma by id
       tags:
       - diplomas
-    patch:
+    put:
       consumes:
       - application/json
       description: Update diploma data in database by id
@@ -943,7 +943,7 @@ paths:
       summary: Get group by id
       tags:
       - groups
-    patch:
+    put:
       consumes:
       - application/json
       description: Update group data in database by id
@@ -1146,7 +1146,7 @@ paths:
       summary: Get homework by id
       tags:
       - homeworks
-    patch:
+    put:
       consumes:
       - application/json
       description: Update homework data in database by id
@@ -1340,7 +1340,7 @@ paths:
       summary: Get interview by id
       tags:
       - interviews
-    patch:
+    put:
       consumes:
       - application/json
       description: Update interview data in database by id
@@ -1845,44 +1845,6 @@ paths:
       summary: Get homework grades by student ID
       tags:
       - homework grades
-    patch:
-      consumes:
-      - application/json
-      description: Update homework grade for particular student
-      operationId: update-hw-grade
-      parameters:
-      - description: homework mark
-        in: body
-        name: input
-        required: true
-        schema:
-          $ref: '#/definitions/models.HomeworkGrade'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/rest.ErrorMessage'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/rest.ErrorMessage'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/rest.ErrorMessage'
-        default:
-          description: ""
-          schema:
-            $ref: '#/definitions/rest.ErrorMessage'
-      security:
-      - ApiToken: []
-      summary: Update homework grade
-      tags:
-      - homework grades
     post:
       consumes:
       - application/json
@@ -1919,6 +1881,44 @@ paths:
       security:
       - ApiToken: []
       summary: Create new homework grade
+      tags:
+      - homework grades
+    put:
+      consumes:
+      - application/json
+      description: Update homework grade for particular student
+      operationId: update-hw-grade
+      parameters:
+      - description: homework mark
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.HomeworkGrade'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update homework grade
       tags:
       - homework grades
   /students/{student_id}/interview:
@@ -2112,7 +2112,7 @@ paths:
       summary: Get user by ID
       tags:
       - users
-    patch:
+    put:
       consumes:
       - application/json
       description: Update user data in database by id
