@@ -113,6 +113,15 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			contacts.GET("/", h.contactsList)
 		}
 
+		groupContacts := api.Group("/group-contacts")
+		{
+			groupContacts.POST("/", h.newGroupContact)
+			groupContacts.GET("/:id", h.getGroupContactByID)
+			groupContacts.PUT("/:id", h.updateGroupContactByID)
+			groupContacts.DELETE("/:id", h.removeGroupContactByID)
+			groupContacts.GET("/", h.groupContactsList)
+		}
+
 		studentNoteTypes := api.Group("/student-note-types")
 		{
 			studentNoteTypes.POST("/", h.newStudentNoteType)

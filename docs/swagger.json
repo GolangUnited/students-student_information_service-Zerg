@@ -1858,6 +1858,306 @@
                 }
             }
         },
+        "/group-contacts": {
+            "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Get list of all group contacts",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "group-contacts"
+                ],
+                "summary": "Get group contacts list",
+                "operationId": "group-contacts-list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.GroupContact"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Create new group contact in database",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "group-contacts"
+                ],
+                "summary": "Create group contact",
+                "operationId": "create-group-contact",
+                "parameters": [
+                    {
+                        "description": "group contact data",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.GroupContact"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/group-contacts/{group_contact_id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Get group contact from database by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "group-contacts"
+                ],
+                "summary": "Get group contact by id",
+                "operationId": "get-group-contact-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "group contact ID to get",
+                        "name": "contact_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Update group contact data in database by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "group-contacts"
+                ],
+                "summary": "Update group contact",
+                "operationId": "update-group-contact-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "contact ID to update",
+                        "name": "contact_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "group contact data to update",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.GroupContact"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Remove group contact from database by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "group-contacts"
+                ],
+                "summary": "Remove group contact",
+                "operationId": "remove-group-contact-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "group contact ID to delete",
+                        "name": "contact_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
         "/groups": {
             "get": {
                 "security": [
@@ -1938,7 +2238,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Group"
+                            "$ref": "#/definitions/models.GroupData"
                         }
                     }
                 ],
@@ -5005,6 +5305,55 @@
         "models.Group": {
             "type": "object",
             "properties": {
+                "contacts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.GroupContact"
+                    }
+                },
+                "course_id": {
+                    "type": "integer"
+                },
+                "group_id": {
+                    "type": "integer"
+                },
+                "mentor_id": {
+                    "type": "integer"
+                },
+                "primary_contact_id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GroupContact": {
+            "type": "object",
+            "properties": {
+                "contact_id": {
+                    "type": "integer"
+                },
+                "contact_type_id": {
+                    "type": "integer"
+                },
+                "contact_value": {
+                    "type": "string"
+                },
+                "group_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.GroupData": {
+            "type": "object",
+            "properties": {
+                "contacts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.GroupContact"
+                    }
+                },
                 "course_id": {
                     "type": "integer"
                 },

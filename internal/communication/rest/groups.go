@@ -9,7 +9,7 @@ import "github.com/gin-gonic/gin"
 // @ID create-group
 // @Accept  json
 // @Produce  json
-// @Param input body models.Group true "group data"
+// @Param input body models.GroupData true "group data"
 // @Success 200
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
