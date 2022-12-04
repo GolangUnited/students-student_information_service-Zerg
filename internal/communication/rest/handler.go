@@ -86,6 +86,15 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			groups.GET("/", h.groupsList)
 		}
 
+		courses := api.Group("/courses")
+		{
+			courses.POST("/", h.newCourse)
+			courses.GET("/:id", h.getCourseByID)
+			courses.PUT("/:id", h.updateCourseByID)
+			courses.DELETE("/:id", h.removeCourseByID)
+			courses.GET("/", h.coursesList)
+		}
+
 		contactTypes := api.Group("/contact-types")
 		{
 			contactTypes.POST("/", h.newContactType)

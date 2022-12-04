@@ -26,27 +26,36 @@ definitions:
       contact_type_id:
         type: integer
     type: object
+  models.Course:
+    properties:
+      course_id:
+        type: integer
+      end_date:
+        type: string
+      start_date:
+        type: string
+      title:
+        type: string
+    type: object
   models.Diploma:
     properties:
       description:
         type: string
-      student_id:
+      group_id:
         type: integer
       theme:
         type: string
     type: object
   models.Group:
     properties:
-      date_end:
-        type: string
-      date_start:
-        type: string
+      course_id:
+        type: integer
       group_id:
         type: integer
-      group_name:
-        type: string
       mentor_id:
         type: integer
+      title:
+        type: string
     type: object
   models.Homework:
     properties:
@@ -1037,6 +1046,200 @@ paths:
       summary: Update contact
       tags:
       - contacts
+  /courses:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all courses
+      operationId: courses-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Course'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get courses list
+      tags:
+      - courses
+    post:
+      consumes:
+      - application/json
+      description: Create new course in database
+      operationId: create-course
+      parameters:
+      - description: course data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Course'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create course
+      tags:
+      - courses
+  /courses/{course_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove course from database by id
+      operationId: remove-course-by-id
+      parameters:
+      - description: course ID to delete
+        in: path
+        name: course_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove course
+      tags:
+      - courses
+    get:
+      consumes:
+      - application/json
+      description: Get course from database by ID
+      operationId: get-course-by-id
+      parameters:
+      - description: course ID to get
+        in: path
+        name: course_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get course by id
+      tags:
+      - courses
+    put:
+      consumes:
+      - application/json
+      description: Update course data in database by id
+      operationId: update-course-by-id
+      parameters:
+      - description: course ID to update
+        in: path
+        name: course_id
+        required: true
+        type: integer
+      - description: course data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Course'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update course
+      tags:
+      - courses
   /diplomas:
     get:
       consumes:
