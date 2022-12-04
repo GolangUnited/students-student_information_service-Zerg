@@ -4937,8 +4937,11 @@ const docTemplate = `{
         "models.Cert": {
             "type": "object",
             "properties": {
-                "cert_id": {
+                "cert_code": {
                     "type": "string"
+                },
+                "cert_id": {
+                    "type": "integer"
                 },
                 "issued": {
                     "type": "string"

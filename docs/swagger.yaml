@@ -1,8 +1,10 @@
 definitions:
   models.Cert:
     properties:
-      cert_id:
+      cert_code:
         type: string
+      cert_id:
+        type: integer
       issued:
         type: string
       student_id:
