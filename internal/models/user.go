@@ -1,13 +1,12 @@
 package models
 
 type UserData struct {
-	Login      string    `json:"login"`
-	FirstName  string    `json:"first_name"`
-	LastName   string    `json:"last_name"`
-	Patronymic string    `json:"patronymic"`
-	Birthday   string    `json:"bitrhday"`
-	Email      string    `json:"email"`
-	Contacts   []Contact `json:"contacts"`
+	Login      string `json:"login"`
+	FirstName  string `json:"first_name"`
+	LastName   string `json:"last_name"`
+	Patronymic string `json:"patronymic"`
+	Birthday   string `json:"bitrhday"`
+	Email      string `json:"email"`
 }
 
 type User struct {

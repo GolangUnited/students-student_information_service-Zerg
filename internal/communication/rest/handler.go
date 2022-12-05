@@ -68,8 +68,11 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			items := api.Group(":id")
 			{
 				items.GET("/certs", h.getCertsByStudentID)
-				items.GET("/diploma", h.getDiplomaByStudentID)
+				items.GET("/contacts", h.getContactsByStudentID)
+				items.GET("/student-notes", h.getStudentNotesByStudentID)
+				items.GET("/mentor-notes", h.getMentorNotesByStudentID)
 				items.GET("/interview", h.getInterviewByStudentID)
+
 				hwGrades := api.Group("/hw-grades")
 				{
 					hwGrades.GET("/", h.getHWGradesByStudentID)
@@ -96,6 +99,15 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			courses.PUT("/:id", h.updateCourseByID)
 			courses.DELETE("/:id", h.removeCourseByID)
 			courses.GET("/", h.coursesList)
+		}
+
+		courseStatuses := api.Group("/courses")
+		{
+			courseStatuses.POST("/", h.newCourseStatus)
+			courseStatuses.GET("/:id", h.getCourseStatusByID)
+			courseStatuses.PUT("/:id", h.updateCourseStatusByID)
+			courseStatuses.DELETE("/:id", h.removeCourseStatusByID)
+			courseStatuses.GET("/", h.courseStatusesList)
 		}
 
 		contactTypes := api.Group("/contact-types")

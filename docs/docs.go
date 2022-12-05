@@ -1266,6 +1266,306 @@ const docTemplate = `{
                 }
             }
         },
+        "/course-statuses": {
+            "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Get list of all course statuses",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "course-statuses"
+                ],
+                "summary": "Get course statuses list",
+                "operationId": "course-statuses-list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.CourseStatus"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Create new course status in database",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "course-statuses"
+                ],
+                "summary": "Create course status",
+                "operationId": "create-course-status",
+                "parameters": [
+                    {
+                        "description": "course status data",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CourseStatus"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/course-statuses/{course_status_id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Get course status from database by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "course-statuses"
+                ],
+                "summary": "Get course status by id",
+                "operationId": "get-course-status-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "course status ID to get",
+                        "name": "course_status_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Update course status data in database by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "course-statuses"
+                ],
+                "summary": "Update course status",
+                "operationId": "update-course-status-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "course status ID to update",
+                        "name": "course_status_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "course data to update",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CourseStatus"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Remove course status from database by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "course-statuses"
+                ],
+                "summary": "Remove course status",
+                "operationId": "remove-course-status-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "course status ID to delete",
+                        "name": "course_status_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
         "/courses": {
             "get": {
                 "security": [
@@ -4461,7 +4761,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "students"
+                    "student-items"
                 ],
                 "summary": "Get certs by student ID",
                 "operationId": "get-certs-by-student-id",
@@ -4511,14 +4811,14 @@ const docTemplate = `{
                 }
             }
         },
-        "/students/{student_id}/diploma": {
+        "/students/{student_id}/contacts": {
             "get": {
                 "security": [
                     {
                         "ApiToken": []
                     }
                 ],
-                "description": "Get student's diploma from database by student ID",
+                "description": "Get student's contacts from database by student ID",
                 "consumes": [
                     "application/json"
                 ],
@@ -4526,10 +4826,10 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "students"
+                    "student-items"
                 ],
-                "summary": "Get diploma by student ID",
-                "operationId": "get-diploma-by-student-id",
+                "summary": "Get contacts by student ID",
+                "operationId": "get-contacts-by-student-id",
                 "parameters": [
                     {
                         "type": "integer",
@@ -4543,7 +4843,10 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Diploma"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Contact"
+                            }
                         }
                     },
                     "400": {
@@ -4919,7 +5222,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "students"
+                    "student-items"
                 ],
                 "summary": "Get interview by student ID",
                 "operationId": "get-interview-by-student-id",
@@ -4937,6 +5240,130 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/models.Interview"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/students/{student_id}/mentor-notes": {
+            "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Get student's mentor notes from database by student ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "student-items"
+                ],
+                "summary": "Get mentor notes by mentor ID",
+                "operationId": "get-mentor-notes-by-student-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Student ID",
+                        "name": "student_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.MentorNotes"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/students/{student_id}/student-notes": {
+            "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Get student's student notes from database by student ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "student-items"
+                ],
+                "summary": "Get student notes by student ID",
+                "operationId": "get-student-notes-by-student-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Student ID",
+                        "name": "student_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.StudentNotes"
                         }
                     },
                     "400": {
@@ -5297,7 +5724,7 @@ const docTemplate = `{
                 "contact_value": {
                     "type": "string"
                 },
-                "person_id": {
+                "user_id": {
                     "type": "integer"
                 }
             }
@@ -5319,6 +5746,9 @@ const docTemplate = `{
                 "course_id": {
                     "type": "integer"
                 },
+                "course_status_id": {
+                    "type": "integer"
+                },
                 "end_date": {
                     "type": "string"
                 },
@@ -5327,6 +5757,17 @@ const docTemplate = `{
                 },
                 "title": {
                     "type": "string"
+                }
+            }
+        },
+        "models.CourseStatus": {
+            "type": "object",
+            "properties": {
+                "course_status": {
+                    "type": "string"
+                },
+                "course_status_id": {
+                    "type": "integer"
                 }
             }
         },
@@ -5486,12 +5927,6 @@ const docTemplate = `{
                 "bitrhday": {
                     "type": "string"
                 },
-                "contacts": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/models.Contact"
-                    }
-                },
                 "email": {
                     "type": "string"
                 },
@@ -5537,12 +5972,6 @@ const docTemplate = `{
             "properties": {
                 "bitrhday": {
                     "type": "string"
-                },
-                "contacts": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/models.Contact"
-                    }
                 },
                 "email": {
                     "type": "string"
@@ -5609,12 +6038,6 @@ const docTemplate = `{
                 "bitrhday": {
                     "type": "string"
                 },
-                "contacts": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/models.Contact"
-                    }
-                },
                 "email": {
                     "type": "string"
                 },
@@ -5646,12 +6069,6 @@ const docTemplate = `{
             "properties": {
                 "bitrhday": {
                     "type": "string"
-                },
-                "contacts": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/models.Contact"
-                    }
                 },
                 "email": {
                     "type": "string"

@@ -18,7 +18,7 @@ definitions:
         type: integer
       contact_value:
         type: string
-      person_id:
+      user_id:
         type: integer
     type: object
   models.ContactType:
@@ -32,12 +32,21 @@ definitions:
     properties:
       course_id:
         type: integer
+      course_status_id:
+        type: integer
       end_date:
         type: string
       start_date:
         type: string
       title:
         type: string
+    type: object
+  models.CourseStatus:
+    properties:
+      course_status:
+        type: string
+      course_status_id:
+        type: integer
     type: object
   models.Diploma:
     properties:
@@ -140,10 +149,6 @@ definitions:
     properties:
       bitrhday:
         type: string
-      contacts:
-        items:
-          $ref: '#/definitions/models.Contact'
-        type: array
       email:
         type: string
       first_name:
@@ -174,10 +179,6 @@ definitions:
     properties:
       bitrhday:
         type: string
-      contacts:
-        items:
-          $ref: '#/definitions/models.Contact'
-        type: array
       email:
         type: string
       first_name:
@@ -220,10 +221,6 @@ definitions:
     properties:
       bitrhday:
         type: string
-      contacts:
-        items:
-          $ref: '#/definitions/models.Contact'
-        type: array
       email:
         type: string
       first_name:
@@ -245,10 +242,6 @@ definitions:
     properties:
       bitrhday:
         type: string
-      contacts:
-        items:
-          $ref: '#/definitions/models.Contact'
-        type: array
       email:
         type: string
       first_name:
@@ -1082,6 +1075,200 @@ paths:
       summary: Update contact
       tags:
       - contacts
+  /course-statuses:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all course statuses
+      operationId: course-statuses-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.CourseStatus'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get course statuses list
+      tags:
+      - course-statuses
+    post:
+      consumes:
+      - application/json
+      description: Create new course status in database
+      operationId: create-course-status
+      parameters:
+      - description: course status data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.CourseStatus'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create course status
+      tags:
+      - course-statuses
+  /course-statuses/{course_status_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove course status from database by id
+      operationId: remove-course-status-by-id
+      parameters:
+      - description: course status ID to delete
+        in: path
+        name: course_status_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove course status
+      tags:
+      - course-statuses
+    get:
+      consumes:
+      - application/json
+      description: Get course status from database by ID
+      operationId: get-course-status-by-id
+      parameters:
+      - description: course status ID to get
+        in: path
+        name: course_status_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get course status by id
+      tags:
+      - course-statuses
+    put:
+      consumes:
+      - application/json
+      description: Update course status data in database by id
+      operationId: update-course-status-by-id
+      parameters:
+      - description: course status ID to update
+        in: path
+        name: course_status_id
+        required: true
+        type: integer
+      - description: course data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.CourseStatus'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update course status
+      tags:
+      - course-statuses
   /courses:
     get:
       consumes:
@@ -3179,13 +3366,13 @@ paths:
       - ApiToken: []
       summary: Get certs by student ID
       tags:
-      - students
-  /students/{student_id}/diploma:
+      - student-items
+  /students/{student_id}/contacts:
     get:
       consumes:
       - application/json
-      description: Get student's diploma from database by student ID
-      operationId: get-diploma-by-student-id
+      description: Get student's contacts from database by student ID
+      operationId: get-contacts-by-student-id
       parameters:
       - description: Student ID
         in: path
@@ -3198,7 +3385,9 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Diploma'
+            items:
+              $ref: '#/definitions/models.Contact'
+            type: array
         "400":
           description: Bad Request
           schema:
@@ -3217,9 +3406,9 @@ paths:
             $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
-      summary: Get diploma by student ID
+      summary: Get contacts by student ID
       tags:
-      - students
+      - student-items
   /students/{student_id}/group/:
     patch:
       consumes:
@@ -3474,7 +3663,87 @@ paths:
       - ApiToken: []
       summary: Get interview by student ID
       tags:
-      - students
+      - student-items
+  /students/{student_id}/mentor-notes:
+    get:
+      consumes:
+      - application/json
+      description: Get student's mentor notes from database by student ID
+      operationId: get-mentor-notes-by-student-id
+      parameters:
+      - description: Student ID
+        in: path
+        name: student_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.MentorNotes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get mentor notes by mentor ID
+      tags:
+      - student-items
+  /students/{student_id}/student-notes:
+    get:
+      consumes:
+      - application/json
+      description: Get student's student notes from database by student ID
+      operationId: get-student-notes-by-student-id
+      parameters:
+      - description: Student ID
+        in: path
+        name: student_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.StudentNotes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get student notes by student ID
+      tags:
+      - student-items
   /users:
     get:
       consumes:
