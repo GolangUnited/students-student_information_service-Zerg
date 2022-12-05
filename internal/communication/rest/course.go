@@ -81,3 +81,19 @@ func (h *Handler) removeCourseByID(c *gin.Context) {
 // @Router /courses [get]
 func (h *Handler) coursesList(c *gin.Context) {
 }
+
+// @Summary Get course interview
+// @Tags courses
+// @Security ApiToken
+// @Description Get course interview from database by course ID
+// @ID get-course-interview-by-id
+// @Accept  json
+// @Produce  json
+// @Param course_id path int true "course ID to get interview"
+// @Success 200 {object} models.CourseInterview
+// @Failure 400,404 {object} rest.ErrorMessage
+// @Failure 500 {object} rest.ErrorMessage
+// @Failure default {object} rest.ErrorMessage
+// @Router /courses/{course_id}/interview [get]
+func (h *Handler) getCourseInterviewByID(c *gin.Context) {
+}

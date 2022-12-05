@@ -41,6 +41,21 @@ definitions:
       title:
         type: string
     type: object
+  models.CourseInterview:
+    properties:
+      average_score:
+        type: integer
+      course_id:
+        type: integer
+      course_interview_id:
+        type: integer
+      interview_count:
+        type: integer
+      max_score:
+        type: integer
+      min_score:
+        type: integer
+    type: object
   models.CourseStatus:
     properties:
       course_status:
@@ -1461,6 +1476,46 @@ paths:
       security:
       - ApiToken: []
       summary: Update course
+      tags:
+      - courses
+  /courses/{course_id}/interview:
+    get:
+      consumes:
+      - application/json
+      description: Get course interview from database by course ID
+      operationId: get-course-interview-by-id
+      parameters:
+      - description: course ID to get interview
+        in: path
+        name: course_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CourseInterview'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get course interview
       tags:
       - courses
   /diplomas:

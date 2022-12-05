@@ -99,9 +99,10 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			courses.PUT("/:id", h.updateCourseByID)
 			courses.DELETE("/:id", h.removeCourseByID)
 			courses.GET("/", h.coursesList)
+			courses.GET("/:id/interview", h.getCourseInterviewByID)
 		}
 
-		courseStatuses := api.Group("/courses")
+		courseStatuses := api.Group("/course-statuses")
 		{
 			courseStatuses.POST("/", h.newCourseStatus)
 			courseStatuses.GET("/:id", h.getCourseStatusByID)

@@ -1858,6 +1858,68 @@
                 }
             }
         },
+        "/courses/{course_id}/interview": {
+            "get": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Get course interview from database by course ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "courses"
+                ],
+                "summary": "Get course interview",
+                "operationId": "get-course-interview-by-id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "course ID to get interview",
+                        "name": "course_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.CourseInterview"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
         "/diplomas": {
             "get": {
                 "security": [
@@ -5749,6 +5811,29 @@
                 },
                 "title": {
                     "type": "string"
+                }
+            }
+        },
+        "models.CourseInterview": {
+            "type": "object",
+            "properties": {
+                "average_score": {
+                    "type": "integer"
+                },
+                "course_id": {
+                    "type": "integer"
+                },
+                "course_interview_id": {
+                    "type": "integer"
+                },
+                "interview_count": {
+                    "type": "integer"
+                },
+                "max_score": {
+                    "type": "integer"
+                },
+                "min_score": {
+                    "type": "integer"
                 }
             }
         },
