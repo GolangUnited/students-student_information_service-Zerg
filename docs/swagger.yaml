@@ -67,12 +67,12 @@ definitions:
     type: object
   models.GroupContact:
     properties:
-      contact_id:
-        type: integer
       contact_type_id:
         type: integer
       contact_value:
         type: string
+      group_contact_id:
+        type: integer
       group_id:
         type: integer
     type: object
@@ -165,6 +165,8 @@ definitions:
         type: integer
       mentor_note:
         type: string
+      mentor_note_id:
+        type: integer
       student_id:
         type: integer
     type: object
@@ -766,7 +768,7 @@ paths:
       summary: Create contact type
       tags:
       - contact-types
-  /contact-types/{contact-type-id}:
+  /contact-types/{contact_type_id}:
     delete:
       consumes:
       - application/json
@@ -1551,7 +1553,7 @@ paths:
       parameters:
       - description: group contact ID to delete
         in: path
-        name: contact_id
+        name: group_contact_id
         required: true
         type: integer
       produces:
@@ -1588,7 +1590,7 @@ paths:
       parameters:
       - description: group contact ID to get
         in: path
-        name: contact_id
+        name: group_contact_id
         required: true
         type: integer
       produces:
@@ -1627,7 +1629,7 @@ paths:
       parameters:
       - description: contact ID to update
         in: path
-        name: contact_id
+        name: group_contact_id
         required: true
         type: integer
       - description: group contact data to update
@@ -2327,7 +2329,7 @@ paths:
       summary: Create mentor note
       tags:
       - mentor-notes
-  /mentor-notes/{mentor-note-id}:
+  /mentor-notes/{mentor_note_id}:
     delete:
       consumes:
       - application/json
@@ -2671,7 +2673,7 @@ paths:
       summary: Create student note type
       tags:
       - student-note-types
-  /student-note-types/{student-note-type-id}:
+  /student-note-types/{student_note_type_id}:
     delete:
       consumes:
       - application/json
@@ -2865,7 +2867,7 @@ paths:
       summary: Create student note
       tags:
       - student-notes
-  /student-notes/{student-note-id}:
+  /student-notes/{student_note_id}:
     delete:
       consumes:
       - application/json
@@ -3136,43 +3138,6 @@ paths:
       summary: Get student by id
       tags:
       - students
-    patch:
-      consumes:
-      - application/json
-      description: Change student's group ID
-      operationId: change-student-group
-      parameters:
-      - description: Group ID to set
-        in: query
-        name: group_id
-        required: true
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/rest.ErrorMessage'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/rest.ErrorMessage'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/rest.ErrorMessage'
-        default:
-          description: ""
-          schema:
-            $ref: '#/definitions/rest.ErrorMessage'
-      security:
-      - ApiToken: []
-      summary: Change student's group
-      tags:
-      - students
   /students/{student_id}/certs:
     get:
       consumes:
@@ -3255,16 +3220,21 @@ paths:
       summary: Get diploma by student ID
       tags:
       - students
-  /students/{student_id}/hw-grades:
-    delete:
+  /students/{student_id}/group/:
+    patch:
       consumes:
       - application/json
-      description: Delete homework grade for particular student
-      operationId: delete-hw-grade
+      description: Change student's group ID
+      operationId: change-student-group
       parameters:
-      - description: Homework ID
+      - description: Student ID to patch
         in: path
-        name: homework_grade_id
+        name: student_id
+        required: true
+        type: integer
+      - description: Group ID to set
+        in: query
+        name: group_id
         required: true
         type: integer
       produces:
@@ -3290,9 +3260,10 @@ paths:
             $ref: '#/definitions/rest.ErrorMessage'
       security:
       - ApiToken: []
-      summary: Delete homework grade
+      summary: Change student's group
       tags:
-      - homework grades
+      - students
+  /students/{student_id}/hw-grades:
     get:
       consumes:
       - application/json
@@ -3333,13 +3304,18 @@ paths:
       - ApiToken: []
       summary: Get homework grades by student ID
       tags:
-      - homework grades
+      - homework-grades
     post:
       consumes:
       - application/json
       description: Create new homework grade for particular student
       operationId: new-hw-grade
       parameters:
+      - description: Student ID to patch
+        in: path
+        name: student_id
+        required: true
+        type: integer
       - description: homework mark
         in: body
         name: input
@@ -3371,13 +3347,19 @@ paths:
       - ApiToken: []
       summary: Create new homework grade
       tags:
-      - homework grades
+      - homework-grades
+  /students/{student_id}/hw-grades/:
     put:
       consumes:
       - application/json
       description: Update homework grade for particular student
       operationId: update-hw-grade
       parameters:
+      - description: Student ID to patch
+        in: path
+        name: student_id
+        required: true
+        type: integer
       - description: homework mark
         in: body
         name: input
@@ -3409,7 +3391,50 @@ paths:
       - ApiToken: []
       summary: Update homework grade
       tags:
-      - homework grades
+      - homework-grades
+  /students/{student_id}/hw-grades/{homework_grade_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete homework grade for particular student
+      operationId: delete-hw-grade
+      parameters:
+      - description: Student ID to patch
+        in: path
+        name: student_id
+        required: true
+        type: integer
+      - description: Homework ID
+        in: path
+        name: homework_grade_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Delete homework grade
+      tags:
+      - homework-grades
   /students/{student_id}/interview:
     get:
       consumes:

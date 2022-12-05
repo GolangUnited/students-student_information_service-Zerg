@@ -70,10 +70,13 @@ func (h *Handler) InitRoutes() *gin.Engine {
 				items.GET("/certs", h.getCertsByStudentID)
 				items.GET("/diploma", h.getDiplomaByStudentID)
 				items.GET("/interview", h.getInterviewByStudentID)
-				items.GET("/hw-grades", h.getHWGradesByStudentID)
-				items.POST("/hw-grades", h.newHWGrade)
-				items.DELETE("/hw-grades", h.deleteHWGrade)
-				items.PUT("/hw-grades", h.updateHWGrade)
+				hwGrades := api.Group("/hw-grades")
+				{
+					hwGrades.GET("/", h.getHWGradesByStudentID)
+					hwGrades.POST("/:id", h.newHWGrade)
+					hwGrades.DELETE("/:id", h.deleteHWGrade)
+					hwGrades.PUT("/:id", h.updateHWGrade)
+				}
 			}
 		}
 

@@ -30,7 +30,7 @@ func (h *Handler) newStudentNoteType(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /student-note-types/{student-note-type-id} [get]
+// @Router /student-note-types/{student_note_type_id} [get]
 func (h *Handler) geStudentNoteTypeByID(c *gin.Context) {
 }
 
@@ -47,7 +47,7 @@ func (h *Handler) geStudentNoteTypeByID(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /student-note-types/{student-note-type-id} [put]
+// @Router /student-note-types/{student_note_type_id} [put]
 func (h *Handler) updateStudentNoteTypeByID(c *gin.Context) {
 }
 
@@ -63,7 +63,7 @@ func (h *Handler) updateStudentNoteTypeByID(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /student-note-types/{student-note-type-id} [delete]
+// @Router /student-note-types/{student_note_type_id} [delete]
 func (h *Handler) removeStudentNoteTypeByID(c *gin.Context) {
 }
 

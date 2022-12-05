@@ -30,7 +30,7 @@ func (h *Handler) newMentorNote(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /mentor-notes/{mentor-note-id} [get]
+// @Router /mentor-notes/{mentor_note_id} [get]
 func (h *Handler) getMentorNoteByID(c *gin.Context) {
 }
 
@@ -47,7 +47,7 @@ func (h *Handler) getMentorNoteByID(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /mentor-notes/{mentor-note-id} [put]
+// @Router /mentor-notes/{mentor_note_id} [put]
 func (h *Handler) updateMentorNoteByID(c *gin.Context) {
 }
 
@@ -63,7 +63,7 @@ func (h *Handler) updateMentorNoteByID(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /mentor-notes/{mentor-note-id} [delete]
+// @Router /mentor-notes/{mentor_note_id} [delete]
 func (h *Handler) removeMentorNoteByID(c *gin.Context) {
 }
 

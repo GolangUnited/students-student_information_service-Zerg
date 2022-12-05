@@ -30,7 +30,7 @@ func (h *Handler) newContactType(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /contact-types/{contact-type-id} [get]
+// @Router /contact-types/{contact_type_id} [get]
 func (h *Handler) getContactTypeByID(c *gin.Context) {
 }
 
@@ -47,7 +47,7 @@ func (h *Handler) getContactTypeByID(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /contact-types/{contact-type-id} [put]
+// @Router /contact-types/{contact_type_id} [put]
 func (h *Handler) updateContactTypeByID(c *gin.Context) {
 }
 
@@ -63,7 +63,7 @@ func (h *Handler) updateContactTypeByID(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /contact-types/{contact-type-id} [delete]
+// @Router /contact-types/{contact_type_id} [delete]
 func (h *Handler) removeContactTypeByID(c *gin.Context) {
 }
 

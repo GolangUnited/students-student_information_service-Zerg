@@ -781,7 +781,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/contact-types/{contact-type-id}": {
+        "/contact-types/{contact_type_id}": {
             "get": {
                 "security": [
                     {
@@ -2004,7 +2004,7 @@ const docTemplate = `{
                     {
                         "type": "integer",
                         "description": "group contact ID to get",
-                        "name": "contact_id",
+                        "name": "group_contact_id",
                         "in": "path",
                         "required": true
                     }
@@ -2064,7 +2064,7 @@ const docTemplate = `{
                     {
                         "type": "integer",
                         "description": "contact ID to update",
-                        "name": "contact_id",
+                        "name": "group_contact_id",
                         "in": "path",
                         "required": true
                     },
@@ -2130,7 +2130,7 @@ const docTemplate = `{
                     {
                         "type": "integer",
                         "description": "group contact ID to delete",
-                        "name": "contact_id",
+                        "name": "group_contact_id",
                         "in": "path",
                         "required": true
                     }
@@ -3195,7 +3195,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/mentor-notes/{mentor-note-id}": {
+        "/mentor-notes/{mentor_note_id}": {
             "get": {
                 "security": [
                     {
@@ -3727,7 +3727,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/student-note-types/{student-note-type-id}": {
+        "/student-note-types/{student_note_type_id}": {
             "get": {
                 "security": [
                     {
@@ -4027,7 +4027,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/student-notes/{student-note-id}": {
+        "/student-notes/{student_note_id}": {
             "get": {
                 "security": [
                     {
@@ -4444,63 +4444,6 @@ const docTemplate = `{
                         }
                     }
                 }
-            },
-            "patch": {
-                "security": [
-                    {
-                        "ApiToken": []
-                    }
-                ],
-                "description": "Change student's group ID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "students"
-                ],
-                "summary": "Change student's group",
-                "operationId": "change-student-group",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Group ID to set",
-                        "name": "group_id",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/rest.ErrorMessage"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/rest.ErrorMessage"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/rest.ErrorMessage"
-                        }
-                    },
-                    "default": {
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/rest.ErrorMessage"
-                        }
-                    }
-                }
             }
         },
         "/students/{student_id}/certs": {
@@ -4630,6 +4573,72 @@ const docTemplate = `{
                 }
             }
         },
+        "/students/{student_id}/group/": {
+            "patch": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Change student's group ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "students"
+                ],
+                "summary": "Change student's group",
+                "operationId": "change-student-group",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Student ID to patch",
+                        "name": "student_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Group ID to set",
+                        "name": "group_id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
         "/students/{student_id}/hw-grades": {
             "get": {
                 "security": [
@@ -4645,7 +4654,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "homework grades"
+                    "homework-grades"
                 ],
                 "summary": "Get homework grades by student ID",
                 "operationId": "get-hw-grades-by-student-id",
@@ -4694,65 +4703,6 @@ const docTemplate = `{
                     }
                 }
             },
-            "put": {
-                "security": [
-                    {
-                        "ApiToken": []
-                    }
-                ],
-                "description": "Update homework grade for particular student",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "homework grades"
-                ],
-                "summary": "Update homework grade",
-                "operationId": "update-hw-grade",
-                "parameters": [
-                    {
-                        "description": "homework mark",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.HomeworkGrade"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/rest.ErrorMessage"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/rest.ErrorMessage"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/rest.ErrorMessage"
-                        }
-                    },
-                    "default": {
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/rest.ErrorMessage"
-                        }
-                    }
-                }
-            },
             "post": {
                 "security": [
                     {
@@ -4767,11 +4717,18 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "homework grades"
+                    "homework-grades"
                 ],
                 "summary": "Create new homework grade",
                 "operationId": "new-hw-grade",
                 "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Student ID to patch",
+                        "name": "student_id",
+                        "in": "path",
+                        "required": true
+                    },
                     {
                         "description": "homework mark",
                         "name": "input",
@@ -4811,7 +4768,77 @@ const docTemplate = `{
                         }
                     }
                 }
-            },
+            }
+        },
+        "/students/{student_id}/hw-grades/": {
+            "put": {
+                "security": [
+                    {
+                        "ApiToken": []
+                    }
+                ],
+                "description": "Update homework grade for particular student",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "homework-grades"
+                ],
+                "summary": "Update homework grade",
+                "operationId": "update-hw-grade",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Student ID to patch",
+                        "name": "student_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "homework mark",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.HomeworkGrade"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/students/{student_id}/hw-grades/{homework_grade_id}": {
             "delete": {
                 "security": [
                     {
@@ -4826,11 +4853,18 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "homework grades"
+                    "homework-grades"
                 ],
                 "summary": "Delete homework grade",
                 "operationId": "delete-hw-grade",
                 "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Student ID to patch",
+                        "name": "student_id",
+                        "in": "path",
+                        "required": true
+                    },
                     {
                         "type": "integer",
                         "description": "Homework ID",
@@ -5339,14 +5373,14 @@ const docTemplate = `{
         "models.GroupContact": {
             "type": "object",
             "properties": {
-                "contact_id": {
-                    "type": "integer"
-                },
                 "contact_type_id": {
                     "type": "integer"
                 },
                 "contact_value": {
                     "type": "string"
+                },
+                "group_contact_id": {
+                    "type": "integer"
                 },
                 "group_id": {
                     "type": "integer"
@@ -5489,6 +5523,9 @@ const docTemplate = `{
                 },
                 "mentor_note": {
                     "type": "string"
+                },
+                "mentor_note_id": {
+                    "type": "integer"
                 },
                 "student_id": {
                     "type": "integer"

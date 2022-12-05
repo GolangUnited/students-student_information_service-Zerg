@@ -30,7 +30,7 @@ func (h *Handler) newStudentNote(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /student-notes/{student-note-id} [get]
+// @Router /student-notes/{student_note_id} [get]
 func (h *Handler) getStudentNoteByID(c *gin.Context) {
 }
 
@@ -47,7 +47,7 @@ func (h *Handler) getStudentNoteByID(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /student-notes/{student-note-id} [put]
+// @Router /student-notes/{student_note_id} [put]
 func (h *Handler) updateStudentNoteByID(c *gin.Context) {
 }
 
@@ -63,7 +63,7 @@ func (h *Handler) updateStudentNoteByID(c *gin.Context) {
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /student-notes/{student-note-id} [delete]
+// @Router /student-notes/{student_note_id} [delete]
 func (h *Handler) removeStudentNoteByID(c *gin.Context) {
 }
 

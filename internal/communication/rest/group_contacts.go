@@ -25,7 +25,7 @@ func (h *Handler) newGroupContact(c *gin.Context) {
 // @ID get-group-contact-by-id
 // @Accept  json
 // @Produce  json
-// @Param contact_id path int true "group contact ID to get"
+// @Param group_contact_id path int true "group contact ID to get"
 // @Success 200 {integer} integer 1
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
@@ -41,7 +41,7 @@ func (h *Handler) getGroupContactByID(c *gin.Context) {
 // @ID update-group-contact-by-id
 // @Accept  json
 // @Produce  json
-// @Param contact_id path int true "contact ID to update"
+// @Param group_contact_id path int true "contact ID to update"
 // @Param input body models.GroupContact true "group contact data to update"
 // @Success 200
 // @Failure 400,404 {object} rest.ErrorMessage
@@ -58,7 +58,7 @@ func (h *Handler) updateGroupContactByID(c *gin.Context) {
 // @ID remove-group-contact-by-id
 // @Accept  json
 // @Produce  json
-// @Param contact_id path int true "group contact ID to delete"
+// @Param group_contact_id path int true "group contact ID to delete"
 // @Success 200
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage

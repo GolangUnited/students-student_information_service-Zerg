@@ -41,12 +41,13 @@ func (h *Handler) getStudentByID(c *gin.Context) {
 // @ID change-student-group
 // @Accept  json
 // @Produce  json
+// @Param student_id path int true "Student ID to patch"
 // @Param group_id query int true "Group ID to set"
 // @Success 200
 // @Failure 400,404 {object} rest.ErrorMessage
 // @Failure 500 {object} rest.ErrorMessage
 // @Failure default {object} rest.ErrorMessage
-// @Router /students/{student_id} [patch]
+// @Router /students/{student_id}/group/ [patch]
 func (h *Handler) changeStudentGroup(c *gin.Context) {
 }
 
