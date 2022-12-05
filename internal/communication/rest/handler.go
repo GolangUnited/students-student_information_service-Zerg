@@ -10,14 +10,16 @@ import (
 )
 
 type Handler struct {
-	service *service.Service
-	logger  logger.Logger
+	service    *service.Service
+	logger     logger.Logger
+	middleware *Middleware
 }
 
-func NewHandler(service *service.Service, logger logger.Logger) *Handler {
+func NewHandler(service *service.Service, logger logger.Logger, middleware *Middleware) *Handler {
 	return &Handler{
-		service: service,
-		logger:  logger,
+		service:    service,
+		logger:     logger,
+		middleware: middleware,
 	}
 }
 
@@ -35,6 +37,13 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	}))
 
 	router.GET("/health", h.healthCheck)
+	router.POST("/signup", h.CreateUser)
+	router.POST("/signin", h.SignIn)
+
+	//test route for authorization testing
+	needAuth := router.Group("/api")
+	needAuth.Use(h.middleware.auth)
+	needAuth.GET("/health", h.healthCheck)
 
 	return router
 }

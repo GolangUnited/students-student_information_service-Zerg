@@ -3,7 +3,6 @@ package jwt
 import (
 	"fmt"
 	"github.com/golang-jwt/jwt/v4"
-	"os"
 	"time"
 	"zerg-team-student-information-service/internal/models"
 )
@@ -15,7 +14,7 @@ type TokenData struct {
 	jwt.RegisteredClaims
 }
 
-func GenerateUserToken(user models.User) (string, error) {
+func GenerateUserToken(user models.User, jwtSecret string) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, &TokenData{
 		Email: user.Email,
 		RegisteredClaims: jwt.RegisteredClaims{
@@ -23,12 +22,12 @@ func GenerateUserToken(user models.User) (string, error) {
 		},
 	})
 
-	return token.SignedString([]byte(os.Getenv(JwtEnvKey)))
+	return token.SignedString([]byte(jwtSecret))
 }
 
-func GetDataFromToken(tokenString string) (*TokenData, error) {
+func GetDataFromToken(tokenString string, jwtSecret string) (*TokenData, error) {
 	token, err := jwt.ParseWithClaims(tokenString, &TokenData{}, func(token *jwt.Token) (interface{}, error) {
-		return []byte(os.Getenv(JwtEnvKey)), nil
+		return []byte(jwtSecret), nil
 	})
 	if err != nil {
 		return nil, fmt.Errorf("token parsing error: %w", err)

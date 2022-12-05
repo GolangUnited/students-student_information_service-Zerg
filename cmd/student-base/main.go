@@ -22,6 +22,13 @@ func main() {
 		appPort = "8080"
 	}
 
+	jwtSecret := os.Getenv("JWT_SECRET")
+	if jwtSecret == "" {
+		logrusLogger.Error("JWT_SECRET environment variable is not set")
+	}
+
+	middleware := rest.NewMiddleware(jwtSecret)
+
 	repo, err := repository.New("postgres", logrusLogger)
 	if err != nil {
 		logrusLogger.Error(err)
@@ -29,7 +36,7 @@ func main() {
 
 	svc := service.New(repo, logrusLogger)
 
-	handler := rest.NewHandler(svc, logrusLogger)
+	handler := rest.NewHandler(svc, logrusLogger, middleware)
 
 	srv := server.New(handler.InitRoutes(), appPort, logrusLogger)
 
