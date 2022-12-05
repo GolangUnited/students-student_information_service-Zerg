@@ -1,6 +1,8 @@
 package postgress_test
 
 import (
+	"database/sql"
+	"errors"
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/stretchr/testify/assert"
 	"testing"
@@ -32,6 +34,12 @@ func TestUserDb_GetById(t *testing.T) {
 	newUser, err := postgress.NewUserDB(mockConn).GetByID(u.ID)
 	assert.NoError(t, err)
 	assert.Equal(t, u, newUser)
+
+	rows = sqlmock.NewRows([]string{"id", "first_name", "last_name", "birthday", "email", "password_hash"}).
+		AddRow(-1, u.FirstName, u.LastName, u.Birthday, u.Email, u.PasswordHash)
+	mockConn.Mock.ExpectQuery(query).WithArgs(u.ID).WillReturnError(sql.ErrNoRows)
+	newUser, err = postgress.NewUserDB(mockConn).GetByID(u.ID)
+	assert.Error(t, err)
 }
 
 func TestUserDb_Create(t *testing.T) {
@@ -49,4 +57,10 @@ func TestUserDb_Create(t *testing.T) {
 	gottenId, err := postgress.NewUserDB(mockConn).Create(u)
 	assert.NoError(t, err)
 	assert.Equal(t, wantedId, gottenId)
+
+	mockConn.Mock.ExpectExec(query).
+		WithArgs(u.FirstName, u.LastName, u.Birthday, u.Email, u.PasswordHash).
+		WillReturnResult(sqlmock.NewErrorResult(errors.New("duplicate key value violates unique constraint \"users_email_key\"")))
+	gottenId, err = postgress.NewUserDB(mockConn).Create(u)
+	assert.Error(t, err)
 }
