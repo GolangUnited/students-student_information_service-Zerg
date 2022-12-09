@@ -33,6 +33,34 @@ func (h *Handler) signUp(c *gin.Context) {
 // @Failure default {object} rest.ErrorMessage
 // @Router /auth/sign-in [post]
 func (h *Handler) signIn(c *gin.Context) {
+  var user models.User
+
+	if !h.parseBody(c.Request, &user) {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": "Bad Request",
+		})
+		return
+	}
+
+	token, err := h.service.SignIn(user)
+	switch err {
+	case service.ErrLoginDoesntExist:
+		c.JSON(http.StatusUnauthorized, gin.H{
+			"message": "User with this email doesn't exist",
+		})
+	case service.ErrIncorrectPassword:
+		c.JSON(http.StatusUnauthorized, gin.H{
+			"message": "Incorrect password",
+		})
+	case service.ErrServer:
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Internal server error",
+		})
+	default:
+		c.JSON(http.StatusOK, gin.H{
+			"token": token,
+		})
+	}
 }
 
 // @Summary Create user
@@ -49,6 +77,35 @@ func (h *Handler) signIn(c *gin.Context) {
 // @Failure default {object} rest.ErrorMessage
 // @Router /users [post]
 func (h *Handler) newUser(c *gin.Context) {
+	var user models.User
+
+	if !h.parseBody(c.Request, &user) {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": "Bad Request",
+		})
+		return
+	}
+
+	id, err := h.service.CreateUser(user)
+	switch err {
+	case service.ErrUserValidation:
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": "validation error",
+		})
+	case service.ErrUserAlreadyExists:
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": "User with this email already exists",
+		})
+	case service.ErrServer:
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Internal server error",
+		})
+	default:
+		c.JSON(http.StatusCreated, gin.H{
+			"message": "User successfully created",
+			"user_id": id,
+		})
+	}
 }
 
 // @Summary Get user by ID
