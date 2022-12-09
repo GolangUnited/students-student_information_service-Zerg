@@ -1,0 +1,4001 @@
+definitions:
+  models.Cert:
+    properties:
+      cert_code:
+        type: string
+      cert_id:
+        type: integer
+      issued:
+        type: string
+      student_id:
+        type: integer
+    type: object
+  models.Contact:
+    properties:
+      contact_id:
+        type: integer
+      contact_type_id:
+        type: integer
+      contact_value:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  models.ContactType:
+    properties:
+      contact_type:
+        type: string
+      contact_type_id:
+        type: integer
+    type: object
+  models.Course:
+    properties:
+      course_id:
+        type: integer
+      course_status_id:
+        type: integer
+      end_date:
+        type: string
+      start_date:
+        type: string
+      title:
+        type: string
+    type: object
+  models.CourseInterview:
+    properties:
+      average_score:
+        type: integer
+      course_id:
+        type: integer
+      course_interview_id:
+        type: integer
+      interview_count:
+        type: integer
+      max_score:
+        type: integer
+      min_score:
+        type: integer
+    type: object
+  models.CourseStatus:
+    properties:
+      course_status:
+        type: string
+      course_status_id:
+        type: integer
+    type: object
+  models.Diploma:
+    properties:
+      description:
+        type: string
+      group_id:
+        type: integer
+      theme:
+        type: string
+    type: object
+  models.Group:
+    properties:
+      contacts:
+        items:
+          $ref: '#/definitions/models.GroupContact'
+        type: array
+      course_id:
+        type: integer
+      group_id:
+        type: integer
+      mentor_id:
+        type: integer
+      primary_contact_id:
+        type: integer
+      title:
+        type: string
+    type: object
+  models.GroupContact:
+    properties:
+      contact_type_id:
+        type: integer
+      contact_value:
+        type: string
+      group_contact_id:
+        type: integer
+      group_id:
+        type: integer
+    type: object
+  models.GroupData:
+    properties:
+      contacts:
+        items:
+          $ref: '#/definitions/models.GroupContact'
+        type: array
+      course_id:
+        type: integer
+      group_id:
+        type: integer
+      mentor_id:
+        type: integer
+      title:
+        type: string
+    type: object
+  models.Homework:
+    properties:
+      deadline:
+        type: string
+      homework_id:
+        type: integer
+      homework_text:
+        type: string
+    type: object
+  models.HomeworkGrade:
+    properties:
+      grade:
+        type: integer
+      homework_grade_id:
+        type: integer
+      homework_id:
+        type: integer
+      student_id:
+        type: integer
+    type: object
+  models.Interview:
+    properties:
+      interview_date:
+        type: string
+      mark:
+        type: integer
+      mentor_id:
+        type: integer
+      notes:
+        type: string
+      student_id:
+        type: integer
+    type: object
+  models.JWT:
+    properties:
+      access_token:
+        type: string
+    type: object
+  models.Login:
+    properties:
+      login:
+        type: string
+      password:
+        type: string
+    type: object
+  models.Mentor:
+    properties:
+      bitrhday:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      groups:
+        items:
+          $ref: '#/definitions/models.Group'
+        type: array
+      last_name:
+        type: string
+      login:
+        type: string
+      patronymic:
+        type: string
+    type: object
+  models.MentorNotes:
+    properties:
+      mentor_id:
+        type: integer
+      mentor_note:
+        type: string
+      mentor_note_id:
+        type: integer
+      student_id:
+        type: integer
+    type: object
+  models.Student:
+    properties:
+      bitrhday:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      group_id:
+        type: integer
+      last_name:
+        type: string
+      login:
+        type: string
+      patronymic:
+        type: string
+    type: object
+  models.StudentData:
+    properties:
+      group_id:
+        type: integer
+      user_id:
+        type: integer
+    type: object
+  models.StudentNotes:
+    properties:
+      student_id:
+        type: integer
+      student_note:
+        type: string
+      student_note_id:
+        type: integer
+      student_note_type_id:
+        type: integer
+    type: object
+  models.StudentNotesType:
+    properties:
+      student_note_type:
+        type: string
+      student_note_type_id:
+        type: integer
+    type: object
+  models.User:
+    properties:
+      bitrhday:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      login:
+        type: string
+      password:
+        type: string
+      patronymic:
+        type: string
+      primary_contact_id:
+        type: integer
+      user_id:
+        type: integer
+    type: object
+  models.UserData:
+    properties:
+      bitrhday:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      login:
+        type: string
+      patronymic:
+        type: string
+    type: object
+  rest.ErrorMessage:
+    properties:
+      message:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: API for management students database
+  title: Zerg Team Student Information Service
+  version: "0.1"
+paths:
+  /admins:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all admins
+      operationId: admins-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.UserData'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get admins list
+      tags:
+      - admins
+    post:
+      consumes:
+      - application/json
+      description: Create new group in database
+      operationId: new-admin
+      parameters:
+      - description: ID of the user who will be granted admin rights
+        in: query
+        name: user_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Add admin
+      tags:
+      - admins
+  /admins/{admin_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove admin from database by id
+      operationId: remove-admin-by-id
+      parameters:
+      - description: Admin ID to delete
+        in: path
+        name: admin_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove admin by id
+      tags:
+      - admins
+    get:
+      consumes:
+      - application/json
+      description: Get admin from database by ID
+      operationId: get-admin-by-id
+      parameters:
+      - description: New admin ID
+        in: path
+        name: admin_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.UserData'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get admin by id
+      tags:
+      - admins
+  /auth/sign-in:
+    post:
+      consumes:
+      - application/json
+      description: Get user from database
+      operationId: sign-in
+      parameters:
+      - description: user to get
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Login'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.JWT'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      summary: Get user
+      tags:
+      - auth
+  /auth/sign-up:
+    post:
+      consumes:
+      - application/json
+      description: Sign up new user
+      operationId: sign-up
+      parameters:
+      - description: user data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      summary: Create user
+      tags:
+      - auth
+  /certs:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all certs
+      operationId: certs-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Cert'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get certs list
+      tags:
+      - certs
+    post:
+      consumes:
+      - application/json
+      description: Create new cert in database
+      operationId: create-cert
+      parameters:
+      - description: cert data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Cert'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create cert
+      tags:
+      - certs
+  /certs/{cert_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove cert from database by id
+      operationId: remove-cert-by-id
+      parameters:
+      - description: Cert ID to delete
+        in: path
+        name: cert_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove cert
+      tags:
+      - certs
+    get:
+      consumes:
+      - application/json
+      description: Get cert from database by ID
+      operationId: get-cert-by-id
+      parameters:
+      - description: Cert ID to get
+        in: path
+        name: cert_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Cert'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get cert by id
+      tags:
+      - certs
+    put:
+      consumes:
+      - application/json
+      description: Update cert data in database by id
+      operationId: update-cert-by-id
+      parameters:
+      - description: Cert ID to update
+        in: path
+        name: cert_id
+        required: true
+        type: integer
+      - description: cert data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Cert'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update cert
+      tags:
+      - certs
+  /contact-types:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all contact type
+      operationId: contact-types-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.ContactType'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get contact type list
+      tags:
+      - contact-types
+    post:
+      consumes:
+      - application/json
+      description: Create new contact type in database
+      operationId: create-contact-type
+      parameters:
+      - description: contact type data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.ContactType'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create contact type
+      tags:
+      - contact-types
+  /contact-types/{contact_type_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove contact type from database by id
+      operationId: remove-contact-type-by-id
+      parameters:
+      - description: contact type ID to delete
+        in: path
+        name: contact_type_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove contact type
+      tags:
+      - contact-types
+    get:
+      consumes:
+      - application/json
+      description: Get contact type from database by ID
+      operationId: get-contact-type-by-id
+      parameters:
+      - description: contact type ID to get
+        in: path
+        name: contact_type_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get contact type by id
+      tags:
+      - contact-types
+    put:
+      consumes:
+      - application/json
+      description: Update contact type data in database by id
+      operationId: update-contact-type-by-id
+      parameters:
+      - description: contact type ID to update
+        in: path
+        name: contact_type_id
+        required: true
+        type: integer
+      - description: contact type data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.ContactType'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update contact type
+      tags:
+      - contact-types
+  /contacts:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all contacts
+      operationId: contacts-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Contact'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get contacts list
+      tags:
+      - contacts
+    post:
+      consumes:
+      - application/json
+      description: Create new contact in database
+      operationId: create-contact
+      parameters:
+      - description: contact data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Contact'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create contact
+      tags:
+      - contacts
+  /contacts/{contact_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove contact from database by id
+      operationId: remove-contact-by-id
+      parameters:
+      - description: contact ID to delete
+        in: path
+        name: contact_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove contact
+      tags:
+      - contacts
+    get:
+      consumes:
+      - application/json
+      description: Get contact from database by ID
+      operationId: get-contact-by-id
+      parameters:
+      - description: contact ID to get
+        in: path
+        name: contact_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get contact by id
+      tags:
+      - contacts
+    put:
+      consumes:
+      - application/json
+      description: Update contact data in database by id
+      operationId: update-contact-by-id
+      parameters:
+      - description: contact ID to update
+        in: path
+        name: contact_id
+        required: true
+        type: integer
+      - description: contact data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Contact'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update contact
+      tags:
+      - contacts
+  /course-statuses:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all course statuses
+      operationId: course-statuses-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.CourseStatus'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get course statuses list
+      tags:
+      - course-statuses
+    post:
+      consumes:
+      - application/json
+      description: Create new course status in database
+      operationId: create-course-status
+      parameters:
+      - description: course status data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.CourseStatus'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create course status
+      tags:
+      - course-statuses
+  /course-statuses/{course_status_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove course status from database by id
+      operationId: remove-course-status-by-id
+      parameters:
+      - description: course status ID to delete
+        in: path
+        name: course_status_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove course status
+      tags:
+      - course-statuses
+    get:
+      consumes:
+      - application/json
+      description: Get course status from database by ID
+      operationId: get-course-status-by-id
+      parameters:
+      - description: course status ID to get
+        in: path
+        name: course_status_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get course status by id
+      tags:
+      - course-statuses
+    put:
+      consumes:
+      - application/json
+      description: Update course status data in database by id
+      operationId: update-course-status-by-id
+      parameters:
+      - description: course status ID to update
+        in: path
+        name: course_status_id
+        required: true
+        type: integer
+      - description: course data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.CourseStatus'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update course status
+      tags:
+      - course-statuses
+  /courses:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all courses
+      operationId: courses-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Course'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get courses list
+      tags:
+      - courses
+    post:
+      consumes:
+      - application/json
+      description: Create new course in database
+      operationId: create-course
+      parameters:
+      - description: course data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Course'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create course
+      tags:
+      - courses
+  /courses/{course_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove course from database by id
+      operationId: remove-course-by-id
+      parameters:
+      - description: course ID to delete
+        in: path
+        name: course_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove course
+      tags:
+      - courses
+    get:
+      consumes:
+      - application/json
+      description: Get course from database by ID
+      operationId: get-course-by-id
+      parameters:
+      - description: course ID to get
+        in: path
+        name: course_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get course by id
+      tags:
+      - courses
+    put:
+      consumes:
+      - application/json
+      description: Update course data in database by id
+      operationId: update-course-by-id
+      parameters:
+      - description: course ID to update
+        in: path
+        name: course_id
+        required: true
+        type: integer
+      - description: course data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Course'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update course
+      tags:
+      - courses
+  /courses/{course_id}/interview:
+    get:
+      consumes:
+      - application/json
+      description: Get course interview from database by course ID
+      operationId: get-course-interview-by-id
+      parameters:
+      - description: course ID to get interview
+        in: path
+        name: course_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CourseInterview'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get course interview
+      tags:
+      - courses
+  /diplomas:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all diplomas
+      operationId: diplomas-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Diploma'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get diplomas list
+      tags:
+      - diplomas
+    post:
+      consumes:
+      - application/json
+      description: Create new diploma in database
+      operationId: create-diploma
+      parameters:
+      - description: diploma data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Diploma'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create diploma
+      tags:
+      - diplomas
+  /diplomas/{diploma_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove diploma from database by id
+      operationId: remove-diploma-by-id
+      parameters:
+      - description: Diploma ID to delete
+        in: path
+        name: diploma_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove diploma
+      tags:
+      - diplomas
+    get:
+      consumes:
+      - application/json
+      description: Get diploma from database by ID
+      operationId: get-diploma-by-id
+      parameters:
+      - description: Diploma ID to get
+        in: path
+        name: diploma_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get diploma by id
+      tags:
+      - diplomas
+    put:
+      consumes:
+      - application/json
+      description: Update diploma data in database by id
+      operationId: update-diploma-by-id
+      parameters:
+      - description: Diploma ID to update
+        in: path
+        name: diploma_id
+        required: true
+        type: integer
+      - description: diploma data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Diploma'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update diploma
+      tags:
+      - diplomas
+  /group-contacts:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all group contacts
+      operationId: group-contacts-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.GroupContact'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get group contacts list
+      tags:
+      - group-contacts
+    post:
+      consumes:
+      - application/json
+      description: Create new group contact in database
+      operationId: create-group-contact
+      parameters:
+      - description: group contact data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.GroupContact'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create group contact
+      tags:
+      - group-contacts
+  /group-contacts/{group_contact_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove group contact from database by id
+      operationId: remove-group-contact-by-id
+      parameters:
+      - description: group contact ID to delete
+        in: path
+        name: group_contact_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove group contact
+      tags:
+      - group-contacts
+    get:
+      consumes:
+      - application/json
+      description: Get group contact from database by ID
+      operationId: get-group-contact-by-id
+      parameters:
+      - description: group contact ID to get
+        in: path
+        name: group_contact_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get group contact by id
+      tags:
+      - group-contacts
+    put:
+      consumes:
+      - application/json
+      description: Update group contact data in database by id
+      operationId: update-group-contact-by-id
+      parameters:
+      - description: contact ID to update
+        in: path
+        name: group_contact_id
+        required: true
+        type: integer
+      - description: group contact data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.GroupContact'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update group contact
+      tags:
+      - group-contacts
+  /groups:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all groups
+      operationId: groups-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Group'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get groups list
+      tags:
+      - groups
+    post:
+      consumes:
+      - application/json
+      description: Create new group in database
+      operationId: create-group
+      parameters:
+      - description: group data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.GroupData'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create group
+      tags:
+      - groups
+  /groups/{group_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove group from database by id
+      operationId: remove-group-by-id
+      parameters:
+      - description: Group ID to delete
+        in: path
+        name: group_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove group
+      tags:
+      - groups
+    get:
+      consumes:
+      - application/json
+      description: Get group from database by ID
+      operationId: get-group-by-id
+      parameters:
+      - description: Group ID to get
+        in: path
+        name: group_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get group by id
+      tags:
+      - groups
+    put:
+      consumes:
+      - application/json
+      description: Update group data in database by id
+      operationId: update-group-by-id
+      parameters:
+      - description: Group ID to update
+        in: path
+        name: group_id
+        required: true
+        type: integer
+      - description: group data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Group'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update group
+      tags:
+      - groups
+  /health:
+    get:
+      description: Get status of webserver
+      responses:
+        "200":
+          description: OK
+      summary: Application health check
+      tags:
+      - health
+  /homeworks:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all homeworks
+      operationId: homeworks-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Homework'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get homeworks list
+      tags:
+      - homeworks
+    post:
+      consumes:
+      - application/json
+      description: Create new homework in database
+      operationId: create-homework
+      parameters:
+      - description: homework data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Homework'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create homework
+      tags:
+      - homeworks
+  /homeworks/{homework_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove homework from database by id
+      operationId: remove-homework-by-id
+      parameters:
+      - description: Homework ID to delete
+        in: path
+        name: homework_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove homework
+      tags:
+      - homeworks
+    get:
+      consumes:
+      - application/json
+      description: Get homework from database by ID
+      operationId: get-homework-by-id
+      parameters:
+      - description: Homework ID to get
+        in: path
+        name: homework_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Homework'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get homework by id
+      tags:
+      - homeworks
+    put:
+      consumes:
+      - application/json
+      description: Update homework data in database by id
+      operationId: update-homework-by-id
+      parameters:
+      - description: Homework ID to update
+        in: path
+        name: homework_id
+        required: true
+        type: integer
+      - description: homework data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Homework'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update homework
+      tags:
+      - homeworks
+  /interviews:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all interviews
+      operationId: interviews-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Interview'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get interviews list
+      tags:
+      - interviews
+    post:
+      consumes:
+      - application/json
+      description: Create new interview in database
+      operationId: create-interview
+      parameters:
+      - description: interview data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Interview'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create interview
+      tags:
+      - interviews
+  /interviews/{interview_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove interview from database by id
+      operationId: remove-interview-by-id
+      parameters:
+      - description: Interview ID to delete
+        in: path
+        name: interview_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove interview
+      tags:
+      - interviews
+    get:
+      consumes:
+      - application/json
+      description: Get interview from database by ID
+      operationId: get-interview-by-id
+      parameters:
+      - description: Interview ID to get
+        in: path
+        name: interview_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Interview'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get interview by id
+      tags:
+      - interviews
+    put:
+      consumes:
+      - application/json
+      description: Update interview data in database by id
+      operationId: update-interview-by-id
+      parameters:
+      - description: Interview ID to update
+        in: path
+        name: interview_id
+        required: true
+        type: integer
+      - description: interview data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Interview'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update interview
+      tags:
+      - interviews
+  /mentor-notes:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all mentor note
+      operationId: mentor-notes-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.MentorNotes'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get mentor note  list
+      tags:
+      - mentor-notes
+    post:
+      consumes:
+      - application/json
+      description: Create new mentor note in database
+      operationId: create-mentor-note
+      parameters:
+      - description: mentor note data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.MentorNotes'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create mentor note
+      tags:
+      - mentor-notes
+  /mentor-notes/{mentor_note_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove mentor note from database by id
+      operationId: removementor-note-by-id
+      parameters:
+      - description: mentor note ID to delete
+        in: path
+        name: mentor_note_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove mentor note
+      tags:
+      - mentor-notes
+    get:
+      consumes:
+      - application/json
+      description: Get mentor note from database by ID
+      operationId: get-mentor-note-by-id
+      parameters:
+      - description: mentor note ID to get
+        in: path
+        name: mentor_note_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get mentor note by id
+      tags:
+      - mentor-notes
+    put:
+      consumes:
+      - application/json
+      description: Update mentor note data in database by id
+      operationId: updatementor-note-by-id
+      parameters:
+      - description: mentor note ID to update
+        in: path
+        name: mentor_note_id
+        required: true
+        type: integer
+      - description: mentor note  data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.MentorNotes'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update mentor note
+      tags:
+      - mentor-notes
+  /mentors:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all mentors
+      operationId: mentors-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Mentor'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get mentors list
+      tags:
+      - mentors
+    post:
+      consumes:
+      - application/json
+      description: Create new group in database
+      operationId: new-mentor
+      parameters:
+      - description: ID of the user who will be granted mentor rights
+        in: query
+        name: user_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Add mentor
+      tags:
+      - mentors
+  /mentors/{mentor_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove mentor from database by id
+      operationId: remove-mentor-by-id
+      parameters:
+      - description: Mentor ID to delete
+        in: path
+        name: mentor_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove mentor by id
+      tags:
+      - mentors
+    get:
+      consumes:
+      - application/json
+      description: Get mentor from database by ID
+      operationId: get-mentor-by-id
+      parameters:
+      - description: Mentor ID to get
+        in: path
+        name: mentor_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Mentor'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get mentor by id
+      tags:
+      - mentors
+  /student-note-types:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all student note type
+      operationId: student-note-types-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.StudentNotesType'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get student note type list
+      tags:
+      - student-note-types
+    post:
+      consumes:
+      - application/json
+      description: Create new student note type in database
+      operationId: create-student-note-type
+      parameters:
+      - description: student note type data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.StudentNotesType'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create student note type
+      tags:
+      - student-note-types
+  /student-note-types/{student_note_type_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove student note type from database by id
+      operationId: remove-student-note-type-by-id
+      parameters:
+      - description: student note type ID to delete
+        in: path
+        name: student_note_type_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove student note type
+      tags:
+      - student-note-types
+    get:
+      consumes:
+      - application/json
+      description: Get student note type from database by ID
+      operationId: get-student-note-type-by-id
+      parameters:
+      - description: student note type ID to get
+        in: path
+        name: student_note_type_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get student note type by id
+      tags:
+      - student-note-types
+    put:
+      consumes:
+      - application/json
+      description: Update student note type data in database by id
+      operationId: update-student-note-type-by-id
+      parameters:
+      - description: student note type ID to update
+        in: path
+        name: student_note_type_id
+        required: true
+        type: integer
+      - description: student note type data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.StudentNotesType'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update student note type
+      tags:
+      - student-note-types
+  /student-notes:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all student note
+      operationId: student-notes-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.StudentNotes'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get student note  list
+      tags:
+      - student-notes
+    post:
+      consumes:
+      - application/json
+      description: Create new student note in database
+      operationId: create-student-note
+      parameters:
+      - description: student note data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.StudentNotes'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create student note
+      tags:
+      - student-notes
+  /student-notes/{student_note_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove student note from database by id
+      operationId: removestudent-note-by-id
+      parameters:
+      - description: student note ID to delete
+        in: path
+        name: student_note_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove student note
+      tags:
+      - student-notes
+    get:
+      consumes:
+      - application/json
+      description: Get student note from database by ID
+      operationId: get-student-note-by-id
+      parameters:
+      - description: student note ID to get
+        in: path
+        name: student_note_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get student note by id
+      tags:
+      - student-notes
+    put:
+      consumes:
+      - application/json
+      description: Update student note data in database by id
+      operationId: updatestudent-note-by-id
+      parameters:
+      - description: student note ID to update
+        in: path
+        name: student_note_id
+        required: true
+        type: integer
+      - description: student note  data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.StudentNotes'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update student note
+      tags:
+      - student-notes
+  /students:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all students
+      operationId: students-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Student'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get students list
+      tags:
+      - students
+    post:
+      consumes:
+      - application/json
+      description: Create new student in database
+      operationId: new-student
+      parameters:
+      - description: student data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.StudentData'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Add student
+      tags:
+      - students
+  /students/{student_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove student from database by id
+      operationId: remove-student-by-id
+      parameters:
+      - description: Student ID to delete
+        in: path
+        name: student_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove student by id
+      tags:
+      - students
+    get:
+      consumes:
+      - application/json
+      description: Get student from database by ID
+      operationId: get-student-by-id
+      parameters:
+      - description: Student ID to get
+        in: path
+        name: student_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Student'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get student by id
+      tags:
+      - students
+  /students/{student_id}/certs:
+    get:
+      consumes:
+      - application/json
+      description: Get student's certs from database by student ID
+      operationId: get-certs-by-student-id
+      parameters:
+      - description: Student ID
+        in: path
+        name: student_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Cert'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get certs by student ID
+      tags:
+      - student-items
+  /students/{student_id}/contacts:
+    get:
+      consumes:
+      - application/json
+      description: Get student's contacts from database by student ID
+      operationId: get-contacts-by-student-id
+      parameters:
+      - description: Student ID
+        in: path
+        name: student_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Contact'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get contacts by student ID
+      tags:
+      - student-items
+  /students/{student_id}/group/:
+    patch:
+      consumes:
+      - application/json
+      description: Change student's group ID
+      operationId: change-student-group
+      parameters:
+      - description: Student ID to patch
+        in: path
+        name: student_id
+        required: true
+        type: integer
+      - description: Group ID to set
+        in: query
+        name: group_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Change student's group
+      tags:
+      - students
+  /students/{student_id}/hw-grades:
+    get:
+      consumes:
+      - application/json
+      description: Get student's homework grades from database by student ID
+      operationId: get-hw-grades-by-student-id
+      parameters:
+      - description: Student ID
+        in: path
+        name: student_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.HomeworkGrade'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get homework grades by student ID
+      tags:
+      - homework-grades
+    post:
+      consumes:
+      - application/json
+      description: Create new homework grade for particular student
+      operationId: new-hw-grade
+      parameters:
+      - description: Student ID to patch
+        in: path
+        name: student_id
+        required: true
+        type: integer
+      - description: homework mark
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.HomeworkGrade'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create new homework grade
+      tags:
+      - homework-grades
+  /students/{student_id}/hw-grades/:
+    put:
+      consumes:
+      - application/json
+      description: Update homework grade for particular student
+      operationId: update-hw-grade
+      parameters:
+      - description: Student ID to patch
+        in: path
+        name: student_id
+        required: true
+        type: integer
+      - description: homework mark
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.HomeworkGrade'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update homework grade
+      tags:
+      - homework-grades
+  /students/{student_id}/hw-grades/{homework_grade_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete homework grade for particular student
+      operationId: delete-hw-grade
+      parameters:
+      - description: Student ID to patch
+        in: path
+        name: student_id
+        required: true
+        type: integer
+      - description: Homework ID
+        in: path
+        name: homework_grade_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Delete homework grade
+      tags:
+      - homework-grades
+  /students/{student_id}/interview:
+    get:
+      consumes:
+      - application/json
+      description: Get student's interview from database by student ID
+      operationId: get-interview-by-student-id
+      parameters:
+      - description: Student ID
+        in: path
+        name: student_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Interview'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get interview by student ID
+      tags:
+      - student-items
+  /students/{student_id}/mentor-notes:
+    get:
+      consumes:
+      - application/json
+      description: Get student's mentor notes from database by student ID
+      operationId: get-mentor-notes-by-student-id
+      parameters:
+      - description: Student ID
+        in: path
+        name: student_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.MentorNotes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get mentor notes by mentor ID
+      tags:
+      - student-items
+  /students/{student_id}/student-notes:
+    get:
+      consumes:
+      - application/json
+      description: Get student's student notes from database by student ID
+      operationId: get-student-notes-by-student-id
+      parameters:
+      - description: Student ID
+        in: path
+        name: student_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.StudentNotes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get student notes by student ID
+      tags:
+      - student-items
+  /users:
+    get:
+      consumes:
+      - application/json
+      description: Get list of all users
+      operationId: users-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.UserData'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get users list
+      tags:
+      - users
+    post:
+      consumes:
+      - application/json
+      description: Create new user in database
+      operationId: new-user
+      parameters:
+      - description: user data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Create user
+      tags:
+      - users
+  /users/{user_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove user from database by id
+      operationId: remove-user-by-id
+      parameters:
+      - description: User ID to delete
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Remove user by id
+      tags:
+      - users
+    get:
+      consumes:
+      - application/json
+      description: Get user from database by ID
+      operationId: get-user-by-id
+      parameters:
+      - description: User ID to get
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.UserData'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Get user by ID
+      tags:
+      - users
+    put:
+      consumes:
+      - application/json
+      description: Update user data in database by id
+      operationId: update-user-by-id
+      parameters:
+      - description: User ID to update
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      - description: user data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/rest.ErrorMessage'
+      security:
+      - ApiToken: []
+      summary: Update user by id
+      tags:
+      - users
+securityDefinitions:
+  ApiToken:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

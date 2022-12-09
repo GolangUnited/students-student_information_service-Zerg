@@ -1,19 +1,28 @@
 package models
 
-import (
-	"errors"
-	"time"
-	"zerg-team-student-information-service/internal/service/validator"
-)
+type UserData struct {
+	Login      string `json:"login"`
+	FirstName  string `json:"first_name"`
+	LastName   string `json:"last_name"`
+	Patronymic string `json:"patronymic"`
+	Birthday   string `json:"bitrhday"`
+	Email      string `json:"email"`
+}
 
 type User struct {
-	ID           int       `json:"id"`
-	FirstName    string    `json:"first_name"`
-	LastName     string    `json:"last_name"`
-	Birthday     time.Time `json:"birthday"`
-	Email        string    `json:"email"`
-	Password     string    `json:"password"`
-	PasswordHash string
+	UserID int `json:"user_id"`
+	UserData
+	Password          string `json:"password"`
+	PrimaryContacatID int    `json:"primary_contact_id"`
+	passwordHash      string
+}
+
+func (u *User) GetPasswordHash() string {
+	return u.passwordHash
+}
+
+func (u *User) SetPasswordHash(passwordHash string) {
+	u.passwordHash = passwordHash
 }
 
 func (u *User) Validate() error {
@@ -55,4 +64,24 @@ func (u *User) LoginAndPasswordValidation() error {
 	}
 
 	return nil
+}
+
+type StudentData struct {
+	UserID  int `json:"user_id"`
+	GroupID int `json:"group_id"`
+}
+
+type Student struct {
+	UserData
+	GroupID int `json:"group_id"`
+}
+
+type Mentor struct {
+	UserData
+	Groups []Group `json:"groups"`
+}
+
+type Login struct {
+	Login    string `json:"login"`
+	Password string `json:"password"`
 }
