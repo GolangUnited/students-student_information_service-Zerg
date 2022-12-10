@@ -1,6 +1,10 @@
 package rest
 
 import (
+	"net/http"
+	"zerg-team-student-information-service/internal/models"
+	"zerg-team-student-information-service/internal/service"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -33,7 +37,7 @@ func (h *Handler) signUp(c *gin.Context) {
 // @Failure default {object} rest.ErrorMessage
 // @Router /auth/sign-in [post]
 func (h *Handler) signIn(c *gin.Context) {
-  var user models.User
+	var user models.User
 
 	if !h.parseBody(c.Request, &user) {
 		c.JSON(http.StatusBadRequest, gin.H{

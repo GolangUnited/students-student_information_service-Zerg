@@ -21,7 +21,6 @@ var (
 )
 
 func (s *Service) CreateUser(user models.User) (id int64, err error) {
-
 	err = user.Validate()
 	if err != nil {
 		s.logger.Warn("create user err ", err.Error())
@@ -36,7 +35,7 @@ func (s *Service) CreateUser(user models.User) (id int64, err error) {
 		return
 	}
 
-	user.PasswordHash = string(hash)
+	user.SetPasswordHash(string(hash))
 	id, err = s.repo.User().Create(user)
 	if err != nil && (strings.Contains(err.Error(), ErrDuplicateKeyEn.Error()) ||
 		strings.Contains(err.Error(), ErrDuplicateKeyRu.Error())) {
@@ -54,7 +53,6 @@ func (s *Service) CreateUser(user models.User) (id int64, err error) {
 }
 
 func (s *Service) SignIn(login models.User) (token string, err error) {
-
 	user, err := s.repo.User().GetByEmail(login.Email)
 	if err == sql.ErrNoRows {
 		s.logger.Warn("sign in err ", err.Error())
@@ -67,7 +65,7 @@ func (s *Service) SignIn(login models.User) (token string, err error) {
 		return
 	}
 
-	hash := []byte(user.PasswordHash)
+	hash := []byte(user.GetPasswordHash())
 
 	err = bcrypt.CompareHashAndPassword(hash, []byte(login.Password))
 	if err != nil {
