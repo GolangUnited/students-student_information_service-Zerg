@@ -1,5 +1,11 @@
 package models
 
+import (
+	"errors"
+	"time"
+	"zerg-team-student-information-service/internal/service/validator"
+)
+
 type UserData struct {
 	Login      string `json:"login"`
 	FirstName  string `json:"first_name"`
@@ -43,7 +49,11 @@ func (u *User) Validate() error {
 	}
 
 	oneYear := 24 * time.Hour * 365
-	if time.Since(u.Birthday) > 100*oneYear || time.Since(u.Birthday) < 9*oneYear {
+
+	// TO FIX
+	bday, _ := time.Parse(time.RFC822, u.Birthday)
+
+	if time.Since(bday) > 100*oneYear || time.Since(bday) < 9*oneYear {
 		return errors.New("invalid date of birth")
 	}
 

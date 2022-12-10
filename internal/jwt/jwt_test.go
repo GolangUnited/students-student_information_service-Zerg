@@ -1,7 +1,6 @@
 package jwt_test
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
 	"zerg-team-student-information-service/internal/jwt"
 	"zerg-team-student-information-service/internal/models"

@@ -39,14 +39,18 @@ func (u *UserDB) Create(user models.User) (int64, error) {
 		user.LastName,
 		user.Birthday,
 		user.Email,
-		user.PasswordHash,
+		user.GetPasswordHash(),
 	).Scan(&id)
 	return id, err
 }
 
 func (u *UserDB) GetByEmail(email string) (models.User, error) {
 	var user models.User
+	var passwordHash string
 	row := u.dbConn.GetConn().QueryRow("SELECT * FROM users WHERE email=$1", email)
-	err := row.Scan(&user.ID, &user.FirstName, &user.LastName, &user.Birthday, &user.Email, &user.PasswordHash)
+	err := row.Scan(
+		&user.UserID, &user.FirstName, &user.LastName, &user.Birthday, &user.Email, &passwordHash,
+	)
+	user.SetPasswordHash(passwordHash)
 	return user, err
 }
