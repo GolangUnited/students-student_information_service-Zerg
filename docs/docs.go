@@ -3840,6 +3840,12 @@ const docTemplate = `{
                             "$ref": "#/definitions/rest.ErrorMessage"
                         }
                     },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/rest.ErrorMessage"
+                        }
+                    },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
@@ -6029,6 +6035,9 @@ const docTemplate = `{
                 },
                 "login": {
                     "type": "string"
+                },
+                "mentor_id": {
+                    "type": "integer"
                 },
                 "patronymic": {
                     "type": "string"
