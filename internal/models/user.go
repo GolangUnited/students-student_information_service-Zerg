@@ -87,6 +87,7 @@ type Student struct {
 }
 
 type Mentor struct {
+	MentorID int `json:"mentor_id"`
 	UserData
 	Groups []Group `json:"groups"`
 }

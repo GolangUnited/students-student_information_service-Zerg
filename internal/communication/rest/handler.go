@@ -44,11 +44,6 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	router.POST("/signup", h.signUp)
 	router.POST("/signin", h.signIn)
 
-	//test route for authorization testing
-	needAuth := router.Group("/api")
-	needAuth.Use(h.middleware.auth)
-	needAuth.GET("/health", h.healthCheck)
-
 	auth := router.Group("/auth")
 	{
 		auth.POST("/sign-up", h.signUp)
@@ -56,6 +51,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	}
 
 	api := router.Group("/api")
+	api.Use(h.middleware.auth)
 	{
 		users := api.Group("/users")
 		{
