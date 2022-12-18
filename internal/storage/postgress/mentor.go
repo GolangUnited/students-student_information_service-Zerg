@@ -21,11 +21,11 @@ func (m *MentorDB) GetAll() ([]models.Mentor, error) {
 	var mentorsIDs []int
 
 	rows, err := m.dbConn.GetConn().Query(`SELECT mentors.id, first_name, last_name, birthday, email
-	                                    FROM mentors LEFT JOIN users ON users.id = mentors.id`)
-	defer rows.Close()
+	                                       FROM mentors LEFT JOIN users ON users.id = mentors.id`)
 	if err != nil {
 		return mentors, fmt.Errorf("mentors select error: %w", err)
 	}
+	defer rows.Close()
 	for rows.Next() {
 		var mentor models.Mentor
 		err = rows.Scan(&mentor.MentorID, &mentor.FirstName, &mentor.LastName, &mentor.Birthday, &mentor.Email)
@@ -41,6 +41,7 @@ func (m *MentorDB) GetAll() ([]models.Mentor, error) {
 	if err != nil && err != sql.ErrNoRows {
 		return mentors, fmt.Errorf("select groups error: %w", err)
 	}
+	defer rows.Close()
 	for rows.Next() {
 		var group models.Group
 		err = rows.Scan(&group.GroupID, &group.MentorID)
@@ -50,9 +51,7 @@ func (m *MentorDB) GetAll() ([]models.Mentor, error) {
 		mentorsGroups[group.MentorID] = append(mentorsGroups[group.MentorID], group)
 	}
 	for i, mentor := range mentors {
-		for _, group := range mentorsGroups[mentor.MentorID] {
-			mentors[i].Groups = append(mentors[i].Groups, group)
-		}
+		mentors[i].Groups = append(mentors[i].Groups, mentorsGroups[mentor.MentorID]...)
 	}
 
 	return mentors, nil
@@ -75,10 +74,10 @@ func (m *MentorDB) GetByID(id int) (models.Mentor, error) {
 	}
 
 	rows, err := m.dbConn.GetConn().Query(`SELECT id, mentor FROM groups WHERE mentor = $1`, id)
-	defer rows.Close()
 	if err != nil && err != sql.ErrNoRows {
 		return mentorModel, fmt.Errorf("select groups error: %w", err)
 	}
+	defer rows.Close()
 	for rows.Next() {
 		var group models.Group
 		err = rows.Scan(&group.GroupID, &group.MentorID)
